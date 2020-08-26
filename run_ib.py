@@ -1,10 +1,9 @@
-from ib import ib
-import numpy as np
-import pandas as pd
+from enumerate_lexicons import enumerate_possible_lexicons
+from ib import ib, mi
 
 import argparse
-
-
+import numpy as np
+import pandas as pd
 
 # first number in tuple is D1/D2/D3, second is place/goal/source
 DEICTIC_MAP = {
@@ -45,7 +44,7 @@ def get_prior_finnish():
     fin["prob"] = fin["count"]/fin["count"].sum()
     df = pd.DataFrame(FINN_WORDS, columns=["word"]).set_index(["word"])
     df["prob"] = fin["prob"]
-    return fin["prob"]
+    return df["prob"]
 
 def get_prob_u_given_m(mu):
     u_m = np.zeros([len(DEICTIC_MAP), len(DEICTIC_MAP)])
@@ -56,6 +55,20 @@ def get_prob_u_given_m(mu):
             u_m[i][num] = 1 * (mu ** (np.abs(costs[0] - distal) + np.abs(costs[1] - place)))
     return u_m/u_m.sum(axis=1)[:, None]
 
+
+def get_mi_meaning_word(lexicon, prior):
+    return mi(prior[:,None] * lexicon)
+
+def get_all_possible_mi_meaning_word(lexicon_size):
+    prior = get_prior_finnish()
+    lexicons = enumerate_possible_lexicons(9, lexicon_size)
+    x = [(l, get_mi_meaning_word(l, prior)) for l in lexicons]
+    df = pd.DataFrame([{dm: i[0].argmax(axis=1)[dm_num]
+                        for dm_num, dm in enumerate(DEICTIC_INDEX)}for i in x])
+    df["mi"] = [i[1] for i in x]
+    df = df.sort_values(["mi"], ascending=False)
+    print(df)
+    return df
 
 if __name__ == "__main__":
 
