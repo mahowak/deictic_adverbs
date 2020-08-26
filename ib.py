@@ -67,7 +67,7 @@ def test_mi():
     p_x = scipy.special.softmax(np.random.randn(5))
     p_y = scipy.special.softmax(np.random.randn(5))
     p_xy = p_x[:, None] * p_y[None, :]
-    assert mi(p_xy) == 0
+    assert round(mi(p_xy),2) == 0
 
 def test_ib():
     # Suppose we have three Xs, named x1 x2 and x3, and two Y's y1 and y2,
