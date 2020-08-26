@@ -39,7 +39,7 @@ def get_prior_finnish():
     """
     Return the prior prob distribution over deictics, using Finnish
     """
-    fin = pd.read_csv("~/deictic_adverbs/finnish_freqs.csv",
+    fin = pd.read_csv("finnish_freqs.csv",
                     error_bad_lines=False)
     fin = fin.set_index("word").loc[FINN_WORDS].groupby("word").sum()
     fin["prob"] = fin["count"]/fin["count"].sum()
