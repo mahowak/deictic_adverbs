@@ -40,12 +40,34 @@ def ib(p_x, p_y_x, Z, gamma, num_iter=DEFAULT_NUM_ITER):
 
     return q_z_x
 
+def mi(p_xy):
+    """ Calculate mutual information of a distribution P(x,y) 
+
+    Input: 
+    p_xy: An X x Y array giving p(x,y)
+    
+    Output:
+    The mutual information I[X:Y], a nonnegative scalar,
+    """
+    p_x = p_xy.sum(axis=-1, keepdims=True)
+    p_y = p_xy.sum(axis=-2, keepdims=True)
+    return scipy.special.xlogy(p_xy, p_xy).sum() - scipy.special.xlogy(p_x, p_x).sum() - scipy.special.xlogy(p_y, p_y).sum()
+
 def zipf_mandelbrot(N, s, q=0):
     """ Return a Zipf-Mandelbrot distribution over N items """
     k = np.arange(N) + 1
     p = 1/(k+q)**s
     Z = p.sum()
     return p/Z
+
+def test_mi():
+    p_xy = np.array([[1,0],[0,1]])/2
+    assert mi(p_xy) == np.log(2)
+
+    p_x = scipy.special.softmax(np.random.randn(5))
+    p_y = scipy.special.softmax(np.random.randn(5))
+    p_xy = p_x[:, None] * p_y[None, :]
+    assert mi(p_xy) == 0
 
 def test_ib():
     # Suppose we have three Xs, named x1 x2 and x3, and two Y's y1 and y2,
