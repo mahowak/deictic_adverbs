@@ -4,6 +4,7 @@ from ib import ib, mi
 import argparse
 import numpy as np
 import pandas as pd
+import random
 
 # first number in tuple is D1/D2/D3, second is place/goal/source
 DEICTIC_MAP = {
@@ -36,7 +37,7 @@ FINN_WORDS = ["täällä", "siellä", "tuolla",
 
 def get_prior_finnish():
     """
-    Return the prior prob distribution over deictics, using Finnish
+    Return the prior prob distribution over universe, using Finnish
     """
     fin = pd.read_csv("finnish_freqs.csv",
                     error_bad_lines=False)
@@ -48,27 +49,71 @@ def get_prior_finnish():
 
 def get_prob_u_given_m(mu):
     u_m = np.zeros([len(DEICTIC_MAP), len(DEICTIC_MAP)])
-    for i in range(len(DEICTIC_MAP)):
+    for i in DEICTIC_MAP:
         distal, place = DEICTIC_MAP[i]
         for num in DEICTIC_MAP:
             costs = DEICTIC_MAP[num]
             u_m[i][num] = 1 * (mu ** (np.abs(costs[0] - distal) + np.abs(costs[1] - place)))
     return u_m/u_m.sum(axis=1)[:, None]
 
-
 def get_mi_meaning_word(lexicon, prior):
+    """Take lexicon of size U (num elements in world) x W (num words),
+    multiply by prior [length=num meanings] to get I[M;W]"""
     return mi(prior[:,None] * lexicon)
 
-def get_all_possible_mi_meaning_word(lexicon_size):
+def get_mi_u_meaning(lexicon, mu, prior):
+    """Take lexicon of size U (num elements in world) x W (num words),
+    get I[U;W] by summing over words"""
+    num_u = lexicon.shape[0]
+    lexicon_size = lexicon.shape[1]
+    p_u_given_m = prior[:, None] * get_prob_u_given_m(mu)
+    p_u_given_w = np.zeros([num_u, lexicon_size])
+    word_max = np.argmax(lexicon, axis=1)
+    for u in range(len(p_u_given_m)):
+        for m in range(len(p_u_given_m[u])):
+            p_u_given_w[u, word_max[m]] += p_u_given_m[u, m]
+    return mi(p_u_given_w)
+
+def get_mi_for_all(lexicon_size_range=range(2, 10), mu=.1, num_meanings=9, gamma=2):
     prior = get_prior_finnish()
-    lexicons = enumerate_possible_lexicons(9, lexicon_size)
-    x = [(l, get_mi_meaning_word(l, prior)) for l in lexicons]
-    df = pd.DataFrame([{dm: i[0].argmax(axis=1)[dm_num]
-                        for dm_num, dm in enumerate(DEICTIC_INDEX)}for i in x])
-    df["mi"] = [i[1] for i in x]
-    df = df.sort_values(["mi"], ascending=False)
-    print(df)
-    return df
+    assert (len(prior) == num_meanings)
+    dfs = []
+    lexicons = []
+    for lexicon_size in lexicon_size_range:
+        print(lexicon_size)
+        all_lex = list(enumerate_possible_lexicons(num_meanings, lexicon_size))
+        if len(all_lex) > 100:
+            all_lex = random.choices(all_lex, k=100)
+        lexicons += [("simulated", l) for l in all_lex]
+        
+        x = ib(prior, get_prob_u_given_m(mu), lexicon_size, gamma)
+        optimal_for_size = np.zeros((x.shape[0], x.shape[1]))
+        optimal_for_size[np.arange(x.shape[0]), np.argmax(x, axis=1)] = 1
+        lexicons += [("optimal", "optimal_for_size")]
+
+    # add real lexicons
+    lexicons += get_real_langs()
+
+    df = pd.DataFrame([{dm: l[1].argmax(axis=1)[dm_num]
+                    for dm_num, dm in enumerate(DEICTIC_INDEX)}for l in lexicons])
+    df["I[M;U]"] = [get_mi_u_meaning(l[1], mu, prior) for l in lexicons]
+    df["I[M;W]"] = [get_mi_meaning_word(l[1], prior) for l in lexicons]
+    df["Language"] = [l[0] for l in lexicons]
+    dfs += [df]
+    return pd.concat(dfs).sort_values(["I[M;U]"], ascending=False)
+
+
+def get_real_langs(num_meanings=9):
+    df = pd.read_csv("processed_datasheets/europe.csv")
+    real_lexicon_arrays = []
+    num_meanings = 9
+    for lang in set(df.Language):
+        langsubset = df.loc[df.Language == lang]
+        real_lexicon = np.zeros([num_meanings, max(langsubset.uid) + 1])
+        real_lexicon[langsubset.deictic_index, langsubset.uid] = 1
+        real_lexicon_arrays += [(lang, real_lexicon)]
+    return real_lexicon_arrays
+
 
 if __name__ == "__main__":
 
@@ -83,3 +128,13 @@ if __name__ == "__main__":
     df["deictic"] = list(DEICTIC_INDEX.keys())
 
     print(df)
+
+
+# d = read_csv("mi_test.csv")
+
+# d$Language = substr(d$Language, 1, 9)
+# d$IsSim = d$Language == "simulated"
+# ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
+#   geom_jitter(data=filter(d, Language != "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
+#   theme_bw()
+# ggsave("~/Downloads/efficient_deictics_1.png")

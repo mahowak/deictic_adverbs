@@ -60,6 +60,21 @@ d.long.full = left_join(empty.grid, d.long) %>%
 
 
 d.long.full = left_join(d.long.full, fin)
+d.long.full$uid = d.long.full$uid - 1
+
+d.long.full = mutate(d.long.full, deictic_var = case_when(variable == "PLACE" ~ 0,
+                                    variable == "GOAL" ~ 3,
+                                    variable == "SOURCE" ~ 6),
+                     deictic_type = case_when(Type == "D1" ~ 0,
+                                     Type == "D2" ~ 1,
+                                     Type == "D3" ~ 2),
+                     deictic_index = deictic_var + deictic_type)
+d.long.full$deictic_index = with(d.long.full, deictic_var + deictic_type)
+d.long.full = group_by(d.long.full, Language) %>%
+  mutate(uid = dense_rank(value) - 1)
+write_csv(select(ungroup(d.long.full), Language, uid, deictic_index), "processed_datasheets/europe.csv")
+
+arrange(d.long.full, )
 
 ent.df = group_by(d.long.full, Language, value) %>%
   summarise(count.sum = sum(count)) %>%
@@ -76,3 +91,56 @@ arrange(ent.df.sum, -ent)
 arrange(ent.df.sum, ent)
 
 ggplot(ent.df.sum, aes(x=unique.words, y=ent)) + geom_point()
+
+
+############ p(u|m)
+
+get.p.u.m = function(place, distal, mu) {
+  d = expand.grid(distal=c(1,2,3),
+                  place=c(1,2,3))
+  d$current = 1 * .1^(abs(d$distal - distal) + abs(d$place - place))
+  print(d)
+  
+  d.new = mutate(d, distal = case_when(distal == 1 ~ "D1",
+                               distal == 2 ~ "D2",
+                               distal == 3 ~ "D3"),
+         place = case_when(place == 1 ~ "goal",
+                           place == 2 ~ "location",
+                           place ==3 ~ "source")) 
+  d.new$current = d.new$current/sum(d.new$current)
+    p = ggplot(data=d.new, aes(x=distal, y=current)) +
+    geom_bar(stat="identity") +
+    facet_grid(. ~ place) + ggtitle(paste(d.new[d.new$current == max(d.new$current), c("distal", "place")][1],
+                                          d.new[d.new$current == max(d.new$current), c("distal", "place")][2]))
+  print(p)
+}
+d = get.p.u.m(1, 1)
+
+
+########
+d.long.full$a = paste(d.long.full$variable, d.long.full$Type)
+d2 = ungroup(d.long.full) %>% select(a, Language, value) %>%
+  spread(a, value)
+filter(d2, `GOAL D2` == `GOAL D1`)
+filter(d2, `PLACE D2` == `PLACE D1`)
+filter(d2, `SOURCE D2` == `SOURCE D1`)
+
+
+###### analyze frontier
+d = read_csv("mi_test.csv")
+
+d$Language = substr(d$Language, 1, 9)
+d$IsSim = d$Language == "simulated"
+ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
+  theme_bw() + 
+  geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), colour="red")  
+ggsave("~/Downloads/efficient_deictics_1.png")
+
+d$Language = substr(d$Language, 1, 5)
+d$IsSim = d$Language == "simulated"
+ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
+  geom_jitter(data=filter(d, Language != "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
+  geom_text_repel(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`, label=Language))
+ggsave("~/Downloads/efficient_deictics_1_withlabels.png")
+
