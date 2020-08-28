@@ -67,6 +67,25 @@ def zipf_mandelbrot(N, s, q=0):
     Z = p.sum()
     return p/Z
 
+def consistent_inconsistent_example():
+    A = np.array([1,0,0,0])
+    B = np.array([0,1,0,0])
+    C = np.array([0,0,1,0])
+    D = np.array([0,0,0,1])
+
+    # Define lexicons
+    consistent = np.array([[A,C], [A,C], [B,D]])
+    inconsistent = np.array([[A,C],[A,D],[B,D]])
+
+    prior = np.ones(6).reshape(3,2) / 6
+
+    # Both lexicons have equal I[M:W]
+    assert mi((prior[:, :, None] * consistent).reshape(6,4)) == 1.329661348854758
+    assert mi((prior[:, :, None] * inconsistent).reshape(6,4)) == 1.329661348854758
+
+    # But when we decompose M into two components direction d and orientation theta,
+    # we measure 
+
 def test_mi():
     p_xy = np.array([[1,0],[0,1]])/2
     assert mi(p_xy) == np.log(2)
