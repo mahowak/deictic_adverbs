@@ -53,12 +53,38 @@ def mi(p_xy):
     p_y = p_xy.sum(axis=-2, keepdims=True)
     return scipy.special.xlogy(p_xy, p_xy).sum() - scipy.special.xlogy(p_x, p_x).sum() - scipy.special.xlogy(p_y, p_y).sum()
 
+def information_plane(p_x, p_y_x, p_z_x):
+    """ Given p(x), p(y|x), and p(z|x), calculate I[X:Z] and I[Y:Z] """
+    p_xz = p_x[:, None] * p_z_x # Joint p(x,y), shape X x Y    
+    p_xyz = p_x[:, None, None] * p_y_x[:, :, None] * p_z_x[:, None, :] # Joint p(x,y,z), shape X x Y x Z
+    p_yz = p_xyz.sum(axis=0) # Joint p(y,z), shape Y x Z
+    return mi(p_xz), mi(p_yz)
+
 def zipf_mandelbrot(N, s, q=0):
     """ Return a Zipf-Mandelbrot distribution over N items """
     k = np.arange(N) + 1
     p = 1/(k+q)**s
     Z = p.sum()
     return p/Z
+
+def consistent_inconsistent_example():
+    A = np.array([1,0,0,0])
+    B = np.array([0,1,0,0])
+    C = np.array([0,0,1,0])
+    D = np.array([0,0,0,1])
+
+    # Define lexicons
+    consistent = np.array([[A,C], [A,C], [B,D]])
+    inconsistent = np.array([[A,C],[A,D],[B,D]])
+
+    prior = np.ones(6).reshape(3,2) / 6
+
+    # Both lexicons have equal I[M:W]
+    assert mi((prior[:, :, None] * consistent).reshape(6,4)) == 1.329661348854758
+    assert mi((prior[:, :, None] * inconsistent).reshape(6,4)) == 1.329661348854758
+
+    # But when we decompose M into two components direction d and orientation theta,
+    # we measure 
 
 def test_mi():
     p_xy = np.array([[1,0],[0,1]])/2

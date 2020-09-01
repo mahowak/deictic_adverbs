@@ -28,6 +28,12 @@ def onto_mappings(domain, codomain):
     return set(flat(map(itertools.permutations, expansions(range(codomain), domain))))
 
 def to_stochastic_matrix(mapping):
+    """ Input:
+    mapping: a tuple such as (1,3,0,1) which means the first meaning is mapped to word 1, the second to word 3, the third to word 3, etc.
+
+    Output:
+    A stochastic matrix giving p(word|meaning) according to the mapping
+    """
     mapping = tuple(mapping)
     X = len(mapping)
     Y = len(set(mapping))
@@ -38,5 +44,5 @@ def to_stochastic_matrix(mapping):
 
 def enumerate_possible_lexicons(num_meanings, num_words):
     """ Enumerate all possible lexicons (mappings from meanings to words) in terms of p(w|m) """
-    mappings = onto_mappings(num_meanings, num_words)
-    return map(to_stochastic_matrix, mappings)
+    for mapping in onto_mappings(num_meanings, num_words):
+        yield mapping, to_stochastic_matrix(mapping)
