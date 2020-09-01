@@ -1,5 +1,6 @@
 library(readxl)
 library(tidyverse)
+library(ggrepel)
 
 d = read_xlsx("readable_data_tables/europe.xlsx")
 
@@ -127,20 +128,40 @@ filter(d2, `SOURCE D2` == `SOURCE D1`)
 
 
 ###### analyze frontier
-d = read_csv("mi_test.csv")
+d = read_csv("mi_test_1.csv")
 
 d$Language = substr(d$Language, 1, 9)
 d$IsSim = d$Language == "simulated"
-ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
+ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.4) +
   geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
-  theme_bw() + 
-  geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), colour="red")  
+  theme_bw() #+ 
+  #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), colour="red")  
 ggsave("~/Downloads/efficient_deictics_1.png")
 
 d$Language = substr(d$Language, 1, 5)
 d$IsSim = d$Language == "simulated"
 ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
-  geom_jitter(data=filter(d, Language != "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
   geom_text_repel(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`, label=Language))
 ggsave("~/Downloads/efficient_deictics_1_withlabels.png")
 
+filter(d, Language == "optimal")
+
+
+ggplot(filter(d, Language == "simulated"), aes(x=`grammar_complexity`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.4) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`grammar_complexity`, y=`I[M;U]`), width=.02, height=.02)   +
+  theme_bw() #+ 
+filter(d, grammar_complexity == 12) %>% arrange(`I[M;W]`)
+
+d = separate(d, grammar_complexity, into=c("deictic", "pgs", "words"), sep="___")
+
+d$reuse = d$pgs < d$deictic
+ggplot(filter(d, Language == "simulated", reuse==F), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse)) +
+  geom_point( colour="gray", alpha=.4) +
+  geom_point(data=filter(d, Language == "simulated", reuse==T), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse),
+             colour="pink", alpha=.4) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal", reuse==T),
+              aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse), width=.02, height=.02, colour="red")   +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal", reuse==F),
+              aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse), width=.02, height=.02)   +
+  
+  theme_bw()

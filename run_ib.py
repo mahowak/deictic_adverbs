@@ -35,6 +35,27 @@ FINN_WORDS = ["täällä", "siellä", "tuolla",
            "tänne", "sinne", "tuonne",
            "täältä", "sieltä", "tuolta"]
 
+
+def distal2equalsdistal3(a):
+    return all([all(a[DEICTIC_INDEX["D2_{}".format(str(i))]] ==
+                    a[DEICTIC_INDEX["D3_{}".format(str(i))]])
+                    for i in ["place", "goal", "source"]])
+
+def get_pgs_match(a):
+    assert a.shape[0] == 3
+    return (np.argmax(a[0]) == np.argmax(a[1]),
+            np.argmax(a[1]) == np.argmax(a[2]),
+            np.argmax(a[0]) == np.argmax(a[2]))
+
+def get_pgs_complexity(a):
+    return len(set([get_pgs_match(np.stack([a[DEICTIC_INDEX[i]]for i in
+            DEICTIC_INDEX if j in i])) for j in ["D1", "D2", "D3"]]))
+
+def get_complexity_of_paradigm(a):
+    return "_".join([str(i) for i in [2 + distal2equalsdistal3(a),
+                    get_pgs_complexity(a),
+                    np.linalg.matrix_rank(a)]])
+
 def get_prior_finnish():
     """
     Return the prior prob distribution over universe, using Finnish
@@ -82,14 +103,14 @@ def get_mi_for_all(lexicon_size_range=range(2, 10), mu=.1, num_meanings=9, gamma
     for lexicon_size in lexicon_size_range:
         print(lexicon_size)
         all_lex = list(enumerate_possible_lexicons(num_meanings, lexicon_size))
-        if len(all_lex) > 100:
-            all_lex = random.choices(all_lex, k=100)
+        if len(all_lex) > 1000:
+            all_lex = random.choices(all_lex, k=1000)
         lexicons += [("simulated", l) for l in all_lex]
         
         x = ib(prior, get_prob_u_given_m(mu), lexicon_size, gamma)
         optimal_for_size = np.zeros((x.shape[0], x.shape[1]))
         optimal_for_size[np.arange(x.shape[0]), np.argmax(x, axis=1)] = 1
-        lexicons += [("optimal", "optimal_for_size")]
+        lexicons += [("optimal", optimal_for_size)]
 
     # add real lexicons
     lexicons += get_real_langs()
@@ -98,6 +119,7 @@ def get_mi_for_all(lexicon_size_range=range(2, 10), mu=.1, num_meanings=9, gamma
                     for dm_num, dm in enumerate(DEICTIC_INDEX)}for l in lexicons])
     df["I[M;U]"] = [get_mi_u_meaning(l[1], mu, prior) for l in lexicons]
     df["I[M;W]"] = [get_mi_meaning_word(l[1], prior) for l in lexicons]
+    df["grammar_complexity"] = ["_".join(get_complexity_of_paradigm(l[1])) for l in lexicons]
     df["Language"] = [l[0] for l in lexicons]
     dfs += [df]
     return pd.concat(dfs).sort_values(["I[M;U]"], ascending=False)
@@ -121,20 +143,10 @@ if __name__ == "__main__":
     parser.add_argument('--mu',  type=float, help='set mu', default=.1)
     parser.add_argument('--gamma', type=float, default=2)
     parser.add_argument('--Z', type =int, default=5)
-
+    parser.add_argument('--outfile', type=str, default="mi_test_1.csv")
     args = parser.parse_args()
 
-    df = pd.DataFrame(ib(get_prior_finnish(), get_prob_u_given_m(args.mu), args.Z, args.gamma))
-    df["deictic"] = list(DEICTIC_INDEX.keys())
-
-    print(df)
-
-
-# d = read_csv("mi_test.csv")
-
-# d$Language = substr(d$Language, 1, 9)
-# d$IsSim = d$Language == "simulated"
-# ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
-#   geom_jitter(data=filter(d, Language != "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
-#   theme_bw()
-# ggsave("~/Downloads/efficient_deictics_1.png")
+    #df = pd.DataFrame(ib(get_prior_finnish(), get_prob_u_given_m(args.mu), args.Z, args.gamma))
+    #df["deictic"] = list(DEICTIC_INDEX.keys())
+    get_mi_for_all().to_csv(args.outfile)
+    #print(df)
