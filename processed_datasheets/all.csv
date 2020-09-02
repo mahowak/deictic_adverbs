@@ -1,0 +1,901 @@
+Language,uid,deictic_index,area
+Adyghe (Abkhaz-Adyge),1,3,europe
+Adyghe (Abkhaz-Adyge),2,4,europe
+Adyghe (Abkhaz-Adyge),0,5,europe
+Adyghe (Abkhaz-Adyge),1,0,europe
+Adyghe (Abkhaz-Adyge),2,1,europe
+Adyghe (Abkhaz-Adyge),0,2,europe
+Adyghe (Abkhaz-Adyge),1,6,europe
+Adyghe (Abkhaz-Adyge),2,7,europe
+Adyghe (Abkhaz-Adyge),0,8,europe
+"Afar (Afro-Asiatic, Cushitic)",1,3,africa
+"Afar (Afro-Asiatic, Cushitic)",3,4,africa
+"Afar (Afro-Asiatic, Cushitic)",3,5,NA
+"Afar (Afro-Asiatic, Cushitic)",1,0,africa
+"Afar (Afro-Asiatic, Cushitic)",3,1,africa
+"Afar (Afro-Asiatic, Cushitic)",3,2,NA
+"Afar (Afro-Asiatic, Cushitic)",0,6,africa
+"Afar (Afro-Asiatic, Cushitic)",2,7,africa
+"Afar (Afro-Asiatic, Cushitic)",2,8,NA
+"Albanian (Indo-European, Albanian)",1,3,europe
+"Albanian (Indo-European, Albanian)",0,4,europe
+"Albanian (Indo-European, Albanian)",0,5,NA
+"Albanian (Indo-European, Albanian)",1,0,europe
+"Albanian (Indo-European, Albanian)",0,1,europe
+"Albanian (Indo-European, Albanian)",0,2,NA
+"Albanian (Indo-European, Albanian)",3,6,europe
+"Albanian (Indo-European, Albanian)",2,7,europe
+"Albanian (Indo-European, Albanian)",2,8,NA
+"Amharic (Afro-Asiatic, Semitic)",0,3,africa
+"Amharic (Afro-Asiatic, Semitic)",1,4,africa
+"Amharic (Afro-Asiatic, Semitic)",1,5,NA
+"Amharic (Afro-Asiatic, Semitic)",0,0,africa
+"Amharic (Afro-Asiatic, Semitic)",1,1,africa
+"Amharic (Afro-Asiatic, Semitic)",1,2,NA
+"Amharic (Afro-Asiatic, Semitic)",2,6,africa
+"Amharic (Afro-Asiatic, Semitic)",3,7,africa
+"Amharic (Afro-Asiatic, Semitic)",3,8,NA
+"Angolar (Indo-European, Lower Guinea Portuguese)",1,3,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,4,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,5,NA
+"Angolar (Indo-European, Lower Guinea Portuguese)",0,0,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,1,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,2,NA
+"Angolar (Indo-European, Lower Guinea Portuguese)",1,6,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,7,africa
+"Angolar (Indo-European, Lower Guinea Portuguese)",2,8,NA
+Balese (Central Sudanic),0,3,africa
+Balese (Central Sudanic),4,4,africa
+Balese (Central Sudanic),2,5,africa
+Balese (Central Sudanic),1,0,africa
+Balese (Central Sudanic),5,1,africa
+Balese (Central Sudanic),3,2,africa
+Balese (Central Sudanic),0,6,africa
+Balese (Central Sudanic),4,7,africa
+Balese (Central Sudanic),2,8,africa
+Bambara (Mande),0,3,africa
+Bambara (Mande),1,4,africa
+Bambara (Mande),1,5,NA
+Bambara (Mande),0,0,africa
+Bambara (Mande),1,1,africa
+Bambara (Mande),1,2,NA
+Bambara (Mande),0,6,africa
+Bambara (Mande),1,7,africa
+Bambara (Mande),1,8,NA
+Bangime (Bangime),0,3,africa
+Bangime (Bangime),2,4,africa
+Bangime (Bangime),1,5,africa
+Bangime (Bangime),0,0,africa
+Bangime (Bangime),2,1,africa
+Bangime (Bangime),1,2,africa
+Bangime (Bangime),0,6,africa
+Bangime (Bangime),2,7,africa
+Bangime (Bangime),1,8,africa
+Basque,5,3,europe
+Basque,7,4,europe
+Basque,1,5,europe
+Basque,3,0,europe
+Basque,6,1,europe
+Basque,0,2,europe
+Basque,4,6,europe
+Basque,8,7,europe
+Basque,2,8,europe
+Belarusian,2,3,europe
+Belarusian,4,4,europe
+Belarusian,4,5,NA
+Belarusian,5,0,europe
+Belarusian,3,1,europe
+Belarusian,3,2,NA
+Belarusian,0,6,europe
+Belarusian,1,7,europe
+Belarusian,1,8,NA
+Bulgarian,3,3,europe
+Bulgarian,2,4,europe
+Bulgarian,2,5,NA
+Bulgarian,3,0,europe
+Bulgarian,2,1,europe
+Bulgarian,2,2,NA
+Bulgarian,1,6,europe
+Bulgarian,0,7,europe
+Bulgarian,0,8,NA
+Bunoge Dogon (Dogon),3,3,africa
+Bunoge Dogon (Dogon),1,4,africa
+Bunoge Dogon (Dogon),1,5,NA
+Bunoge Dogon (Dogon),2,0,africa
+Bunoge Dogon (Dogon),0,1,africa
+Bunoge Dogon (Dogon),0,2,NA
+Bunoge Dogon (Dogon),3,6,africa
+Bunoge Dogon (Dogon),1,7,africa
+Bunoge Dogon (Dogon),1,8,NA
+Catalan,2,3,europe
+Catalan,1,4,europe
+Catalan,0,5,europe
+Catalan,2,0,europe
+Catalan,1,1,europe
+Catalan,0,2,europe
+Catalan,5,6,europe
+Catalan,4,7,europe
+Catalan,3,8,europe
+"Croatian (Indo-European, Slavic)",3,3,europe
+"Croatian (Indo-European, Slavic)",4,4,europe
+"Croatian (Indo-European, Slavic)",4,5,NA
+"Croatian (Indo-European, Slavic)",3,0,europe
+"Croatian (Indo-European, Slavic)",2,1,europe
+"Croatian (Indo-European, Slavic)",2,2,NA
+"Croatian (Indo-European, Slavic)",1,6,europe
+"Croatian (Indo-European, Slavic)",0,7,europe
+"Croatian (Indo-European, Slavic)",0,8,NA
+"Czech (Indo-European, Slavic)",2,3,europe
+"Czech (Indo-European, Slavic)",3,4,europe
+"Czech (Indo-European, Slavic)",3,5,NA
+"Czech (Indo-European, Slavic)",4,0,europe
+"Czech (Indo-European, Slavic)",3,1,europe
+"Czech (Indo-European, Slavic)",3,2,NA
+"Czech (Indo-European, Slavic)",0,6,europe
+"Czech (Indo-European, Slavic)",1,7,europe
+"Czech (Indo-European, Slavic)",1,8,NA
+"Danish (Indo-European, Germanic)",5,3,europe
+"Danish (Indo-European, Germanic)",2,4,europe
+"Danish (Indo-European, Germanic)",2,5,NA
+"Danish (Indo-European, Germanic)",3,0,europe
+"Danish (Indo-European, Germanic)",0,1,europe
+"Danish (Indo-European, Germanic)",0,2,NA
+"Danish (Indo-European, Germanic)",4,6,europe
+"Danish (Indo-European, Germanic)",1,7,europe
+"Danish (Indo-European, Germanic)",1,8,NA
+"Dii (Atlantic-Congo, Central Adamawa)",1,3,africa
+"Dii (Atlantic-Congo, Central Adamawa)",0,4,africa
+"Dii (Atlantic-Congo, Central Adamawa)",2,5,africa
+"Dii (Atlantic-Congo, Central Adamawa)",1,0,africa
+"Dii (Atlantic-Congo, Central Adamawa)",0,1,africa
+"Dii (Atlantic-Congo, Central Adamawa)",2,2,africa
+"Dii (Atlantic-Congo, Central Adamawa)",1,6,africa
+"Dii (Atlantic-Congo, Central Adamawa)",0,7,africa
+"Dii (Atlantic-Congo, Central Adamawa)",2,8,africa
+Dime (South Omotic),2,3,africa
+Dime (South Omotic),1,4,africa
+Dime (South Omotic),1,5,NA
+Dime (South Omotic),2,0,africa
+Dime (South Omotic),1,1,africa
+Dime (South Omotic),1,2,NA
+Dime (South Omotic),3,6,africa
+Dime (South Omotic),0,7,africa
+Dime (South Omotic),0,8,NA
+"Dutch (Indo-European, Germanic)",4,3,europe
+"Dutch (Indo-European, Germanic)",1,4,europe
+"Dutch (Indo-European, Germanic)",1,5,NA
+"Dutch (Indo-European, Germanic)",3,0,europe
+"Dutch (Indo-European, Germanic)",0,1,europe
+"Dutch (Indo-European, Germanic)",0,2,NA
+"Dutch (Indo-European, Germanic)",5,6,europe
+"Dutch (Indo-European, Germanic)",2,7,europe
+"Dutch (Indo-European, Germanic)",2,8,NA
+"Ekoti (Atlantic-Congo, Bantu)",0,3,africa
+"Ekoti (Atlantic-Congo, Bantu)",2,4,africa
+"Ekoti (Atlantic-Congo, Bantu)",1,5,africa
+"Ekoti (Atlantic-Congo, Bantu)",0,0,africa
+"Ekoti (Atlantic-Congo, Bantu)",2,1,africa
+"Ekoti (Atlantic-Congo, Bantu)",1,2,africa
+"Ekoti (Atlantic-Congo, Bantu)",0,6,africa
+"Ekoti (Atlantic-Congo, Bantu)",2,7,africa
+"Ekoti (Atlantic-Congo, Bantu)",1,8,africa
+"English (Indo-European, Germanic)",2,3,europe
+"English (Indo-European, Germanic)",3,4,europe
+"English (Indo-European, Germanic)",3,5,NA
+"English (Indo-European, Germanic)",2,0,europe
+"English (Indo-European, Germanic)",3,1,europe
+"English (Indo-European, Germanic)",3,2,NA
+"English (Indo-European, Germanic)",0,6,europe
+"English (Indo-European, Germanic)",1,7,europe
+"English (Indo-European, Germanic)",1,8,NA
+Estonian (Uralic),2,3,europe
+Estonian (Uralic),5,4,europe
+Estonian (Uralic),5,5,NA
+Estonian (Uralic),3,0,europe
+Estonian (Uralic),0,1,europe
+Estonian (Uralic),0,2,NA
+Estonian (Uralic),4,6,europe
+Estonian (Uralic),1,7,europe
+Estonian (Uralic),1,8,NA
+"Ewe (Atlantic-Congo, Gbe)",0,3,africa
+"Ewe (Atlantic-Congo, Gbe)",2,4,africa
+"Ewe (Atlantic-Congo, Gbe)",2,5,NA
+"Ewe (Atlantic-Congo, Gbe)",0,0,africa
+"Ewe (Atlantic-Congo, Gbe)",1,1,africa
+"Ewe (Atlantic-Congo, Gbe)",1,2,NA
+"Ewe (Atlantic-Congo, Gbe)",0,6,africa
+"Ewe (Atlantic-Congo, Gbe)",2,7,africa
+"Ewe (Atlantic-Congo, Gbe)",2,8,NA
+"Faroese (Indo-European, Germanic)",3,3,europe
+"Faroese (Indo-European, Germanic)",0,4,europe
+"Faroese (Indo-European, Germanic)",0,5,NA
+"Faroese (Indo-European, Germanic)",3,0,europe
+"Faroese (Indo-European, Germanic)",2,1,europe
+"Faroese (Indo-European, Germanic)",2,2,NA
+"Faroese (Indo-European, Germanic)",4,6,europe
+"Faroese (Indo-European, Germanic)",1,7,europe
+"Faroese (Indo-European, Germanic)",1,8,NA
+Finnish (Uralic),5,3,europe
+Finnish (Uralic),2,4,europe
+Finnish (Uralic),8,5,europe
+Finnish (Uralic),3,0,europe
+Finnish (Uralic),0,1,europe
+Finnish (Uralic),6,2,europe
+Finnish (Uralic),4,6,europe
+Finnish (Uralic),1,7,europe
+Finnish (Uralic),7,8,europe
+"Fon (Atlantic-Congo, Gbe)",0,3,africa
+"Fon (Atlantic-Congo, Gbe)",1,4,africa
+"Fon (Atlantic-Congo, Gbe)",1,5,NA
+"Fon (Atlantic-Congo, Gbe)",0,0,africa
+"Fon (Atlantic-Congo, Gbe)",1,1,africa
+"Fon (Atlantic-Congo, Gbe)",1,2,NA
+"Fon (Atlantic-Congo, Gbe)",0,6,africa
+"Fon (Atlantic-Congo, Gbe)",1,7,africa
+"Fon (Atlantic-Congo, Gbe)",1,8,NA
+"French (Indo-European, Romance)",3,3,europe
+"French (Indo-European, Romance)",4,4,europe
+"French (Indo-European, Romance)",5,5,europe
+"French (Indo-European, Romance)",3,0,europe
+"French (Indo-European, Romance)",4,1,europe
+"French (Indo-European, Romance)",5,2,europe
+"French (Indo-European, Romance)",0,6,europe
+"French (Indo-European, Romance)",1,7,europe
+"French (Indo-European, Romance)",2,8,europe
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",3,3,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",1,4,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",1,5,NA
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",3,0,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",4,1,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",4,2,NA
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",2,6,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",0,7,africa
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",0,8,NA
+Georgian (Kartvelian),0,3,europe
+Georgian (Kartvelian),5,4,europe
+Georgian (Kartvelian),2,5,europe
+Georgian (Kartvelian),0,0,europe
+Georgian (Kartvelian),5,1,europe
+Georgian (Kartvelian),2,2,europe
+Georgian (Kartvelian),1,6,europe
+Georgian (Kartvelian),4,7,europe
+Georgian (Kartvelian),3,8,europe
+"German (Indo-European, Germanic)",7,3,europe
+"German (Indo-European, Germanic)",2,4,europe
+"German (Indo-European, Germanic)",5,5,europe
+"German (Indo-European, Germanic)",6,0,europe
+"German (Indo-European, Germanic)",0,1,europe
+"German (Indo-European, Germanic)",3,2,europe
+"German (Indo-European, Germanic)",8,6,europe
+"German (Indo-European, Germanic)",1,7,europe
+"German (Indo-European, Germanic)",4,8,europe
+"Gidar (Afro-Asiatic, Chadic)",1,3,africa
+"Gidar (Afro-Asiatic, Chadic)",0,4,africa
+"Gidar (Afro-Asiatic, Chadic)",0,5,NA
+"Gidar (Afro-Asiatic, Chadic)",1,0,africa
+"Gidar (Afro-Asiatic, Chadic)",0,1,africa
+"Gidar (Afro-Asiatic, Chadic)",0,2,NA
+"Gidar (Afro-Asiatic, Chadic)",2,6,africa
+"Gidar (Afro-Asiatic, Chadic)",3,7,africa
+"Gidar (Afro-Asiatic, Chadic)",3,8,NA
+"Gonja (Atlantic-Congo, Guang)",0,3,africa
+"Gonja (Atlantic-Congo, Guang)",1,4,africa
+"Gonja (Atlantic-Congo, Guang)",1,5,NA
+"Gonja (Atlantic-Congo, Guang)",0,0,africa
+"Gonja (Atlantic-Congo, Guang)",1,1,africa
+"Gonja (Atlantic-Congo, Guang)",1,2,NA
+"Gonja (Atlantic-Congo, Guang)",0,6,africa
+"Gonja (Atlantic-Congo, Guang)",1,7,africa
+"Gonja (Atlantic-Congo, Guang)",1,8,NA
+"Greek, Modern (Indo-European, Graeco-Phrygian)",2,3,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",3,4,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",3,5,NA
+"Greek, Modern (Indo-European, Graeco-Phrygian)",2,0,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",3,1,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",3,2,NA
+"Greek, Modern (Indo-European, Graeco-Phrygian)",0,6,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",1,7,europe
+"Greek, Modern (Indo-European, Graeco-Phrygian)",1,8,NA
+Hamar (South Omotic),1,3,africa
+Hamar (South Omotic),3,4,africa
+Hamar (South Omotic),3,5,NA
+Hamar (South Omotic),2,0,africa
+Hamar (South Omotic),3,1,africa
+Hamar (South Omotic),3,2,NA
+Hamar (South Omotic),0,6,africa
+Hamar (South Omotic),4,7,africa
+Hamar (South Omotic),4,8,NA
+"Hausa (Afro-Asiatic, Chadic)",5,3,africa
+"Hausa (Afro-Asiatic, Chadic)",4,4,africa
+"Hausa (Afro-Asiatic, Chadic)",1,5,africa
+"Hausa (Afro-Asiatic, Chadic)",5,0,africa
+"Hausa (Afro-Asiatic, Chadic)",4,1,africa
+"Hausa (Afro-Asiatic, Chadic)",1,2,africa
+"Hausa (Afro-Asiatic, Chadic)",3,6,africa
+"Hausa (Afro-Asiatic, Chadic)",2,7,africa
+"Hausa (Afro-Asiatic, Chadic)",0,8,africa
+Hungarian (Uralic),0,3,europe
+Hungarian (Uralic),3,4,europe
+Hungarian (Uralic),3,5,NA
+Hungarian (Uralic),2,0,europe
+Hungarian (Uralic),5,1,europe
+Hungarian (Uralic),5,2,NA
+Hungarian (Uralic),1,6,europe
+Hungarian (Uralic),4,7,europe
+Hungarian (Uralic),4,8,NA
+"Icelandic (Indo-European, Germanic)",1,3,europe
+"Icelandic (Indo-European, Germanic)",3,4,europe
+"Icelandic (Indo-European, Germanic)",3,5,NA
+"Icelandic (Indo-European, Germanic)",1,0,europe
+"Icelandic (Indo-European, Germanic)",3,1,europe
+"Icelandic (Indo-European, Germanic)",3,2,NA
+"Icelandic (Indo-European, Germanic)",0,6,europe
+"Icelandic (Indo-European, Germanic)",2,7,europe
+"Icelandic (Indo-European, Germanic)",2,8,NA
+"Irish (Indo-European, Celtic)",1,3,europe
+"Irish (Indo-European, Celtic)",0,4,europe
+"Irish (Indo-European, Celtic)",2,5,europe
+"Irish (Indo-European, Celtic)",1,0,europe
+"Irish (Indo-European, Celtic)",0,1,europe
+"Irish (Indo-European, Celtic)",2,2,europe
+"Irish (Indo-European, Celtic)",3,6,europe
+"Irish (Indo-European, Celtic)",4,7,europe
+"Irish (Indo-European, Celtic)",5,8,europe
+"Italian (Indo-European, Romance)",3,3,europe
+"Italian (Indo-European, Romance)",2,4,europe
+"Italian (Indo-European, Romance)",2,5,NA
+"Italian (Indo-European, Romance)",3,0,europe
+"Italian (Indo-European, Romance)",2,1,europe
+"Italian (Indo-European, Romance)",2,2,NA
+"Italian (Indo-European, Romance)",1,6,europe
+"Italian (Indo-European, Romance)",0,7,europe
+"Italian (Indo-European, Romance)",0,8,NA
+"Kaba (Central Sudanic, Saraic)",1,3,africa
+"Kaba (Central Sudanic, Saraic)",2,4,africa
+"Kaba (Central Sudanic, Saraic)",3,5,africa
+"Kaba (Central Sudanic, Saraic)",1,0,africa
+"Kaba (Central Sudanic, Saraic)",2,1,africa
+"Kaba (Central Sudanic, Saraic)",3,2,africa
+"Kaba (Central Sudanic, Saraic)",1,6,africa
+"Kaba (Central Sudanic, Saraic)",2,7,africa
+"Kaba (Central Sudanic, Saraic)",0,8,africa
+"Kabiyé (Atlantic-Congo, Gur)",0,3,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,4,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,5,NA
+"Kabiyé (Atlantic-Congo, Gur)",0,0,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,1,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,2,NA
+"Kabiyé (Atlantic-Congo, Gur)",0,6,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,7,africa
+"Kabiyé (Atlantic-Congo, Gur)",1,8,NA
+"Khoekhoe, Nama (Khoe-Kwadi)",2,3,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",4,4,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",0,5,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",2,0,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",4,1,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",0,2,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",3,6,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",5,7,africa
+"Khoekhoe, Nama (Khoe-Kwadi)",1,8,africa
+"Khwarshi (Nakh-Daghestanian, Tsezic)",7,3,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",1,4,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",4,5,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",6,0,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",0,1,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",3,2,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",8,6,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",2,7,europe
+"Khwarshi (Nakh-Daghestanian, Tsezic)",5,8,europe
+"Kikuyu (Atlantic-Congo, Bantu)",1,3,africa
+"Kikuyu (Atlantic-Congo, Bantu)",0,4,africa
+"Kikuyu (Atlantic-Congo, Bantu)",2,5,africa
+"Kikuyu (Atlantic-Congo, Bantu)",1,0,africa
+"Kikuyu (Atlantic-Congo, Bantu)",0,1,africa
+"Kikuyu (Atlantic-Congo, Bantu)",2,2,africa
+"Kikuyu (Atlantic-Congo, Bantu)",1,6,africa
+"Kikuyu (Atlantic-Congo, Bantu)",0,7,africa
+"Kikuyu (Atlantic-Congo, Bantu)",2,8,africa
+Koyra Chiini (Songhay),2,3,africa
+Koyra Chiini (Songhay),0,4,africa
+Koyra Chiini (Songhay),1,5,africa
+Koyra Chiini (Songhay),2,0,africa
+Koyra Chiini (Songhay),0,1,africa
+Koyra Chiini (Songhay),1,2,africa
+Koyra Chiini (Songhay),2,6,africa
+Koyra Chiini (Songhay),0,7,africa
+Koyra Chiini (Songhay),1,8,africa
+Koyraboro Senni (Songhay),0,3,africa
+Koyraboro Senni (Songhay),2,4,africa
+Koyraboro Senni (Songhay),1,5,africa
+Koyraboro Senni (Songhay),0,0,africa
+Koyraboro Senni (Songhay),2,1,africa
+Koyraboro Senni (Songhay),1,2,africa
+Koyraboro Senni (Songhay),0,6,africa
+Koyraboro Senni (Songhay),2,7,africa
+Koyraboro Senni (Songhay),1,8,africa
+Lango (Nilotic),4,3,africa
+Lango (Nilotic),5,4,africa
+Lango (Nilotic),3,5,africa
+Lango (Nilotic),4,0,africa
+Lango (Nilotic),5,1,africa
+Lango (Nilotic),3,2,africa
+Lango (Nilotic),1,6,africa
+Lango (Nilotic),2,7,africa
+Lango (Nilotic),0,8,africa
+"Latvian (Indo-European, Baltic)",3,3,europe
+"Latvian (Indo-European, Baltic)",4,4,europe
+"Latvian (Indo-European, Baltic)",4,5,NA
+"Latvian (Indo-European, Baltic)",2,0,europe
+"Latvian (Indo-European, Baltic)",4,1,europe
+"Latvian (Indo-European, Baltic)",4,2,NA
+"Latvian (Indo-European, Baltic)",0,6,europe
+"Latvian (Indo-European, Baltic)",1,7,europe
+"Latvian (Indo-European, Baltic)",1,8,NA
+"Lezgian (Nakh-Daghestanian, Daghestanian)",5,3,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",2,4,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",2,5,NA
+"Lezgian (Nakh-Daghestanian, Daghestanian)",3,0,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",0,1,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",0,2,NA
+"Lezgian (Nakh-Daghestanian, Daghestanian)",4,6,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",1,7,europe
+"Lezgian (Nakh-Daghestanian, Daghestanian)",1,8,NA
+"Lithuanian (Indo-European, Baltic)",0,3,europe
+"Lithuanian (Indo-European, Baltic)",3,4,europe
+"Lithuanian (Indo-European, Baltic)",3,5,NA
+"Lithuanian (Indo-European, Baltic)",0,0,europe
+"Lithuanian (Indo-European, Baltic)",3,1,europe
+"Lithuanian (Indo-European, Baltic)",3,2,NA
+"Lithuanian (Indo-European, Baltic)",1,6,europe
+"Lithuanian (Indo-European, Baltic)",2,7,europe
+"Lithuanian (Indo-European, Baltic)",2,8,NA
+Loma (Mande),1,3,africa
+Loma (Mande),0,4,africa
+Loma (Mande),0,5,NA
+Loma (Mande),1,0,africa
+Loma (Mande),0,1,africa
+Loma (Mande),0,2,NA
+Loma (Mande),1,6,africa
+Loma (Mande),0,7,africa
+Loma (Mande),0,8,NA
+"Low German (Indo-European, Germanic)",4,3,europe
+"Low German (Indo-European, Germanic)",1,4,europe
+"Low German (Indo-European, Germanic)",1,5,NA
+"Low German (Indo-European, Germanic)",3,0,europe
+"Low German (Indo-European, Germanic)",0,1,europe
+"Low German (Indo-European, Germanic)",0,2,NA
+"Low German (Indo-European, Germanic)",4,6,europe
+"Low German (Indo-European, Germanic)",2,7,europe
+"Low German (Indo-European, Germanic)",2,8,NA
+Luo (Nilotic),1,3,africa
+Luo (Nilotic),3,4,africa
+Luo (Nilotic),0,5,africa
+Luo (Nilotic),1,0,africa
+Luo (Nilotic),3,1,africa
+Luo (Nilotic),2,2,africa
+Luo (Nilotic),1,6,africa
+Luo (Nilotic),3,7,africa
+Luo (Nilotic),0,8,africa
+"Ma’di (Central Sudanic, Moru-Madi)",0,3,africa
+"Ma’di (Central Sudanic, Moru-Madi)",2,4,africa
+"Ma’di (Central Sudanic, Moru-Madi)",4,5,africa
+"Ma’di (Central Sudanic, Moru-Madi)",0,0,africa
+"Ma’di (Central Sudanic, Moru-Madi)",2,1,africa
+"Ma’di (Central Sudanic, Moru-Madi)",4,2,africa
+"Ma’di (Central Sudanic, Moru-Madi)",1,6,africa
+"Ma’di (Central Sudanic, Moru-Madi)",3,7,africa
+"Ma’di (Central Sudanic, Moru-Madi)",5,8,africa
+Maale (Ta-Ne-Omotic),0,3,africa
+Maale (Ta-Ne-Omotic),2,4,africa
+Maale (Ta-Ne-Omotic),2,5,NA
+Maale (Ta-Ne-Omotic),0,0,africa
+Maale (Ta-Ne-Omotic),2,1,africa
+Maale (Ta-Ne-Omotic),2,2,NA
+Maale (Ta-Ne-Omotic),1,6,africa
+Maale (Ta-Ne-Omotic),3,7,africa
+Maale (Ta-Ne-Omotic),3,8,NA
+"Macedonian (Indo-European, Slavic)",6,3,europe
+"Macedonian (Indo-European, Slavic)",0,4,europe
+"Macedonian (Indo-European, Slavic)",1,5,europe
+"Macedonian (Indo-European, Slavic)",6,0,europe
+"Macedonian (Indo-European, Slavic)",7,1,europe
+"Macedonian (Indo-European, Slavic)",4,2,europe
+"Macedonian (Indo-European, Slavic)",3,6,europe
+"Macedonian (Indo-European, Slavic)",5,7,europe
+"Macedonian (Indo-European, Slavic)",2,8,europe
+"Malagasy (Austronesian, Greater Barito)",3,3,africa
+"Malagasy (Austronesian, Greater Barito)",2,4,africa
+"Malagasy (Austronesian, Greater Barito)",1,5,africa
+"Malagasy (Austronesian, Greater Barito)",3,0,africa
+"Malagasy (Austronesian, Greater Barito)",2,1,africa
+"Malagasy (Austronesian, Greater Barito)",1,2,africa
+"Malagasy (Austronesian, Greater Barito)",3,6,africa
+"Malagasy (Austronesian, Greater Barito)",2,7,africa
+"Malagasy (Austronesian, Greater Barito)",0,8,africa
+"Maltese (Afro-Asiatic, Semitic)",0,3,europe
+"Maltese (Afro-Asiatic, Semitic)",1,4,europe
+"Maltese (Afro-Asiatic, Semitic)",1,5,NA
+"Maltese (Afro-Asiatic, Semitic)",0,0,europe
+"Maltese (Afro-Asiatic, Semitic)",1,1,europe
+"Maltese (Afro-Asiatic, Semitic)",1,2,NA
+"Maltese (Afro-Asiatic, Semitic)",2,6,europe
+"Maltese (Afro-Asiatic, Semitic)",3,7,europe
+"Maltese (Afro-Asiatic, Semitic)",3,8,NA
+"Mambay (Atlantic-Congo, Mbumic)",0,3,africa
+"Mambay (Atlantic-Congo, Mbumic)",3,4,africa
+"Mambay (Atlantic-Congo, Mbumic)",3,5,NA
+"Mambay (Atlantic-Congo, Mbumic)",1,0,africa
+"Mambay (Atlantic-Congo, Mbumic)",2,1,africa
+"Mambay (Atlantic-Congo, Mbumic)",2,2,NA
+"Mambay (Atlantic-Congo, Mbumic)",1,6,africa
+"Mambay (Atlantic-Congo, Mbumic)",2,7,africa
+"Mambay (Atlantic-Congo, Mbumic)",2,8,NA
+"Miya (Afro-Asiatic, Chadic)",3,3,africa
+"Miya (Afro-Asiatic, Chadic)",2,4,africa
+"Miya (Afro-Asiatic, Chadic)",2,5,NA
+"Miya (Afro-Asiatic, Chadic)",3,0,africa
+"Miya (Afro-Asiatic, Chadic)",2,1,africa
+"Miya (Afro-Asiatic, Chadic)",2,2,NA
+"Miya (Afro-Asiatic, Chadic)",0,6,africa
+"Miya (Afro-Asiatic, Chadic)",1,7,africa
+"Miya (Afro-Asiatic, Chadic)",1,8,NA
+"Munukutuba (Atlantic-Congo, Bantu)",0,3,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,4,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,5,NA
+"Munukutuba (Atlantic-Congo, Bantu)",0,0,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,1,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,2,NA
+"Munukutuba (Atlantic-Congo, Bantu)",0,6,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,7,africa
+"Munukutuba (Atlantic-Congo, Bantu)",1,8,NA
+"Ngizim (Afro-Asiatic, Chadic)",7,3,africa
+"Ngizim (Afro-Asiatic, Chadic)",6,4,africa
+"Ngizim (Afro-Asiatic, Chadic)",8,5,africa
+"Ngizim (Afro-Asiatic, Chadic)",1,0,africa
+"Ngizim (Afro-Asiatic, Chadic)",0,1,africa
+"Ngizim (Afro-Asiatic, Chadic)",2,2,africa
+"Ngizim (Afro-Asiatic, Chadic)",4,6,africa
+"Ngizim (Afro-Asiatic, Chadic)",3,7,africa
+"Ngizim (Afro-Asiatic, Chadic)",5,8,africa
+Nobiin (Nubian),0,3,africa
+Nobiin (Nubian),2,4,africa
+Nobiin (Nubian),2,5,NA
+Nobiin (Nubian),0,0,africa
+Nobiin (Nubian),2,1,africa
+Nobiin (Nubian),2,2,NA
+Nobiin (Nubian),1,6,africa
+Nobiin (Nubian),3,7,africa
+Nobiin (Nubian),3,8,NA
+"Norwegian (Indo-European, Germanic)",5,3,europe
+"Norwegian (Indo-European, Germanic)",2,4,europe
+"Norwegian (Indo-European, Germanic)",2,5,NA
+"Norwegian (Indo-European, Germanic)",3,0,europe
+"Norwegian (Indo-European, Germanic)",0,1,europe
+"Norwegian (Indo-European, Germanic)",0,2,NA
+"Norwegian (Indo-European, Germanic)",4,6,europe
+"Norwegian (Indo-European, Germanic)",1,7,europe
+"Norwegian (Indo-European, Germanic)",1,8,NA
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",1,3,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,4,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,5,NA
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",1,0,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,1,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,2,NA
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",1,6,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,7,africa
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",0,8,NA
+"Old Church Slavonic (Indo-European, Slavic)",3,3,europe
+"Old Church Slavonic (Indo-European, Slavic)",6,4,europe
+"Old Church Slavonic (Indo-European, Slavic)",0,5,europe
+"Old Church Slavonic (Indo-European, Slavic)",5,0,europe
+"Old Church Slavonic (Indo-European, Slavic)",8,1,europe
+"Old Church Slavonic (Indo-European, Slavic)",2,2,europe
+"Old Church Slavonic (Indo-European, Slavic)",4,6,europe
+"Old Church Slavonic (Indo-European, Slavic)",7,7,europe
+"Old Church Slavonic (Indo-European, Slavic)",1,8,europe
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",0,3,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,4,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,5,NA
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",0,0,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,1,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,2,NA
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",0,6,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,7,africa
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",1,8,NA
+"Pamue (Atlantic-Congo, Bantu)",1,3,africa
+"Pamue (Atlantic-Congo, Bantu)",2,4,africa
+"Pamue (Atlantic-Congo, Bantu)",0,5,africa
+"Pamue (Atlantic-Congo, Bantu)",1,0,africa
+"Pamue (Atlantic-Congo, Bantu)",2,1,africa
+"Pamue (Atlantic-Congo, Bantu)",0,2,africa
+"Pamue (Atlantic-Congo, Bantu)",1,6,africa
+"Pamue (Atlantic-Congo, Bantu)",2,7,africa
+"Pamue (Atlantic-Congo, Bantu)",0,8,africa
+Penange (Dogon),1,3,africa
+Penange (Dogon),0,4,africa
+Penange (Dogon),0,5,NA
+Penange (Dogon),1,0,africa
+Penange (Dogon),0,1,africa
+Penange (Dogon),0,2,NA
+Penange (Dogon),1,6,africa
+Penange (Dogon),0,7,africa
+Penange (Dogon),0,8,NA
+"Polish (Indo-European, Slavic)",3,3,europe
+"Polish (Indo-European, Slavic)",2,4,europe
+"Polish (Indo-European, Slavic)",2,5,NA
+"Polish (Indo-European, Slavic)",3,0,europe
+"Polish (Indo-European, Slavic)",2,1,europe
+"Polish (Indo-European, Slavic)",2,2,NA
+"Polish (Indo-European, Slavic)",0,6,europe
+"Polish (Indo-European, Slavic)",1,7,europe
+"Polish (Indo-European, Slavic)",1,8,NA
+"Portuguese (Indo-European, Romance)",6,3,europe
+"Portuguese (Indo-European, Romance)",0,4,europe
+"Portuguese (Indo-European, Romance)",1,5,europe
+"Portuguese (Indo-European, Romance)",2,0,europe
+"Portuguese (Indo-European, Romance)",0,1,europe
+"Portuguese (Indo-European, Romance)",1,2,europe
+"Portuguese (Indo-European, Romance)",5,6,europe
+"Portuguese (Indo-European, Romance)",3,7,europe
+"Portuguese (Indo-European, Romance)",4,8,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",5,3,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",2,4,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",2,5,NA
+"Romani, Moldovan (Indo-European, Indo-Iranian)",3,0,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",0,1,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",0,2,NA
+"Romani, Moldovan (Indo-European, Indo-Iranian)",4,6,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",1,7,europe
+"Romani, Moldovan (Indo-European, Indo-Iranian)",1,8,NA
+"Romanian (Indo-European, Romance)",1,3,europe
+"Romanian (Indo-European, Romance)",0,4,europe
+"Romanian (Indo-European, Romance)",0,5,NA
+"Romanian (Indo-European, Romance)",1,0,europe
+"Romanian (Indo-European, Romance)",0,1,europe
+"Romanian (Indo-European, Romance)",0,2,NA
+"Romanian (Indo-European, Romance)",3,6,europe
+"Romanian (Indo-European, Romance)",2,7,europe
+"Romanian (Indo-European, Romance)",2,8,NA
+"Rumantsch (Indo-European, Romance)",3,3,europe
+"Rumantsch (Indo-European, Romance)",2,4,europe
+"Rumantsch (Indo-European, Romance)",2,5,NA
+"Rumantsch (Indo-European, Romance)",3,0,europe
+"Rumantsch (Indo-European, Romance)",2,1,europe
+"Rumantsch (Indo-European, Romance)",2,2,NA
+"Rumantsch (Indo-European, Romance)",1,6,europe
+"Rumantsch (Indo-European, Romance)",0,7,europe
+"Rumantsch (Indo-European, Romance)",0,8,NA
+"Russian (Indo-European, Slavic)",2,3,europe
+"Russian (Indo-European, Slavic)",4,4,europe
+"Russian (Indo-European, Slavic)",4,5,NA
+"Russian (Indo-European, Slavic)",5,0,europe
+"Russian (Indo-European, Slavic)",3,1,europe
+"Russian (Indo-European, Slavic)",3,2,NA
+"Russian (Indo-European, Slavic)",0,6,europe
+"Russian (Indo-European, Slavic)",1,7,europe
+"Russian (Indo-European, Slavic)",1,8,NA
+"Saami, Skolt (Uralic)",3,3,europe
+"Saami, Skolt (Uralic)",5,4,europe
+"Saami, Skolt (Uralic)",0,5,europe
+"Saami, Skolt (Uralic)",2,0,europe
+"Saami, Skolt (Uralic)",4,1,europe
+"Saami, Skolt (Uralic)",1,2,europe
+"Saami, Skolt (Uralic)",2,6,europe
+"Saami, Skolt (Uralic)",4,7,europe
+"Saami, Skolt (Uralic)",1,8,europe
+"Sango (Atlantic-Congo, Ubangi)",0,3,africa
+"Sango (Atlantic-Congo, Ubangi)",1,4,africa
+"Sango (Atlantic-Congo, Ubangi)",1,5,NA
+"Sango (Atlantic-Congo, Ubangi)",0,0,africa
+"Sango (Atlantic-Congo, Ubangi)",1,1,africa
+"Sango (Atlantic-Congo, Ubangi)",1,2,NA
+"Sango (Atlantic-Congo, Ubangi)",0,6,africa
+"Sango (Atlantic-Congo, Ubangi)",1,7,africa
+"Sango (Atlantic-Congo, Ubangi)",1,8,NA
+"Scots-Gaelic (Indo-European, Celtic)",3,3,europe
+"Scots-Gaelic (Indo-European, Celtic)",4,4,europe
+"Scots-Gaelic (Indo-European, Celtic)",5,5,europe
+"Scots-Gaelic (Indo-European, Celtic)",3,0,europe
+"Scots-Gaelic (Indo-European, Celtic)",4,1,europe
+"Scots-Gaelic (Indo-European, Celtic)",5,2,europe
+"Scots-Gaelic (Indo-European, Celtic)",1,6,europe
+"Scots-Gaelic (Indo-European, Celtic)",2,7,europe
+"Scots-Gaelic (Indo-European, Celtic)",0,8,europe
+"Serbian (Indo-European, Slavic)",2,3,europe
+"Serbian (Indo-European, Slavic)",3,4,europe
+"Serbian (Indo-European, Slavic)",3,5,NA
+"Serbian (Indo-European, Slavic)",4,0,europe
+"Serbian (Indo-European, Slavic)",3,1,europe
+"Serbian (Indo-European, Slavic)",3,2,NA
+"Serbian (Indo-European, Slavic)",1,6,europe
+"Serbian (Indo-European, Slavic)",0,7,europe
+"Serbian (Indo-European, Slavic)",0,8,NA
+"Slavomolisano (Indo-European, Slavic)",3,3,europe
+"Slavomolisano (Indo-European, Slavic)",0,4,europe
+"Slavomolisano (Indo-European, Slavic)",0,5,NA
+"Slavomolisano (Indo-European, Slavic)",1,0,europe
+"Slavomolisano (Indo-European, Slavic)",2,1,europe
+"Slavomolisano (Indo-European, Slavic)",2,2,NA
+"Slavomolisano (Indo-European, Slavic)",5,6,europe
+"Slavomolisano (Indo-European, Slavic)",4,7,europe
+"Slavomolisano (Indo-European, Slavic)",4,8,NA
+"Slovak (Indo-European, Slavic)",2,3,europe
+"Slovak (Indo-European, Slavic)",3,4,europe
+"Slovak (Indo-European, Slavic)",3,5,NA
+"Slovak (Indo-European, Slavic)",5,0,europe
+"Slovak (Indo-European, Slavic)",4,1,europe
+"Slovak (Indo-European, Slavic)",4,2,NA
+"Slovak (Indo-European, Slavic)",0,6,europe
+"Slovak (Indo-European, Slavic)",1,7,europe
+"Slovak (Indo-European, Slavic)",1,8,NA
+"Slovenian (Indo-European, Slavic)",4,3,europe
+"Slovenian (Indo-European, Slavic)",3,4,europe
+"Slovenian (Indo-European, Slavic)",3,5,NA
+"Slovenian (Indo-European, Slavic)",4,0,europe
+"Slovenian (Indo-European, Slavic)",2,1,europe
+"Slovenian (Indo-European, Slavic)",2,2,NA
+"Slovenian (Indo-European, Slavic)",0,6,europe
+"Slovenian (Indo-European, Slavic)",1,7,europe
+"Slovenian (Indo-European, Slavic)",1,8,NA
+"Somali (Afro-Asiatic, Cushitic)",2,3,africa
+"Somali (Afro-Asiatic, Cushitic)",0,4,africa
+"Somali (Afro-Asiatic, Cushitic)",0,5,NA
+"Somali (Afro-Asiatic, Cushitic)",2,0,africa
+"Somali (Afro-Asiatic, Cushitic)",0,1,africa
+"Somali (Afro-Asiatic, Cushitic)",0,2,NA
+"Somali (Afro-Asiatic, Cushitic)",3,6,africa
+"Somali (Afro-Asiatic, Cushitic)",1,7,africa
+"Somali (Afro-Asiatic, Cushitic)",1,8,NA
+"Sorbian, Lower (Indo-European, Slavic)",1,3,europe
+"Sorbian, Lower (Indo-European, Slavic)",0,4,europe
+"Sorbian, Lower (Indo-European, Slavic)",0,5,NA
+"Sorbian, Lower (Indo-European, Slavic)",3,0,europe
+"Sorbian, Lower (Indo-European, Slavic)",2,1,europe
+"Sorbian, Lower (Indo-European, Slavic)",2,2,NA
+"Sorbian, Lower (Indo-European, Slavic)",4,6,europe
+"Sorbian, Lower (Indo-European, Slavic)",5,7,europe
+"Sorbian, Lower (Indo-European, Slavic)",5,8,NA
+"Sorbian,Upper (Indo-European, Slavic)",1,3,europe
+"Sorbian,Upper (Indo-European, Slavic)",0,4,europe
+"Sorbian,Upper (Indo-European, Slavic)",0,5,NA
+"Sorbian,Upper (Indo-European, Slavic)",3,0,europe
+"Sorbian,Upper (Indo-European, Slavic)",2,1,europe
+"Sorbian,Upper (Indo-European, Slavic)",2,2,NA
+"Sorbian,Upper (Indo-European, Slavic)",4,6,europe
+"Sorbian,Upper (Indo-European, Slavic)",5,7,europe
+"Sorbian,Upper (Indo-European, Slavic)",5,8,NA
+"Spanish (Indo-European, Romance)",0,3,europe
+"Spanish (Indo-European, Romance)",7,4,europe
+"Spanish (Indo-European, Romance)",2,5,europe
+"Spanish (Indo-European, Romance)",3,0,europe
+"Spanish (Indo-European, Romance)",1,1,europe
+"Spanish (Indo-European, Romance)",2,2,europe
+"Spanish (Indo-European, Romance)",6,6,europe
+"Spanish (Indo-European, Romance)",4,7,europe
+"Spanish (Indo-European, Romance)",5,8,europe
+"Supyire Senoufo (Atlantic-Congo, Gur)",1,3,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,4,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,5,NA
+"Supyire Senoufo (Atlantic-Congo, Gur)",1,0,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,1,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,2,NA
+"Supyire Senoufo (Atlantic-Congo, Gur)",1,6,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,7,africa
+"Supyire Senoufo (Atlantic-Congo, Gur)",0,8,NA
+Susu (Mande),0,3,africa
+Susu (Mande),1,4,africa
+Susu (Mande),1,5,NA
+Susu (Mande),0,0,africa
+Susu (Mande),1,1,africa
+Susu (Mande),1,2,NA
+Susu (Mande),0,6,africa
+Susu (Mande),1,7,africa
+Susu (Mande),1,8,NA
+"Swahili (Atlantic-Congo, Bantu)",0,3,africa
+"Swahili (Atlantic-Congo, Bantu)",1,4,africa
+"Swahili (Atlantic-Congo, Bantu)",2,5,africa
+"Swahili (Atlantic-Congo, Bantu)",0,0,africa
+"Swahili (Atlantic-Congo, Bantu)",1,1,africa
+"Swahili (Atlantic-Congo, Bantu)",2,2,africa
+"Swahili (Atlantic-Congo, Bantu)",0,6,africa
+"Swahili (Atlantic-Congo, Bantu)",1,7,africa
+"Swahili (Atlantic-Congo, Bantu)",2,8,africa
+"Swedish (Indo-European, Germanic)",5,3,europe
+"Swedish (Indo-European, Germanic)",2,4,europe
+"Swedish (Indo-European, Germanic)",2,5,NA
+"Swedish (Indo-European, Germanic)",3,0,europe
+"Swedish (Indo-European, Germanic)",0,1,europe
+"Swedish (Indo-European, Germanic)",0,2,NA
+"Swedish (Indo-European, Germanic)",4,6,europe
+"Swedish (Indo-European, Germanic)",1,7,europe
+"Swedish (Indo-European, Germanic)",1,8,NA
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",3,3,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",4,4,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",5,5,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",3,0,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",4,1,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",5,2,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",0,6,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",2,7,africa
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",1,8,africa
+"Tigrinya (Afro-Asiatic, Semitic)",3,3,africa
+"Tigrinya (Afro-Asiatic, Semitic)",2,4,africa
+"Tigrinya (Afro-Asiatic, Semitic)",2,5,NA
+"Tigrinya (Afro-Asiatic, Semitic)",5,0,africa
+"Tigrinya (Afro-Asiatic, Semitic)",4,1,africa
+"Tigrinya (Afro-Asiatic, Semitic)",4,2,NA
+"Tigrinya (Afro-Asiatic, Semitic)",1,6,africa
+"Tigrinya (Afro-Asiatic, Semitic)",0,7,africa
+"Tigrinya (Afro-Asiatic, Semitic)",0,8,NA
+"Tswana (Atlantic-Congo, Bantu)",0,3,africa
+"Tswana (Atlantic-Congo, Bantu)",2,4,africa
+"Tswana (Atlantic-Congo, Bantu)",1,5,africa
+"Tswana (Atlantic-Congo, Bantu)",0,0,africa
+"Tswana (Atlantic-Congo, Bantu)",2,1,africa
+"Tswana (Atlantic-Congo, Bantu)",1,2,africa
+"Tswana (Atlantic-Congo, Bantu)",0,6,africa
+"Tswana (Atlantic-Congo, Bantu)",2,7,africa
+"Tswana (Atlantic-Congo, Bantu)",1,8,africa
+Turkish (Turkic),2,3,europe
+Turkish (Turkic),8,4,europe
+Turkish (Turkic),5,5,europe
+Turkish (Turkic),0,0,europe
+Turkish (Turkic),6,1,europe
+Turkish (Turkic),3,2,europe
+Turkish (Turkic),1,6,europe
+Turkish (Turkic),7,7,europe
+Turkish (Turkic),4,8,europe
+"Ukrainian (Indo-European, Slavic)",0,3,europe
+"Ukrainian (Indo-European, Slavic)",2,4,europe
+"Ukrainian (Indo-European, Slavic)",2,5,NA
+"Ukrainian (Indo-European, Slavic)",3,0,europe
+"Ukrainian (Indo-European, Slavic)",1,1,europe
+"Ukrainian (Indo-European, Slavic)",1,2,NA
+"Ukrainian (Indo-European, Slavic)",4,6,europe
+"Ukrainian (Indo-European, Slavic)",5,7,europe
+"Ukrainian (Indo-European, Slavic)",5,8,NA
+"Welsh (Indo-European, Celtic)",2,3,europe
+"Welsh (Indo-European, Celtic)",3,4,europe
+"Welsh (Indo-European, Celtic)",3,5,NA
+"Welsh (Indo-European, Celtic)",2,0,europe
+"Welsh (Indo-European, Celtic)",3,1,europe
+"Welsh (Indo-European, Celtic)",3,2,NA
+"Welsh (Indo-European, Celtic)",0,6,europe
+"Welsh (Indo-European, Celtic)",1,7,europe
+"Welsh (Indo-European, Celtic)",1,8,NA
+Wolaytta (Ta-Ne-Omotic),0,3,africa
+Wolaytta (Ta-Ne-Omotic),5,4,africa
+Wolaytta (Ta-Ne-Omotic),5,5,NA
+Wolaytta (Ta-Ne-Omotic),1,0,africa
+Wolaytta (Ta-Ne-Omotic),3,1,africa
+Wolaytta (Ta-Ne-Omotic),3,2,NA
+Wolaytta (Ta-Ne-Omotic),2,6,africa
+Wolaytta (Ta-Ne-Omotic),4,7,africa
+Wolaytta (Ta-Ne-Omotic),4,8,NA
+"Yoruba (Atlantic-Congo, Defoid)",7,3,africa
+"Yoruba (Atlantic-Congo, Defoid)",6,4,africa
+"Yoruba (Atlantic-Congo, Defoid)",4,5,africa
+"Yoruba (Atlantic-Congo, Defoid)",1,0,africa
+"Yoruba (Atlantic-Congo, Defoid)",0,1,africa
+"Yoruba (Atlantic-Congo, Defoid)",5,2,africa
+"Yoruba (Atlantic-Congo, Defoid)",3,6,africa
+"Yoruba (Atlantic-Congo, Defoid)",2,7,africa
+"Yoruba (Atlantic-Congo, Defoid)",5,8,africa
+"Zay (Afro-Asiatic, Semitic)",5,3,africa
+"Zay (Afro-Asiatic, Semitic)",4,4,africa
+"Zay (Afro-Asiatic, Semitic)",4,5,NA
+"Zay (Afro-Asiatic, Semitic)",1,0,africa
+"Zay (Afro-Asiatic, Semitic)",0,1,africa
+"Zay (Afro-Asiatic, Semitic)",0,2,NA
+"Zay (Afro-Asiatic, Semitic)",3,6,africa
+"Zay (Afro-Asiatic, Semitic)",2,7,africa
+"Zay (Afro-Asiatic, Semitic)",2,8,NA
+Zialo (Mande),2,3,africa
+Zialo (Mande),1,4,africa
+Zialo (Mande),0,5,africa
+Zialo (Mande),2,0,africa
+Zialo (Mande),1,1,africa
+Zialo (Mande),0,2,africa
+Zialo (Mande),2,6,africa
+Zialo (Mande),1,7,africa
+Zialo (Mande),0,8,africa
