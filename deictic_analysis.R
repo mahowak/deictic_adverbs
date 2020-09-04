@@ -2,8 +2,10 @@ library(readxl)
 library(tidyverse)
 library(ggrepel)
 
-d = read_xlsx("readable_data_tables/europe.xlsx")
-
+eur = read_xlsx("readable_data_tables/europe.xlsx") %>% mutate(area="europe")
+afr = read_xlsx("readable_data_tables/africa.xlsx") %>% mutate(area="africa")
+asia = read_xlsx("readable_data_tables/asia.xlsx") %>% mutate(area="asia")
+d = bind_rows(eur, afr, asia)
 #d = fill(d, Language = tidyr::fill(Language)) 
 
 d = d %>% tidyr::fill(Language) %>%
@@ -20,7 +22,7 @@ d = d %>% tidyr::fill(Language) %>%
          Type != "SI",
          Type %in% c("D1", "D2", "D3")) # filter to just first of each, no SI
 
-d.long = gather(d, variable, value, -Language, -Index, -Type) %>% 
+d.long = gather(d, variable, value, -Language, -Index, -Type, -area) %>% 
   group_by(Language) %>%
   mutate(uid = dense_rank(value))
 
@@ -73,9 +75,8 @@ d.long.full = mutate(d.long.full, deictic_var = case_when(variable == "PLACE" ~ 
 d.long.full$deictic_index = with(d.long.full, deictic_var + deictic_type)
 d.long.full = group_by(d.long.full, Language) %>%
   mutate(uid = dense_rank(value) - 1)
-write_csv(select(ungroup(d.long.full), Language, uid, deictic_index), "processed_datasheets/europe.csv")
+write_csv(select(ungroup(d.long.full), Language, uid, deictic_index, area), "processed_datasheets/all.csv")
 
-arrange(d.long.full, )
 
 ent.df = group_by(d.long.full, Language, value) %>%
   summarise(count.sum = sum(count)) %>%
@@ -133,10 +134,12 @@ d = read_csv("mi_test_1.csv")
 d$Language = substr(d$Language, 1, 9)
 d$IsSim = d$Language == "simulated"
 ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.4) +
-  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), width=.02, height=.02)   +
-  theme_bw() #+ 
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`, colour=Area), width=.02, height=.02)   +
+  theme_bw() 
   #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), colour="red")  
 ggsave("~/Downloads/efficient_deictics_1.png")
+
+filter(d, `I[M;W]` > 1.25, `I[M;U]` < .7, Language != "simulated") %>% select(Area, Language)
 
 d$Language = substr(d$Language, 1, 5)
 d$IsSim = d$Language == "simulated"
@@ -154,7 +157,7 @@ filter(d, grammar_complexity == 12) %>% arrange(`I[M;W]`)
 
 d = separate(d, grammar_complexity, into=c("deictic", "pgs", "words"), sep="___")
 
-d$reuse = d$pgs < d$deictic
+d$reuse = as.numeric(d$pgs) < as.numeric(d$deictic)
 ggplot(filter(d, Language == "simulated", reuse==F), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse)) +
   geom_point( colour="gray", alpha=.4) +
   geom_point(data=filter(d, Language == "simulated", reuse==T), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse),

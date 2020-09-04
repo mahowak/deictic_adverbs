@@ -1,4 +1,454 @@
 Language,uid,deictic_index,area
+[AS-1] Ainu (Ainu),4,3,asia
+[AS-1] Ainu (Ainu),1,4,asia
+[AS-1] Ainu (Ainu),6,5,asia
+[AS-1] Ainu (Ainu),3,0,asia
+[AS-1] Ainu (Ainu),0,1,asia
+[AS-1] Ainu (Ainu),8,2,asia
+[AS-1] Ainu (Ainu),5,6,asia
+[AS-1] Ainu (Ainu),2,7,asia
+[AS-1] Ainu (Ainu),7,8,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",1,3,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",0,4,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",2,5,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",1,0,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",0,1,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",3,2,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",6,6,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",5,7,asia
+"[AS-10] Cantonese (Sino-Tibetan, Sinitic)",4,8,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",3,3,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",2,4,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",2,5,NA
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",3,0,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",2,1,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",2,2,NA
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",1,6,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",0,7,asia
+"[AS-11] Chinese (Sino-Tibetan, Sinitic)",0,8,NA
+[AS-12] Chukchi (Chukotko-Kamchatkan),8,3,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),6,4,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),4,5,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),0,0,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),7,1,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),3,2,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),1,6,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),5,7,asia
+[AS-12] Chukchi (Chukotko-Kamchatkan),2,8,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",2,3,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",0,4,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",4,5,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",2,0,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",0,1,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",4,2,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",3,6,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",1,7,asia
+"[AS-13] Dhimal (Sino-Tibetan, Dhimalish)",5,8,asia
+[AS-14] Evenki (Tungusic),0,3,asia
+[AS-14] Evenki (Tungusic),2,4,asia
+[AS-14] Evenki (Tungusic),2,5,NA
+[AS-14] Evenki (Tungusic),0,0,asia
+[AS-14] Evenki (Tungusic),2,1,asia
+[AS-14] Evenki (Tungusic),2,2,NA
+[AS-14] Evenki (Tungusic),1,6,asia
+[AS-14] Evenki (Tungusic),3,7,asia
+[AS-14] Evenki (Tungusic),3,8,NA
+"[AS-15] Galo (Sino-Tibetan, Tani)",2,3,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",4,4,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",1,5,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",2,0,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",4,1,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",1,2,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",3,6,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",5,7,asia
+"[AS-15] Galo (Sino-Tibetan, Tani)",0,8,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",1,3,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",0,4,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",0,5,NA
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",4,0,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",5,1,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",5,2,NA
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",2,6,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",3,7,asia
+"[AS-16] Hebrew (Afro-Asiatic, Semitic)",3,8,NA
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",5,3,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",4,4,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",3,5,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",1,0,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",0,1,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",2,2,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",5,6,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",4,7,asia
+"[AS-17] Hiligaynon (Austronesian, Greater Central Philippine)",3,8,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",2,3,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",0,4,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",0,5,NA
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",2,0,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",0,1,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",0,2,NA
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",3,6,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",1,7,asia
+"[AS-18] Hindi (Indo-European, Indo-Iranian)",1,8,NA
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",1,3,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,4,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,5,NA
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",1,0,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,1,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,2,NA
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",1,6,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,7,asia
+"[AS-19] Hmong Njua (Hmong-Mien, Chuanqiandian)",0,8,NA
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",2,3,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",0,4,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",0,5,NA
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",2,0,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",0,1,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",0,2,NA
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",3,6,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",1,7,asia
+"[AS-2] Apatani (Sino-Tibetan, Macro-Tani)",1,8,NA
+"[AS-20] Iloko (Austronesian, Northern Luzon)",1,3,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",0,4,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",2,5,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",1,0,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",0,1,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",2,2,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",1,6,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",0,7,asia
+"[AS-20] Iloko (Austronesian, Northern Luzon)",2,8,asia
+[AS-21] Japanese (Japonic),4,3,asia
+[AS-21] Japanese (Japonic),7,4,asia
+[AS-21] Japanese (Japonic),1,5,asia
+[AS-21] Japanese (Japonic),3,0,asia
+[AS-21] Japanese (Japonic),6,1,asia
+[AS-21] Japanese (Japonic),0,2,asia
+[AS-21] Japanese (Japonic),5,6,asia
+[AS-21] Japanese (Japonic),8,7,asia
+[AS-21] Japanese (Japonic),2,8,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",1,3,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",0,4,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",2,5,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",1,0,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",3,1,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",2,2,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",4,6,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",6,7,asia
+"[AS-22] Khasi (Austroasiatic, Khasi-Palaung)",5,8,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",0,3,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",1,4,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",1,5,NA
+"[AS-23] Khmer (Austroasiatic, Khmeric)",0,0,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",1,1,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",1,2,NA
+"[AS-23] Khmer (Austroasiatic, Khmeric)",2,6,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",3,7,asia
+"[AS-23] Khmer (Austroasiatic, Khmeric)",3,8,NA
+[AS-24] Koḍava (Dravidian),5,3,asia
+[AS-24] Koḍava (Dravidian),2,4,asia
+[AS-24] Koḍava (Dravidian),2,5,NA
+[AS-24] Koḍava (Dravidian),3,0,asia
+[AS-24] Koḍava (Dravidian),0,1,asia
+[AS-24] Koḍava (Dravidian),0,2,NA
+[AS-24] Koḍava (Dravidian),4,6,asia
+[AS-24] Koḍava (Dravidian),1,7,asia
+[AS-24] Koḍava (Dravidian),1,8,NA
+[AS-25] Korean (Koreanic),8,3,asia
+[AS-25] Korean (Koreanic),5,4,asia
+[AS-25] Korean (Koreanic),2,5,asia
+[AS-25] Korean (Koreanic),6,0,asia
+[AS-25] Korean (Koreanic),3,1,asia
+[AS-25] Korean (Koreanic),0,2,asia
+[AS-25] Korean (Koreanic),7,6,asia
+[AS-25] Korean (Koreanic),4,7,asia
+[AS-25] Korean (Koreanic),1,8,asia
+[AS-26] Lamut (Tungusic),2,3,asia
+[AS-26] Lamut (Tungusic),5,4,asia
+[AS-26] Lamut (Tungusic),5,5,NA
+[AS-26] Lamut (Tungusic),0,0,asia
+[AS-26] Lamut (Tungusic),3,1,asia
+[AS-26] Lamut (Tungusic),3,2,NA
+[AS-26] Lamut (Tungusic),1,6,asia
+[AS-26] Lamut (Tungusic),4,7,asia
+[AS-26] Lamut (Tungusic),4,8,NA
+"[AS-27] Lao (Tai-Kadai, Daic)",3,3,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",4,4,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",0,5,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",3,0,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",4,1,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",2,2,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",6,6,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",1,7,asia
+"[AS-27] Lao (Tai-Kadai, Daic)",5,8,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",2,3,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",0,4,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",4,5,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",2,0,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",0,1,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",4,2,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",3,6,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",1,7,asia
+"[AS-28] Limbu (Sino-Tibetan, Kiranti)",5,8,asia
+[AS-29] Malayalam (Dravidian),2,3,asia
+[AS-29] Malayalam (Dravidian),0,4,asia
+[AS-29] Malayalam (Dravidian),0,5,NA
+[AS-29] Malayalam (Dravidian),2,0,asia
+[AS-29] Malayalam (Dravidian),0,1,asia
+[AS-29] Malayalam (Dravidian),0,2,NA
+[AS-29] Malayalam (Dravidian),3,6,asia
+[AS-29] Malayalam (Dravidian),1,7,asia
+[AS-29] Malayalam (Dravidian),1,8,NA
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",7,3,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",8,4,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",1,5,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",2,0,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",3,1,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",4,2,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",5,6,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",6,7,asia
+"[AS-3] Arabic, Modern Standard (Afro-Asiatic, Semitic)",0,8,asia
+[AS-30] Manchu (Tungusic),3,3,asia
+[AS-30] Manchu (Tungusic),1,4,asia
+[AS-30] Manchu (Tungusic),1,5,NA
+[AS-30] Manchu (Tungusic),3,0,asia
+[AS-30] Manchu (Tungusic),1,1,asia
+[AS-30] Manchu (Tungusic),1,2,NA
+[AS-30] Manchu (Tungusic),2,6,asia
+[AS-30] Manchu (Tungusic),0,7,asia
+[AS-30] Manchu (Tungusic),0,8,NA
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",8,3,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",6,4,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",7,5,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",5,0,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",3,1,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",4,2,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",2,6,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",0,7,asia
+"[AS-31] Mualang (Austronesian, Malayo-Sumbawan)",1,8,asia
+"[AS-32] Muna (Austronesian, Celebic)",0,3,asia
+"[AS-32] Muna (Austronesian, Celebic)",2,4,asia
+"[AS-32] Muna (Austronesian, Celebic)",1,5,asia
+"[AS-32] Muna (Austronesian, Celebic)",0,0,asia
+"[AS-32] Muna (Austronesian, Celebic)",2,1,asia
+"[AS-32] Muna (Austronesian, Celebic)",1,2,asia
+"[AS-32] Muna (Austronesian, Celebic)",0,6,asia
+"[AS-32] Muna (Austronesian, Celebic)",2,7,asia
+"[AS-32] Muna (Austronesian, Celebic)",1,8,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",8,3,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",2,4,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",5,5,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",7,0,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",1,1,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",4,2,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",6,6,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",0,7,asia
+"[AS-33] Mundari (Austroasiatic, Mundaic)",3,8,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",0,3,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,4,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,5,NA
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",0,0,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,1,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,2,NA
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",0,6,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,7,asia
+"[AS-34] Nicobarese, Car (Austroasiatic, Nicobaric)",1,8,NA
+"[AS-35] Ostyak (Uralic, Khantyic)",3,3,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",1,4,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",1,5,NA
+"[AS-35] Ostyak (Uralic, Khantyic)",4,0,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",0,1,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",0,2,NA
+"[AS-35] Ostyak (Uralic, Khantyic)",5,6,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",2,7,asia
+"[AS-35] Ostyak (Uralic, Khantyic)",2,8,NA
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",0,3,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",2,4,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",2,5,NA
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",0,0,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",2,1,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",2,2,NA
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",1,6,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",3,7,asia
+"[AS-36] Panjabi (Indo-European, Indo-Iranian)",3,8,NA
+"[AS-37] Persian (Indo-European, Indo-Iranian)",2,3,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",3,4,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",3,5,NA
+"[AS-37] Persian (Indo-European, Indo-Iranian)",2,0,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",3,1,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",3,2,NA
+"[AS-37] Persian (Indo-European, Indo-Iranian)",0,6,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",1,7,asia
+"[AS-37] Persian (Indo-European, Indo-Iranian)",1,8,NA
+"[AS-38] Santali (Austroasiatic, Mundaic)",3,3,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",5,4,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",1,5,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",3,0,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",5,1,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",1,2,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",2,6,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",4,7,asia
+"[AS-38] Santali (Austroasiatic, Mundaic)",0,8,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",3,3,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",4,4,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",5,5,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",0,0,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",1,1,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",2,2,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",0,6,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",1,7,asia
+"[AS-39] Tagalog (Austronesian, Greater Central Philippine)",2,8,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",4,3,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",7,4,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",1,5,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",3,0,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",6,1,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",0,2,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",5,6,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",8,7,asia
+"[AS-4] Atong (Sino-Tibetan, Brahmaputran)",2,8,asia
+[AS-40] Tamil (Dravidian),2,3,asia
+[AS-40] Tamil (Dravidian),0,4,asia
+[AS-40] Tamil (Dravidian),0,5,NA
+[AS-40] Tamil (Dravidian),2,0,asia
+[AS-40] Tamil (Dravidian),0,1,asia
+[AS-40] Tamil (Dravidian),0,2,NA
+[AS-40] Tamil (Dravidian),3,6,asia
+[AS-40] Tamil (Dravidian),1,7,asia
+[AS-40] Tamil (Dravidian),1,8,NA
+[AS-41] Telugu (Dravidian),4,3,asia
+[AS-41] Telugu (Dravidian),2,4,asia
+[AS-41] Telugu (Dravidian),2,5,NA
+[AS-41] Telugu (Dravidian),3,0,asia
+[AS-41] Telugu (Dravidian),0,1,asia
+[AS-41] Telugu (Dravidian),0,2,NA
+[AS-41] Telugu (Dravidian),5,6,asia
+[AS-41] Telugu (Dravidian),1,7,asia
+[AS-41] Telugu (Dravidian),1,8,NA
+"[AS-42] Temiar (Austroasiatic, Aslian)",1,3,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",2,4,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",2,5,NA
+"[AS-42] Temiar (Austroasiatic, Aslian)",0,0,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",3,1,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",3,2,NA
+"[AS-42] Temiar (Austroasiatic, Aslian)",4,6,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",5,7,asia
+"[AS-42] Temiar (Austroasiatic, Aslian)",5,8,NA
+"[AS-43] Thai (Tai-Kadai, Daic)",5,3,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",4,4,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",1,5,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",5,0,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",4,1,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",6,2,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",2,6,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",3,7,asia
+"[AS-43] Thai (Tai-Kadai, Daic)",0,8,asia
+[AS-44] Tuvinian (Turkic),4,3,asia
+[AS-44] Tuvinian (Turkic),2,4,asia
+[AS-44] Tuvinian (Turkic),7,5,asia
+[AS-44] Tuvinian (Turkic),5,0,asia
+[AS-44] Tuvinian (Turkic),3,1,asia
+[AS-44] Tuvinian (Turkic),0,2,asia
+[AS-44] Tuvinian (Turkic),6,6,asia
+[AS-44] Tuvinian (Turkic),8,7,asia
+[AS-44] Tuvinian (Turkic),1,8,asia
+[AS-45] Udihe (Tungusic),3,3,asia
+[AS-45] Udihe (Tungusic),2,4,asia
+[AS-45] Udihe (Tungusic),2,5,NA
+[AS-45] Udihe (Tungusic),5,0,asia
+[AS-45] Udihe (Tungusic),1,1,asia
+[AS-45] Udihe (Tungusic),1,2,NA
+[AS-45] Udihe (Tungusic),4,6,asia
+[AS-45] Udihe (Tungusic),0,7,asia
+[AS-45] Udihe (Tungusic),0,8,NA
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",0,3,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",1,4,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",1,5,NA
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",0,0,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",1,1,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",1,2,NA
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",2,6,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",3,7,asia
+"[AS-46] Vietnamese (Austroasiatic, Vietic)",3,8,NA
+"[AS-47] Vogul (Uralic, Mansi)",0,3,asia
+"[AS-47] Vogul (Uralic, Mansi)",4,4,asia
+"[AS-47] Vogul (Uralic, Mansi)",4,5,NA
+"[AS-47] Vogul (Uralic, Mansi)",2,0,asia
+"[AS-47] Vogul (Uralic, Mansi)",3,1,asia
+"[AS-47] Vogul (Uralic, Mansi)",3,2,NA
+"[AS-47] Vogul (Uralic, Mansi)",1,6,asia
+"[AS-47] Vogul (Uralic, Mansi)",5,7,asia
+"[AS-47] Vogul (Uralic, Mansi)",5,8,NA
+"[AS-48] Wa (Austroasiatic, Palaungic)",4,3,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",3,4,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",5,5,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",4,0,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",3,1,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",5,2,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",1,6,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",0,7,asia
+"[AS-48] Wa (Austroasiatic, Palaungic)",2,8,asia
+[AS-49] Yugh (Yeniseian),4,3,asia
+[AS-49] Yugh (Yeniseian),7,4,asia
+[AS-49] Yugh (Yeniseian),1,5,asia
+[AS-49] Yugh (Yeniseian),3,0,asia
+[AS-49] Yugh (Yeniseian),6,1,asia
+[AS-49] Yugh (Yeniseian),0,2,asia
+[AS-49] Yugh (Yeniseian),5,6,asia
+[AS-49] Yugh (Yeniseian),8,7,asia
+[AS-49] Yugh (Yeniseian),2,8,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",4,3,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",3,4,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",5,5,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",4,0,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",3,1,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",5,2,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",1,6,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",0,7,asia
+"[AS-5] Baba Malay (Austronesian, Malayo-Sumbawan)",2,8,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",7,3,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",1,4,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",4,5,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",6,0,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",0,1,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",3,2,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",8,6,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",2,7,asia
+"[AS-50] Yukaghir, Kolyma (Yukaghir)",5,8,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",8,3,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",5,4,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",2,5,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",6,0,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",3,1,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",0,2,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",7,6,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",4,7,asia
+"[AS-6] Bantawa (Sino-Tibetan, Kiranti)",1,8,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",2,3,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",5,4,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",4,5,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",2,0,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",5,1,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",4,2,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",1,6,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",0,7,asia
+"[AS-7] Bengali (Indo-European, Indo-Iranian)",3,8,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",0,3,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",3,4,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",3,5,NA
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",1,0,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",4,1,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",4,2,NA
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",2,6,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",5,7,asia
+"[AS-8] Burmese (Tibeto-Burmese, Burmish)",5,8,NA
+"[AS-9] Burushaski, Yasin (Burushaski)",0,3,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",3,4,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",6,5,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",0,0,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",2,1,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",5,2,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",1,6,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",4,7,asia
+"[AS-9] Burushaski, Yasin (Burushaski)",7,8,asia
 Adyghe (Abkhaz-Adyge),1,3,europe
 Adyghe (Abkhaz-Adyge),2,4,europe
 Adyghe (Abkhaz-Adyge),0,5,europe
