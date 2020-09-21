@@ -1,5 +1,5 @@
 from collections import defaultdict
-from enumerate_lexicons import enumerate_possible_lexicons
+from enumerate_lexicons import get_random_lexicon
 from get_lang_data import get_lang_dict
 from get_prior import get_prior_finnish
 from ib import ib, mi
@@ -79,7 +79,7 @@ class RunIB:
         lexicons = []
         for lexicon_size in lexicon_size_range:
             print(lexicon_size)
-            all_lex = list(enumerate_possible_lexicons(num_meanings, lexicon_size))
+            all_lex = [get_random_lexicon(num_meanings, lexicon_size) for i in range(1000)]
             if len(all_lex) > 1000:
                 all_lex = random.choices(all_lex, k=1000)
             lexicons += [("simulated", l[1], "simulated") for l in all_lex]

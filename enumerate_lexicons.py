@@ -1,3 +1,4 @@
+import random
 import itertools
 
 import numpy as np
@@ -46,3 +47,14 @@ def enumerate_possible_lexicons(num_meanings, num_words):
     """ Enumerate all possible lexicons (mappings from meanings to words) in terms of p(w|m) """
     for mapping in onto_mappings(num_meanings, num_words):
         yield mapping, to_stochastic_matrix(mapping)
+
+def get_random_lexicon(num_meanings, num_words):
+    words = list(range(num_words))
+    words += random.choices(words, k=num_meanings - num_words)
+    words = random.sample(words, len(words))
+    a = np.zeros([len(words), len(set(words))])
+    for x, y in enumerate(words):
+        a[x, y] = 1
+    return (words, a)
+
+
