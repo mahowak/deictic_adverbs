@@ -140,6 +140,8 @@ ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_p
 ggsave("~/Downloads/efficient_deictics_1.png")
 
 filter(d, `I[M;W]` > 1.25, `I[M;U]` < .7, Language != "simulated") %>% select(Area, Language)
+filter(d, `I[M;W]` > 1.25, `I[M;U]` < .8, Language != "simulated", Area == "asia") %>%
+  select(`I[M;W]` ,`I[M;U]`, Area, Language)
 
 d$Language = substr(d$Language, 1, 5)
 d$IsSim = d$Language == "simulated"
@@ -168,3 +170,17 @@ ggplot(filter(d, Language == "simulated", reuse==F), aes(x=`I[M;W]`, y=`I[M;U]`,
               aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse), width=.02, height=.02)   +
   
   theme_bw()
+
+
+spanish = c("aquí
+            ahí 
+            allí 
+            acá
+            allá")
+            
+s = data.frame(x=1:5, count=c(161206, 42761, 26419, 8163, 12446) , 
+               type=c("proximal I", "proximal II", "medial I", "medial II", "distal")) 
+
+ggplot(s, aes(x=x, y=count)) + geom_bar(stat="identity") + theme_bw(18) + 
+  theme(axis.text.x = element_text(angle=90)) + 
+  scale_x_continuous(breaks=seq(1, 5), labels=s$type)
