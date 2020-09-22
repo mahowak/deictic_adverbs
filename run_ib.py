@@ -1,6 +1,6 @@
 from collections import defaultdict
 from get_lang_data import get_lang_dict
-from get_prior import get_exp_prior
+from get_prior import get_exp_prior, exp_fit_place
 from ib import ib, mi
 from enumerate_lexicons import get_random_lexicon
 
@@ -148,19 +148,43 @@ class RunIB:
         return lang_arrays
 
 
-    def get_prob_u_given_m_mini(self, mu, mininum):
-        u_m = np.zeros([mininum, mininum])
-        for i in range(mininum):
-            for num in range(mininum):
-                u_m[i][num] = 1 * (mu ** (np.abs(num - i)))
-        return u_m/u_m.sum(axis=1)[:, None]
+def get_prob_u_given_m_mini(mu, distal_levels):
+    u_m = np.zeros([distal_levels, distal_levels])
+    for i in range(distal_levels):
+        for num in range(distal_levels):
+            u_m[i][num] = 1 * (mu ** (np.abs(num - i)))
+    return u_m/u_m.sum(axis=1)[:, None]
 
-    def get_optimal_lexicon_mini(self, mu, minimum, gamma):
-        """For one of P/G/S, return the optimal distribution of W|M.
-        When gamma is large, this is deterministic in the expected way."""
-        x = self.get_prob_u_given_m_mini(mu, minimum)
-        p = get_exp_prior(3)[:3]
-        return ib(p, x, minimum, gamma)
+
+def get_optimal_lexicon_mini(mu, distal_levels, gamma, loc, num_words):
+    """For one of P/G/S, return the optimal distribution of W|M.
+    When gamma is large, this is deterministic in the expected way."""
+    x = get_prob_u_given_m_mini(mu, distal_levels)
+    p = exp_fit_place(distal_levels, loc)
+    return ib(p, x, num_words, gamma, num_iter=10000)
+
+def get_optimal_lexicons():
+    d = []
+    for mu in [.01, .1, .2]:
+        for gamma in [1, 2, 10, 100]:
+            for distal_levels in [3, 4, 5]:
+                for loc in ["place", "goal", "source"]:
+                    for num_words in [2, 3, 4, 5]:
+                        if num_words < distal_levels:
+                            for j in range(10):
+                                x = get_optimal_lexicon_mini(
+                                mu, distal_levels, gamma, 
+                                loc, num_words)
+                                x = np.round(x, 2)                            
+                                d += [{"mu": mu,
+                                    "gamma": gamma,
+                                    "distal": distal_levels,
+                                    "loc": loc,
+                                    "num_words": num_words,
+                                    "lexicon": x[:, x.argmax(axis=0).argsort()]}]
+    df = pd.DataFrame(d)
+    df.to_pickle("optimal_lexicons.pkl")                                    
+    return d
 
 if __name__ == "__main__":
 
@@ -172,3 +196,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     RunIB(args.mu, args.gamma, args.distal).get_mi_for_all().to_csv(args.outfile)
+    get_optimal_lexicons()

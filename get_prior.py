@@ -6,9 +6,9 @@ FINN_WORDS = ["täällä", "siellä", "tuolla",
               "tänne", "sinne", "tuonne",
               "täältä", "sieltä", "tuolta"]
 
-FINN_PLACE = [39, 16, 6]
-FINN_GOAL = [18, 7, 1.6]
-FINN_SOURCE = [7, 2, .6]
+FINN_COUNTS = {"place":  [39, 16, 6],
+"goal": [18, 7, 1.6],
+"source": [7, 2, .6]}
 
 
 def get_prior_finnish():
@@ -26,6 +26,10 @@ def get_exp_fit(prior, distal_levels):
     return dist
 
 def get_exp_prior(distal_levels):
-    x = np.concatenate([get_exp_fit(i, distal_levels) for i in
-                        [FINN_PLACE, FINN_GOAL, FINN_SOURCE]])
+    x = np.concatenate([get_exp_fit(FINN_COUNTS[i], distal_levels) for i in
+                        FINN_COUNTS])
+    return x/np.sum(x)
+
+def exp_fit_place(distal_levels, loc):
+    x =  get_exp_fit(FINN_COUNTS[loc], distal_levels)
     return x/np.sum(x)
