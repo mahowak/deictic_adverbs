@@ -136,7 +136,7 @@ d$Language = substr(d$Language, 1, 9)
 d$IsSim = d$Language == "simulated"
 ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) + geom_point( colour="gray", alpha=.1) +
   geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.02, height=.02)   +
-  theme_bw() 
+  theme_bw(14) 
   #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`), colour="red")  
 ggsave("~/Downloads/efficient_deictics_1.png")
 

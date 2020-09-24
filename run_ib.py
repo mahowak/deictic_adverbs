@@ -20,13 +20,14 @@ class RunIB:
         self.mu = mu
         self.gamma=gamma
         self.distal_levels = distal_levels
+        self.prior = get_exp_prior(self.distal_levels)  # p(x)
         c = 0
         for i in [("place", 1), ("goal", 0), ("source", 2)]:
             for j in range(distal_levels):
                 self.deictic_map[c] = (j, i[1])
                 self.deictic_index["D{}_{}".format(str(j + 1), i[0])] = c
                 c += 1
-        print (self.deictic_map, self.deictic_index)
+        self.prob_u_given_m = self.get_prob_u_given_m()
 
     def distal2equalsdistal3(self, a):
         return all([all(a[self.deictic_index["D2_{}".format(str(i))]] ==
@@ -57,31 +58,29 @@ class RunIB:
                 u_m[i][num] = 1 * (self.mu ** (np.abs(costs[0] - distal) + np.abs(costs[1] - place)))
         return u_m/u_m.sum(axis=1)[:, None]
 
+    def get_optimal_lexicon(self, lexicon_size):
+        return ib(self.prior, self.prob_u_given_m, lexicon_size, self.gamma, num_iter=1000, outer_iter=50)
+
     def get_mi_for_all(self):
         num_meanings = self.distal_levels * 3
         lexicon_size_range = range(2, num_meanings + 1)
-        prior = get_exp_prior(self.distal_levels) # p(x)
-        assert (len(prior) == num_meanings)
+        assert (len(self.prior) == num_meanings)
         dfs = []
         lexicons = []
         for lexicon_size in lexicon_size_range:
             all_lex = [get_random_lexicon(num_meanings, lexicon_size) for i in range(1000)]
             lexicons += [("simulated", l[1], "simulated") for l in all_lex]
-            
-            x = ib(prior, self.get_prob_u_given_m(), lexicon_size, self.gamma)
-            optimal_for_size = np.zeros((x.shape[0], x.shape[1]))
-            optimal_for_size[np.arange(x.shape[0]), np.argmax(x, axis=1)] = 1
-            lexicons += [("optimal", optimal_for_size, "optimal")]
+            lexicons += [("optimal", self.get_optimal_lexicon(lexicon_size),
+                         "optimal")]
 
         # add real lexicons
-        p_u_m = self.get_prob_u_given_m() # p(y|x)
         lexicons += self.get_real_langs(num_meanings) # p(z|x)
 
         # turn lexicon into df
         df = pd.DataFrame([{dm: l[1].argmax(axis=1)[dm_num]
                         for dm_num, dm in enumerate(self.deictic_index)}for l in lexicons])
 
-        information_plane_list = [information_plane(prior, p_u_m, l[1]) for l in lexicons]                        
+        information_plane_list = [information_plane(self.prior, self.prob_u_given_m, l[1]) for l in lexicons]                        
         df["I[U;W]"] = [l[0] for l in information_plane_list]
         df["I[M;W]"] = [l[1] for l in information_plane_list]
         df["grammar_complexity"] = ["_".join(self.get_complexity_of_paradigm(l[1])) for l in lexicons]
@@ -150,7 +149,7 @@ def get_optimal_lexicon_mini(mu, distal_levels, gamma, loc, num_words):
     p = exp_fit_place(distal_levels, loc)
     return x, p, ib(p, x, num_words, gamma, num_iter=100)
 
-def print_optimal_lexicons_for_ggplot(df):
+def print_optimal_lexicons_for_ggplot_mini(df):
     newds = []
     for i in range(df.shape[0]):
         row = df.iloc[i]
@@ -168,7 +167,27 @@ def print_optimal_lexicons_for_ggplot(df):
 
     pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot.csv")
 
-def get_optimal_lexicons():
+
+def print_optimal_lexicons_for_ggplot(df):
+    newds = []
+    for i in range(df.shape[0]):
+        row = df.iloc[i]
+        for item_num, item in enumerate(row["lexicon"]):
+            for word_num, word in enumerate(item):
+                distal, loc = row["index"][item_num].split("_")
+                newd = {"mu": row["mu"],
+                        "gamma": row["gamma"],
+                        "loc": loc,
+                        "total_num_words": row["num_words"],
+                        "total_distal": row["distal"],
+                        "distal": distal,
+                        "word": word_num + 1,
+                        "value": word}
+                newds += [newd]
+
+    pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot.csv")
+
+def get_optimal_lexicons_mini():
     d = []
     for mu in [.01, .1, .2]:
         for gamma in [1, 2, 10, 100]:
@@ -192,9 +211,38 @@ def get_optimal_lexicons():
                                 "prior": prior,
                                 "lexicon": z_given_x[:, z_given_x.argmax(axis=0).argsort()]}]
     df = pd.DataFrame(d)
-    df.to_pickle("optimal_lexicons.pkl")  
-    print_optimal_lexicons_for_ggplot(df)                                  
+    df.to_pickle("optimal_lexicons_mini.pkl")  
+    print_optimal_lexicons_for_ggplot_mini(df)                                  
     return d
+
+
+def get_optimal_lexicons():
+    d = []
+    for mu in [.01, .1, .2]:
+        for gamma in [1, 2, 10, 100]:
+            for distal_levels in [3, 4, 5]:
+                runib = RunIB(mu, gamma, distal_levels)
+                for num_words in [2, 3, 4, 5]:
+                    if num_words <= distal_levels:
+                        z_given_x = runib.get_optimal_lexicon(num_words)
+                        mi_xz, mi_yz = information_plane(
+                            runib.prior, runib.prob_u_given_m, z_given_x)
+                        z_given_x = np.round(z_given_x, 2)
+                        d += [{"mu": mu,
+                                "gamma": gamma,
+                                "distal": distal_levels,
+                                "num_words": num_words,
+                                "mi_xz": mi_xz,
+                                "mi_yz": mi_yz,
+                                "u_given_m": runib.prob_u_given_m,
+                                "prior": runib.prior,
+                                "map": runib.deictic_map,
+                                "index": {runib.deictic_index[i]: i for i in runib.deictic_index},
+                                "lexicon": z_given_x[:, z_given_x.argmax(axis=0).argsort()]}]
+    df = pd.DataFrame(d)
+    df.to_pickle("optimal_lexicons.pkl")
+    print_optimal_lexicons_for_ggplot(df)
+    return df
 
 if __name__ == "__main__":
 
