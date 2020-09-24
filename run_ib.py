@@ -1,7 +1,7 @@
 from collections import defaultdict
 from get_lang_data import get_lang_dict
 from get_prior import get_exp_prior, exp_fit_place
-from ib import ib, mi
+from ib import ib, mi, information_plane
 from enumerate_lexicons import get_random_lexicon
 
 import argparse
@@ -57,28 +57,10 @@ class RunIB:
                 u_m[i][num] = 1 * (self.mu ** (np.abs(costs[0] - distal) + np.abs(costs[1] - place)))
         return u_m/u_m.sum(axis=1)[:, None]
 
-    def get_mi_meaning_word(self, lexicon, prior):
-        """Take lexicon of size U (num elements in world) x W (num words),
-        multiply by prior [length=num meanings] to get I[M;W]"""
-        return mi(prior[:,None] * lexicon)
-
-    def get_mi_u_meaning(self, lexicon, prior):
-        """Take lexicon of size U (num elements in world) x W (num words),
-        get I[U;W] by summing over words"""
-        num_u = lexicon.shape[0]
-        lexicon_size = lexicon.shape[1]
-        p_u_m = prior[:, None] * self.get_prob_u_given_m()
-        p_u_w = np.zeros([num_u, lexicon_size]) # num_meanings by lexicon size
-        word_max = np.argmax(lexicon, axis=1)
-        for u in range(len(p_u_m)):
-            for m in range(len(p_u_m[u])):
-                p_u_w[u, word_max[m]] += p_u_m[u, m]
-        return mi(p_u_w)
-
     def get_mi_for_all(self):
         num_meanings = self.distal_levels * 3
         lexicon_size_range = range(2, num_meanings + 1)
-        prior = get_exp_prior(self.distal_levels)
+        prior = get_exp_prior(self.distal_levels) # p(x)
         assert (len(prior) == num_meanings)
         dfs = []
         lexicons = []
@@ -92,16 +74,21 @@ class RunIB:
             lexicons += [("optimal", optimal_for_size, "optimal")]
 
         # add real lexicons
-        lexicons += self.get_real_langs(num_meanings)
+        p_u_m = self.get_prob_u_given_m() # p(y|x)
+        lexicons += self.get_real_langs(num_meanings) # p(z|x)
+
+        # turn lexicon into df
         df = pd.DataFrame([{dm: l[1].argmax(axis=1)[dm_num]
                         for dm_num, dm in enumerate(self.deictic_index)}for l in lexicons])
-        df["I[M;U]"] = [self.get_mi_u_meaning(l[1], prior) for l in lexicons]
-        df["I[M;W]"] = [self.get_mi_meaning_word(l[1], prior) for l in lexicons]
+
+        information_plane_list = [information_plane(prior, p_u_m, l[1]) for l in lexicons]                        
+        df["I[U;W]"] = [l[0] for l in information_plane_list]
+        df["I[M;W]"] = [l[1] for l in information_plane_list]
         df["grammar_complexity"] = ["_".join(self.get_complexity_of_paradigm(l[1])) for l in lexicons]
         df["Language"] = [l[0] for l in lexicons]
         df["Area"] = [l[2] for l in lexicons]
         dfs += [df]
-        return pd.concat(dfs).sort_values(["I[M;U]"], ascending=False)
+        return pd.concat(dfs).sort_values(["I[U;W]"], ascending=False)
 
 
     def get_real_langs(self, num_meanings):
@@ -161,7 +148,25 @@ def get_optimal_lexicon_mini(mu, distal_levels, gamma, loc, num_words):
     When gamma is large, this is deterministic in the expected way."""
     x = get_prob_u_given_m_mini(mu, distal_levels)
     p = exp_fit_place(distal_levels, loc)
-    return ib(p, x, num_words, gamma, num_iter=10000)
+    return x, p, ib(p, x, num_words, gamma, num_iter=100)
+
+def print_optimal_lexicons_for_ggplot(df):
+    newds = []
+    for i in range(df.shape[0]):
+        row = df.iloc[i]
+        for distal_num, distal in enumerate(row["lexicon"]):
+            for word_num, word in enumerate(distal):
+                newd = {"mu": row["mu"],
+                        "gamma": row["gamma"],
+                        "loc": row["loc"],
+                        "total_num_words": row["num_words"],
+                        "total_distal": row["distal"],
+                        "distal": distal_num + 1,
+                        "word": word_num + 1,
+                        "value": word}
+                newds += [newd]
+
+    pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot.csv")
 
 def get_optimal_lexicons():
     d = []
@@ -171,19 +176,24 @@ def get_optimal_lexicons():
                 for loc in ["place", "goal", "source"]:
                     for num_words in [2, 3, 4, 5]:
                         if num_words < distal_levels:
-                            for j in range(10):
-                                x = get_optimal_lexicon_mini(
-                                mu, distal_levels, gamma, 
-                                loc, num_words)
-                                x = np.round(x, 2)                            
-                                d += [{"mu": mu,
-                                    "gamma": gamma,
-                                    "distal": distal_levels,
-                                    "loc": loc,
-                                    "num_words": num_words,
-                                    "lexicon": x[:, x.argmax(axis=0).argsort()]}]
+                            u_given_m, prior, z_given_x = get_optimal_lexicon_mini(
+                            mu, distal_levels, gamma, 
+                            loc, num_words)
+                            mi_xz, mi_yz = information_plane(prior, u_given_m, z_given_x)
+                            z_given_x = np.round(z_given_x, 2)                            
+                            d += [{"mu": mu,
+                                "gamma": gamma,
+                                "distal": distal_levels,
+                                "loc": loc,
+                                "num_words": num_words,
+                                "mi_xz": mi_xz,
+                                "mi_yz": mi_yz,
+                                "u_given_m": u_given_m,
+                                "prior": prior,
+                                "lexicon": z_given_x[:, z_given_x.argmax(axis=0).argsort()]}]
     df = pd.DataFrame(d)
-    df.to_pickle("optimal_lexicons.pkl")                                    
+    df.to_pickle("optimal_lexicons.pkl")  
+    print_optimal_lexicons_for_ggplot(df)                                  
     return d
 
 if __name__ == "__main__":
