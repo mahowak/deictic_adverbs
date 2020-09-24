@@ -134,41 +134,41 @@ d = read_csv("mi_test_1.csv")
 
 d$Language = substr(d$Language, 1, 9)
 d$IsSim = d$Language == "simulated"
-ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.4) +
-  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`, colour=Area), width=.02, height=.02)   +
+ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) + geom_point( colour="gray", alpha=.1) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.02, height=.02)   +
   theme_bw() 
-  #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`), colour="red")  
+  #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`), colour="red")  
 ggsave("~/Downloads/efficient_deictics_1.png")
 
-filter(d, `I[M;W]` > 1.25, `I[M;U]` < .7, Language != "simulated") %>% select(Area, Language)
-filter(d, `I[M;W]` > 1.25, `I[M;U]` < .8, Language != "simulated", Area == "asia") %>%
-  select(`I[M;W]` ,`I[M;U]`, Area, Language)
+filter(d, `I[M;W]` > 1.25, `I[U;W]` < .7, Language != "simulated") %>% select(Area, Language)
+filter(d, `I[M;W]` > 1.25, `I[U;W]` < .8, Language != "simulated", Area == "asia") %>%
+  select(`I[M;W]` ,`I[U;W]`, Area, Language)
 
 d$Language = substr(d$Language, 1, 5)
 d$IsSim = d$Language == "simulated"
-ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.1) +
-  geom_text_repel(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[M;U]`, label=Language))
+ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[U;W]`)) + geom_point( colour="gray", alpha=.1) +
+  geom_text_repel(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`, label=Language))
 ggsave("~/Downloads/efficient_deictics_1_withlabels.png")
 
 filter(d, Language == "optimal")
 
 
-ggplot(filter(d, Language == "simulated"), aes(x=`grammar_complexity`, y=`I[M;U]`)) + geom_point( colour="gray", alpha=.4) +
-  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`grammar_complexity`, y=`I[M;U]`), width=.02, height=.02)   +
+ggplot(filter(d, Language == "simulated"), aes(x=`grammar_complexity`, y=`I[U;W]`)) + geom_point( colour="gray", alpha=.4) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`grammar_complexity`, y=`I[U;W]`), width=.02, height=.02)   +
   theme_bw() #+ 
 filter(d, grammar_complexity == 12) %>% arrange(`I[M;W]`)
 
 d = separate(d, grammar_complexity, into=c("deictic", "pgs", "words"), sep="___")
 
 d$reuse = as.numeric(d$pgs) < as.numeric(d$deictic)
-ggplot(filter(d, Language == "simulated", reuse==F), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse)) +
+ggplot(filter(d, Language == "simulated", reuse==F), aes(x=`I[M;W]`, y=`I[U;W]`, shape=reuse)) +
   geom_point( colour="gray", alpha=.4) +
-  geom_point(data=filter(d, Language == "simulated", reuse==T), aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse),
+  geom_point(data=filter(d, Language == "simulated", reuse==T), aes(x=`I[M;W]`, y=`I[U;W]`, shape=reuse),
              colour="pink", alpha=.4) +
   geom_jitter(data=filter(d, Language != "simulated", Language != "optimal", reuse==T),
-              aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse), width=.02, height=.02, colour="red")   +
+              aes(x=`I[M;W]`, y=`I[U;W]`, shape=reuse), width=.02, height=.02, colour="red")   +
   geom_jitter(data=filter(d, Language != "simulated", Language != "optimal", reuse==F),
-              aes(x=`I[M;W]`, y=`I[M;U]`, shape=reuse), width=.02, height=.02)   +
+              aes(x=`I[M;W]`, y=`I[U;W]`, shape=reuse), width=.02, height=.02)   +
   
   theme_bw()
 

@@ -175,7 +175,7 @@ def get_optimal_lexicons():
             for distal_levels in [3, 4, 5]:
                 for loc in ["place", "goal", "source"]:
                     for num_words in [2, 3, 4, 5]:
-                        if num_words < distal_levels:
+                        if num_words <= distal_levels:
                             u_given_m, prior, z_given_x = get_optimal_lexicon_mini(
                             mu, distal_levels, gamma, 
                             loc, num_words)

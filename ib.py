@@ -3,7 +3,14 @@ import scipy.special
 
 DEFAULT_NUM_ITER = 10
 
-def ib(p_x, p_y_x, Z, gamma, num_iter=DEFAULT_NUM_ITER):
+def ib(p_x, p_y_x, Z, gamma, num_iter=DEFAULT_NUM_ITER, outer_iter=10):
+    q_z_xs = [_ib(p_x, p_y_x, Z, gamma, num_iter) for i in range(outer_iter)]
+    iplanes = [information_plane(p_x, p_y_x, q) for q in q_z_xs]
+    J = np.array([i[0] - gamma * i[1] for i in iplanes])
+    return q_z_xs[J.argmin()]
+
+
+def _ib(p_x, p_y_x, Z, gamma, num_iter=DEFAULT_NUM_ITER):
     """ Find encoder q(Z|X) to minimize J = I[X:Z] - gamma * I[Y:Z].
     
     Input:
