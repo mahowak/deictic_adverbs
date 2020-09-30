@@ -26,20 +26,21 @@ for (m in unique(d$mu)) {
 
 ############## make categorical
 e = group_by(d, mu, gamma, loc, total_distal, total_num_words, distal) %>%
-  mutate(m=max(value)) %>%
-  filter(value == m) %>%
-  mutate(value = 1)
+  mutate(max.val=max(value)) %>%
+  filter(value == max.val,
+         gamma > 1) 
 
-for (m in unique(d$mu)) {
-  x = filter(d, mu == m)
+for (m in unique(e$mu)) {
+  x = filter(e, mu == m)
   title = paste("mu: ", m) 
-  p  =  ggplot(x, aes(x=distal, y=loc, fill=word)) + geom_tile()
-    facet_grid(total_num_words + gamma ~ total_distal + loc) + 
+  p  =  ggplot(x, aes(x=distal, y=loc, fill=word)) + geom_tile() + 
+    facet_grid(total_num_words + gamma ~ total_distal) + 
     xlab("Distal Level") + ylab("value") +
     ggtitle(title) +
     theme_bw(12) + 
     scale_fill_brewer(palette="Set1")
   
   print(p)
-  ggsave(paste0("optimal_pdfs/det", title, ".pdf"), width=15, height=15)
+  ggsave(paste0("optimal_pdfs/det", title, ".pdf"), width=9, height=15)
 }
+

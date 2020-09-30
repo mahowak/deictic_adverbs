@@ -165,7 +165,7 @@ def print_optimal_lexicons_for_ggplot_mini(df):
                         "value": word}
                 newds += [newd]
 
-    pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot.csv")
+    pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot_mini.csv")
 
 
 def print_optimal_lexicons_for_ggplot(df):
@@ -222,8 +222,8 @@ def get_optimal_lexicons():
         for gamma in [1, 2, 10, 100]:
             for distal_levels in [3, 4, 5]:
                 runib = RunIB(mu, gamma, distal_levels)
-                for num_words in [2, 3, 4, 5]:
-                    if num_words <= distal_levels:
+                for num_words in [3, 4, 5, 6, 7, 8, 9]:
+                    if num_words <= distal_levels * 3:
                         z_given_x = runib.get_optimal_lexicon(num_words)
                         mi_xz, mi_yz = information_plane(
                             runib.prior, runib.prob_u_given_m, z_given_x)
@@ -255,3 +255,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     RunIB(args.mu, args.gamma, args.distal).get_mi_for_all().to_csv(args.outfile)
     get_optimal_lexicons()
+    get_optimal_lexicons_mini()
