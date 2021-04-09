@@ -32,7 +32,8 @@ import itertools
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-num_epoch = 50
+print(torch.__version__)
+print(device)
 x = np.array([7, 39, 18, 2, 16, 7, 0.6, 6, 1.6]) # frequency data in Finnish
 
 
@@ -101,16 +102,19 @@ def ib_sys(p_x, p_y_x, Z, gamma, eta, num_epoch, lr):
         # objective function:
         J = i_x_z - gamma * i_y_z + eta * score
 
+        # print("J= ", J)
+
         J.backward()
 
         with torch.no_grad():
             input -= lr * input.grad
+            # print(input.grad)
 
         input.grad.zero_()
 
-        print("epoch = ", epoch, torch.mul(m(input), p_x))
+        # print("epoch = ", epoch, "q_xz =", torch.mul(m(input), p_x))
 
-        return torch.mul(m(input), p_x)
+    return J, torch.mul(m(input), p_x)
 
 
 
@@ -303,11 +307,14 @@ def theta_to_indices(theta, num_R):
 
 
 p_x = x / np.sum(x)
-gamma = 2
-eta = 3
+gamma = 1.5
+eta = 2
 mu = 0.2
 num_R = int(len(p_x) / 3)
 p_y_x = get_prob_u_given_m_mini(mu, num_R)
-ib_sys(p_x, p_y_x, 4, gamma, eta, 50, 0.01)
+J, p = ib_sys(p_x, p_y_x, 6, gamma, eta, 100000, 0.02)
+
+print(p)
+print(J)
 
 
