@@ -91,7 +91,7 @@ def ib_sys(p_x, p_y_x, Z, gamma, eta, num_epoch, lr):
         score = systematicity_score(q_xz, num_R).flatten()
         # component 2: mutual information I[X;Z]:
         i_x_z = mi(q_xz)
-        # print(i_x_z)
+        # print("i_x_z =", i_x_z)
         # component 3: mutual information I[Y;Z]:
         # calculate I[Y;Z] from p(y,z)
         # formula: p(y,z) = sum_{x} p(x,y,z) = sum_{z} p(z|x) * p(y|x) * p(x)
@@ -130,7 +130,7 @@ def mi(p_xy):
     """
     p_x = torch.sum(p_xy, -1)
     p_y = torch.sum(p_xy, -2)
-    return torch.sum(xlogy(p_xy, p_xy)) - torch.sum(xlogy(p_x, p_x)) - torch.sum(xlogy(p_y, p_y))
+    return torch.sum(torch.xlogy(p_xy, p_xy)) - torch.sum(torch.xlogy(p_x, p_x)) - torch.sum(torch.xlogy(p_y, p_y))
 
 
 def information_plane(p_xz, p_y_x):
@@ -147,9 +147,19 @@ def information_plane(p_xz, p_y_x):
     p_yz = torch.sum(p_xyz, 0)
     return mi(p_yz)
 
+def xlogy(x, y):
+        z = torch.zeros(())
 
-def xlogy(x,y):
-    return x * torch.log(y) # it's fine for now but we need to fix this later
+        return x * torch.where(x == 0., z, torch.log(y))
+
+# def xlogy(x,y):
+#     #if x == torch.tensor([0]) and y == torch.tensor([0]):
+#     #    return 0
+#     #else:
+#     print("x=", x)
+#     print("y=", y)
+#     return torch.mul(x , torch.log(y)) # it's fine for now but we need to fix this later
+# # TODO: see if there's a nice xlogy function in torch
 
 
 def systematicity_score(q_xz, num_R):
@@ -161,7 +171,7 @@ def systematicity_score(q_xz, num_R):
 
     # step 1: calculate I[Z_theta; X_R]:
     p_z_R = calculate_p_z_R(q_xz, num_R)
-    p_z_theta = calculate_p_z_theta(q_xz, num_R)
+    p_z_theta = calculate_p_z_theta(q_xz, num_R) # TODO: fix this function
     # print("p_z_R = ", p_z_R)
     # print("p_z_theta = ", p_z_theta)
     i_x_r_z_theta = torch.zeros(1, dtype=torch.float64)
@@ -171,7 +181,8 @@ def systematicity_score(q_xz, num_R):
         p_x_R = calculate_p_x_R(q_xz, R)
         for j in range(2**3):
             if p_z_theta_x_R[0][j] != torch.tensor([0]):
-                i_x_r_z_theta += p_z_theta_x_R[0][j] * p_x_R * torch.log(p_z_theta_x_R[0][j] / p_z_theta[0][j])
+                i_x_r_z_theta += p_z_theta_x_R[0][j] * p_x_R * torch.log((p_z_theta_x_R[0][j] +
+                                                                          torch.tensor([1e-6], dtype=torch.float64)) / (p_z_theta[0][j] + torch.tensor([1e-6], dtype=torch.float64)))
     i_x_r_z_theta.flatten()
 
     # step 2: calculate I[Z_R; X_theta]:
@@ -181,10 +192,12 @@ def systematicity_score(q_xz, num_R):
         p_x_theta = calculate_p_x_theta(q_xz, theta, num_R)
         for j in range(2**num_R):
             if p_z_R_x_theta[0][j] != torch.tensor([0]):
-                i_x_theta_z_R += p_z_R_x_theta[0][j] * p_x_theta * torch.log(p_z_R_x_theta[0][j] / p_z_R[0][j])
+                i_x_theta_z_R += p_z_R_x_theta[0][j] * p_x_theta * torch.log((p_z_R_x_theta[0][j] +
+                                                                              torch.tensor([1e-6], dtype = torch.float64)) / (p_z_R[0][j] + torch.tensor([1e-6], dtype = torch.float64)))
     i_x_theta_z_R.flatten()
     # systematicity score:
     score = i_x_theta_z_R + i_x_r_z_theta
+    # print(score)
     return score
 
 
@@ -312,9 +325,32 @@ eta = 2
 mu = 0.2
 num_R = int(len(p_x) / 3)
 p_y_x = get_prob_u_given_m_mini(mu, num_R)
-J, p = ib_sys(p_x, p_y_x, 6, gamma, eta, 100000, 0.02)
+J, p = ib_sys(p_x, p_y_x, 4, gamma, eta, 500, 0.02)
 
-print(p)
-print(J)
+print("p=",p)
+print("J= ",J)
+
+
+# benchmark test (passed)
+# non-systematic paradigm
+# A = torch.tensor([[1/6, 0, 0, 0],
+#                   [0, 0, 1/6, 0],
+#                   [0, 0, 1/6, 0],
+#                   [0, 1/6, 0, 0],
+#                   [0, 1/6, 0, 0],
+#                   [0, 0, 0, 1/6]], dtype = torch.float64)
+#
+# print(systematicity_score(A, 2))
+
+# systematic paradigm
+# B = torch.tensor([[1/6, 0, 0, 0],
+#                   [0, 0, 1/6, 0],
+#                   [0, 0, 1/6, 0],
+#                   [0, 1/6, 0, 0],
+#                   [0, 0, 0, 1/6],
+#                   [0, 0, 0, 1/6]], dtype = torch.float64)
+#
+# print(systematicity_score(B, 2))
+
 
 
