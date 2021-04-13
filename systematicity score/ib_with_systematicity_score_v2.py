@@ -114,7 +114,7 @@ def ib_sys(p_x, p_y_x, Z, gamma, eta, num_epoch, lr):
 
         # print("epoch = ", epoch, "q_xz =", torch.mul(m(input), p_x))
 
-    return J, torch.mul(m(input), p_x)
+    return J, q_z_x  #torch.mul(m(input), p_x)
 
 
 
@@ -325,10 +325,10 @@ eta = 2
 mu = 0.2
 num_R = int(len(p_x) / 3)
 p_y_x = get_prob_u_given_m_mini(mu, num_R)
-J, p = ib_sys(p_x, p_y_x, 4, gamma, eta, 500, 0.02)
+J, p = ib_sys(p_x, p_y_x, 4, gamma, eta, 5000, 0.05)
 
 print("p=",p)
-print("J= ",J)
+print("J=",J)
 
 
 # benchmark test (passed)
