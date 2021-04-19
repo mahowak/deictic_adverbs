@@ -94,8 +94,8 @@ def ib_sys2(p_x,
         i_xz = mi(q_xz_flat)
         i_zy = information_plane(q_xz_flat, p_y_x)
 
-        q_xrztheta = q_xz.sum((X_theta_axis, Z_R_axis)) # shape X_theta x Z_R
-        q_xthetazr = q_xz.sum((X_R_axis, Z_theta_axis)) # shape X_R z Z_theta
+        q_xrztheta = q_xz.sum((X_theta_axis, Z_R_axis)) # shape X_R x Z_theta
+        q_xthetazr = q_xz.sum((X_R_axis, Z_theta_axis)) # shape X_theta z Z_R
 
         mi_xr_ztheta = mi(q_xrztheta)
         mi_xtheta_zr = mi(q_xthetazr)
