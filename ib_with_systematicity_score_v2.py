@@ -12,14 +12,13 @@
  eta: a non-negative scalar value
  Z: support size of Z (number of words in a paradigm)
 
-
  Systematicity score S[X;Z] :
  S[X;Z] = I(Z_theta ; X_R) + I(Z_R ; X_theta)
 
  Deviation from v1: try to do everything in torch and make sure things are differentiable (so that we can do gradient)
 
  """
-
+import sys
 import numpy as np
 import math
 import scipy
@@ -28,14 +27,70 @@ import torch
 from scipy import special
 import torch.optim as optim
 import torch.nn as nn
+import argparse
 import itertools
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+EPSILON = 10 ** -10
+DEFAULT_NUM_EPOCHS = 10000
+DEFAULT_LR = 0.001
+DEFAULT_PRINT_EVERY = 500
+DEFAULT_INIT_TEMPERATURE = 1
+DEFAULT_BETA = 1
+DEFAULT_GAMMA = 2
+DEFAULT_ETA = 0
+DEFAULT_MU = 0.2
+
 
 print(torch.__version__)
 print(device)
 x = np.array([7, 39, 18, 2, 16, 7, 0.6, 6, 1.6]) # frequency data in Finnish
 
+def softmax2(x):
+    *initials, a, b = x.shape
+    coalesced = initials + [a*b]
+    return torch.softmax(x.view(coalesced), -1).view(x.shape)
+
+def ib_sys2(p_x, p_y_x, num_Z_R, num_Z_theta, beta=DEFAULT_BETA, gamma=DEFAULT_GAMMA, eta=DEFAULT_ETA, num_epochs=DEFAULT_NUM_EPOCHS, print_every=DEFAULT_PRINT_EVERY, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
+    # Input:
+    # p_x, a tensor of shape X_R x X_theta giving P_X(R, theta)
+    # p_y_x, a tensor of shape X_R x X_theta x Y giving P(Y | R, theta)
+    p_x = torch.from_numpy(p_x) # shape X_R x X_theta
+    *_, num_X_R, num_X_theta = p_x.shape
+
+    num_X = num_X_R * num_X_theta
+    num_Z = num_Z_R * num_Z_theta
+
+    p_x = p_x.reshape(tuple(p_x.shape) + (1,1)) # shape X_R x X_theta x 1 x 1
+    p_y_x = p_y_x.reshape(num_X, p_y_x.shape[-1]) # shape X x Y 
+    
+    # initialize q(z|x)
+    energies = (1/init_temperature*torch.randn(num_X_R, num_X_theta, num_Z_R, num_Z_theta)).detach().to(device).requires_grad_(True)
+    opt = torch.optim.Adam(params=[energies], **kwds)
+
+    for i in range(num_epochs):
+        opt.zero_grad()
+        q_z_x = softmax2(energies) # shape X_R x X_theta x Z_R x Z_theta
+        q_xz = p_x * q_z_x
+        i_xz = mi(q_xz.reshape(num_X, num_Z))
+        i_zy = information_plane(q_xz.reshape(num_X, num_Z), p_y_x)
+
+        q_zrxtheta = q_xz.sum((-2, -3))
+        q_zthetaxr = q_xz.sum((-1, -4))
+        
+        s = mi(q_zrxtheta) + mi(q_zthetaxr)
+
+        J = beta*i_xz - gamma*i_zy + eta*s
+
+        J.backward()
+        opt.step()
+
+        if i % print_every == 0:
+            print("loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), "S = ", s.item(), file=sys.stderr)
+
+    return softmax2(energies)
+    
 
 def ib_sys(p_x, p_y_x, Z, gamma, eta, num_epoch, lr):
     # num epoch: number of epochs
@@ -130,7 +185,7 @@ def mi(p_xy):
     """
     p_x = torch.sum(p_xy, -1)
     p_y = torch.sum(p_xy, -2)
-    return torch.sum(torch.xlogy(p_xy, p_xy)) - torch.sum(torch.xlogy(p_x, p_x)) - torch.sum(torch.xlogy(p_y, p_y))
+    return torch.sum(xlogy(p_xy, p_xy)) - torch.sum(xlogy(p_x, p_x)) - torch.sum(xlogy(p_y, p_y))
 
 
 def information_plane(p_xz, p_y_x):
@@ -147,10 +202,8 @@ def information_plane(p_xz, p_y_x):
     p_yz = torch.sum(p_xyz, 0)
     return mi(p_yz)
 
-def xlogy(x, y):
-        z = torch.zeros(())
-
-        return x * torch.where(x == 0., z, torch.log(y))
+def xlogy(x, y, eps=EPSILON):
+    return x * torch.log(y+eps)
 
 # def xlogy(x,y):
 #     #if x == torch.tensor([0]) and y == torch.tensor([0]):
@@ -319,16 +372,35 @@ def theta_to_indices(theta, num_R):
 
 
 
-p_x = x / np.sum(x)
-gamma = 1.5
-eta = 2
-mu = 0.2
-num_R = int(len(p_x) / 3)
-p_y_x = get_prob_u_given_m_mini(mu, num_R)
-J, p = ib_sys(p_x, p_y_x, 4, gamma, eta, 500, 0.02)
+#p_x = x / np.sum(x)
+#gamma = 1.5
+#eta = 2
+#mu = 0.2
+#num_R = int(len(p_x) / 3)
+#p_y_x = get_prob_u_given_m_mini(mu, num_R)
+#J, p = ib_sys(p_x, p_y_x, 4, gamma, eta, 500, 0.02)
 
-print("p=",p)
-print("J= ",J)
+#print("p=",p)
+#print("J= ",J)
+
+def main(gamma=DEFAULT_GAMMA, beta=DEFAULT_BETA, eta=DEFAULT_ETA, mu=DEFAULT_MU, num_R=3, num_theta=3, num_epochs=DEFAULT_NUM_EPOCHS, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
+    p_x = x.reshape(num_R, num_theta) / x.sum() # TODO: is this reshape correct?
+    p_y_x = get_prob_u_given_m_mini(mu, num_R)
+    q = ib_sys2(p_x, p_y_x, 2, 2, gamma=gamma, eta=eta, beta=beta, num_epochs=num_epochs, init_temperature=init_temperature, **kwds)
+    return q
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Run IB optimization for bimorphemic deictic words using Finnish meaning frequencies.')
+    parser.add_argument("--beta", type=float, default=DEFAULT_BETA, help="Coefficient for I[X:Z]")    
+    parser.add_argument("--gamma", type=float, default=DEFAULT_GAMMA, help="Coefficient for -I[Z:Y]")
+    parser.add_argument("--eta", type=float, default=DEFAULT_ETA, help="Coefficient for nonsystematicity S")
+    parser.add_argument("--mu", type=float, default=DEFAULT_MU, help="mu in p(y|z)")
+    parser.add_argument("--init_temperature", type=float, default=DEFAULT_INIT_TEMPERATURE, help="temperature of initialization")
+    parser.add_argument("--lr", type=float, default=DEFAULT_LR, help="starting learning rate for Adam")
+    parser.add_argument("--num_epochs", type=int, default=DEFAULT_NUM_EPOCHS)    
+    parser.add_argument("--print_every", type=int, default=DEFAULT_PRINT_EVERY, help="print results per x epochs")
+    args = parser.parse_args()    
+    main(gamma=args.gamma, eta=args.eta, mu=args.mu, beta=args.beta, num_epochs=args.num_epochs, print_every=args.print_every, lr=args.lr, init_temperature=args.init_temperature)
 
 
 # benchmark test (passed)
