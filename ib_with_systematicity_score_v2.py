@@ -41,6 +41,8 @@ DEFAULT_BETA = 1
 DEFAULT_GAMMA = 2
 DEFAULT_ETA = 0
 DEFAULT_MU = 0.2
+DEFAULT_NUM_Z_R = 2
+DEFAULT_NUM_Z_THETA = 2
 
 
 print(torch.__version__)
@@ -76,8 +78,8 @@ def ib_sys2(p_x, p_y_x, num_Z_R, num_Z_theta, beta=DEFAULT_BETA, gamma=DEFAULT_G
         i_xz = mi(q_xz.reshape(num_X, num_Z))
         i_zy = information_plane(q_xz.reshape(num_X, num_Z), p_y_x)
 
-        q_zrxtheta = q_xz.sum((-2, -3))
-        q_zthetaxr = q_xz.sum((-1, -4))
+        q_zrxtheta = q_xz.sum((-2, -3)) # shape X_theta x Z_r
+        q_zthetaxr = q_xz.sum((-1, -4)) # shape X_r z Z_theta
         
         s = mi(q_zrxtheta) + mi(q_zthetaxr)
 
@@ -383,7 +385,7 @@ def theta_to_indices(theta, num_R):
 #print("p=",p)
 #print("J= ",J)
 
-def main(gamma=DEFAULT_GAMMA, beta=DEFAULT_BETA, eta=DEFAULT_ETA, mu=DEFAULT_MU, num_R=3, num_theta=3, num_epochs=DEFAULT_NUM_EPOCHS, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
+def main(gamma=DEFAULT_GAMMA, beta=DEFAULT_BETA, eta=DEFAULT_ETA, mu=DEFAULT_MU, num_R=3, num_theta=3, num_Z_R=DEFAULT_NUM_Z_R, num_Z_theta=DEFAULT_NUM_Z_THETA, num_epochs=DEFAULT_NUM_EPOCHS, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
     p_x = x.reshape(num_R, num_theta) / x.sum() # TODO: is this reshape correct?
     p_y_x = get_prob_u_given_m_mini(mu, num_R)
     q = ib_sys2(p_x, p_y_x, 2, 2, gamma=gamma, eta=eta, beta=beta, num_epochs=num_epochs, init_temperature=init_temperature, **kwds)
@@ -395,15 +397,18 @@ if __name__ == '__main__':
     parser.add_argument("--gamma", type=float, default=DEFAULT_GAMMA, help="Coefficient for -I[Z:Y]")
     parser.add_argument("--eta", type=float, default=DEFAULT_ETA, help="Coefficient for nonsystematicity S")
     parser.add_argument("--mu", type=float, default=DEFAULT_MU, help="mu in p(y|z)")
+    parser.add_argument("--num_Z_R", type=int, default=DEFAULT_NUM_Z_R, help="Number of distinct R morphemes")
+    parser.add_argument("--num_Z_theta", type=int, default=DEFAULT_NUM_Z_THETA, help="Number of distinct theta morphemes")    
     parser.add_argument("--init_temperature", type=float, default=DEFAULT_INIT_TEMPERATURE, help="temperature of initialization")
     parser.add_argument("--lr", type=float, default=DEFAULT_LR, help="starting learning rate for Adam")
     parser.add_argument("--num_epochs", type=int, default=DEFAULT_NUM_EPOCHS)    
     parser.add_argument("--print_every", type=int, default=DEFAULT_PRINT_EVERY, help="print results per x epochs")
     args = parser.parse_args()    
-    main(gamma=args.gamma, eta=args.eta, mu=args.mu, beta=args.beta, num_epochs=args.num_epochs, print_every=args.print_every, lr=args.lr, init_temperature=args.init_temperature)
+    main(gamma=args.gamma, eta=args.eta, mu=args.mu, beta=args.beta, num_epochs=args.num_epochs, print_every=args.print_every, lr=args.lr, init_temperature=args.init_temperature, num_Z_R=args.num_Z_R, num_Z_theta=args.num_Z_theta)
 
 
-# benchmark test (passed)
+
+    # benchmark test (passed)
 # non-systematic paradigm
 # A = torch.tensor([[1/6, 0, 0, 0],
 #                   [0, 0, 1/6, 0],
