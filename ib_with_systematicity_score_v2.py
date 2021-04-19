@@ -108,7 +108,7 @@ def ib_sys2(p_x,
         opt.step()
 
         if i % print_every == 0:
-            print("loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " I[X_theta : Z_R] = ", mi_xtheta_zr.item(), " I[X_R : Z_theta] = ", mi_xr_ztheta.item(), " S = ", s.item(), file=sys.stderr)
+            print(i, " loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " I[X_theta : Z_R] = ", mi_xtheta_zr.item(), " I[X_R : Z_theta] = ", mi_xr_ztheta.item(), " S = ", s.item(), file=sys.stderr)
 
     return softmax2(energies)
     
