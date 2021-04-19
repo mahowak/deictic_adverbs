@@ -52,9 +52,19 @@ x = np.array([7, 39, 18, 2, 16, 7, 0.6, 6, 1.6]) # frequency data in Finnish
 def softmax2(x):
     *initials, a, b = x.shape
     coalesced = initials + [a*b]
-    return torch.softmax(x.view(coalesced), -1).view(x.shape)
+    return torch.softmax(x.reshape(coalesced), -1).reshape(x.shape)
 
-def ib_sys2(p_x, p_y_x, num_Z_R, num_Z_theta, beta=DEFAULT_BETA, gamma=DEFAULT_GAMMA, eta=DEFAULT_ETA, num_epochs=DEFAULT_NUM_EPOCHS, print_every=DEFAULT_PRINT_EVERY, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
+def ib_sys2(p_x,
+            p_y_x,
+            num_Z_R=DEFAULT_NUM_Z_R,
+            num_Z_theta=DEFAULT_NUM_Z_THETA,
+            beta=DEFAULT_BETA,
+            gamma=DEFAULT_GAMMA,
+            eta=DEFAULT_ETA,
+            num_epochs=DEFAULT_NUM_EPOCHS,
+            print_every=DEFAULT_PRINT_EVERY,
+            init_temperature=DEFAULT_INIT_TEMPERATURE,
+            **kwds):
     # Input:
     # p_x, a tensor of shape X_R x X_theta giving P_X(R, theta)
     # p_y_x, a tensor of shape X_R x X_theta x Y giving P(Y | R, theta)
@@ -71,17 +81,26 @@ def ib_sys2(p_x, p_y_x, num_Z_R, num_Z_theta, beta=DEFAULT_BETA, gamma=DEFAULT_G
     energies = (1/init_temperature*torch.randn(num_X_R, num_X_theta, num_Z_R, num_Z_theta)).detach().to(device).requires_grad_(True)
     opt = torch.optim.Adam(params=[energies], **kwds)
 
+    X_R_axis = -4
+    X_theta_axis = -3
+    Z_R_axis = -2
+    Z_theta_axis = -1
+
     for i in range(num_epochs):
         opt.zero_grad()
         q_z_x = softmax2(energies) # shape X_R x X_theta x Z_R x Z_theta
         q_xz = p_x * q_z_x
-        i_xz = mi(q_xz.reshape(num_X, num_Z))
-        i_zy = information_plane(q_xz.reshape(num_X, num_Z), p_y_x)
+        q_xz_flat = q_xz.reshape(num_X, num_Z) # shape X x Z
+        i_xz = mi(q_xz_flat)
+        i_zy = information_plane(q_xz_flat, p_y_x)
 
-        q_zrxtheta = q_xz.sum((-2, -3)) # shape X_theta x Z_r
-        q_zthetaxr = q_xz.sum((-1, -4)) # shape X_r z Z_theta
+        q_xrztheta = q_xz.sum((X_theta_axis, Z_R_axis)) # shape X_theta x Z_R
+        q_xthetazr = q_xz.sum((X_R_axis, Z_theta_axis)) # shape X_R z Z_theta
+
+        mi_xr_ztheta = mi(q_xrztheta)
+        mi_xtheta_zr = mi(q_xthetazr)
         
-        s = mi(q_zrxtheta) + mi(q_zthetaxr)
+        s = mi_xr_ztheta + mi_xtheta_zr
 
         J = beta*i_xz - gamma*i_zy + eta*s
 
@@ -89,7 +108,7 @@ def ib_sys2(p_x, p_y_x, num_Z_R, num_Z_theta, beta=DEFAULT_BETA, gamma=DEFAULT_G
         opt.step()
 
         if i % print_every == 0:
-            print("loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), "S = ", s.item(), file=sys.stderr)
+            print("loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " I[X_theta : Z_R] = ", mi_xtheta_zr.item(), " I[X_R : Z_theta] = ", mi_xr_ztheta.item(), " S = ", s.item(), file=sys.stderr)
 
     return softmax2(energies)
     
@@ -385,10 +404,20 @@ def theta_to_indices(theta, num_R):
 #print("p=",p)
 #print("J= ",J)
 
-def main(gamma=DEFAULT_GAMMA, beta=DEFAULT_BETA, eta=DEFAULT_ETA, mu=DEFAULT_MU, num_R=3, num_theta=3, num_Z_R=DEFAULT_NUM_Z_R, num_Z_theta=DEFAULT_NUM_Z_THETA, num_epochs=DEFAULT_NUM_EPOCHS, init_temperature=DEFAULT_INIT_TEMPERATURE, **kwds):
+def main(gamma=DEFAULT_GAMMA,
+         beta=DEFAULT_BETA,
+         eta=DEFAULT_ETA,
+         mu=DEFAULT_MU,
+         num_R=3,
+         num_theta=3,
+         num_Z_R=DEFAULT_NUM_Z_R,
+         num_Z_theta=DEFAULT_NUM_Z_THETA,
+         num_epochs=DEFAULT_NUM_EPOCHS,
+         init_temperature=DEFAULT_INIT_TEMPERATURE,
+         **kwds):
     p_x = x.reshape(num_R, num_theta) / x.sum() # TODO: is this reshape correct?
     p_y_x = get_prob_u_given_m_mini(mu, num_R)
-    q = ib_sys2(p_x, p_y_x, 2, 2, gamma=gamma, eta=eta, beta=beta, num_epochs=num_epochs, init_temperature=init_temperature, **kwds)
+    q = ib_sys2(p_x, p_y_x, gamma=gamma, eta=eta, beta=beta, num_Z_R = num_Z_R, num_Z_theta=num_Z_theta, num_epochs=num_epochs, init_temperature=init_temperature, **kwds)
     return q
 
 if __name__ == '__main__':
