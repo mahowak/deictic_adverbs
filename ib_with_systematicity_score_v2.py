@@ -75,7 +75,7 @@ def ib_sys2(p_x,
     num_Z = num_Z_R * num_Z_theta
 
     p_x = p_x.reshape(tuple(p_x.shape) + (1,1)) # shape X_R x X_theta x 1 x 1
-    p_y_x = p_y_x.reshape(num_X, p_y_x.shape[-1]) # shape X x Y 
+    p_y_x = p_y_x.reshape(num_X, p_y_x.shape[-1]) # shape X x Y
     
     # initialize q(z|x)
     energies = (1/init_temperature*torch.randn(num_X_R, num_X_theta, num_Z_R, num_Z_theta)).detach().to(device).requires_grad_(True)
@@ -111,7 +111,6 @@ def ib_sys2(p_x,
             print(i, " loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " I[X_theta : Z_R] = ", mi_xtheta_zr.item(), " I[X_R : Z_theta] = ", mi_xr_ztheta.item(), " S = ", s.item(), file=sys.stderr)
 
     return softmax2(energies)
-    
 
 def ib_sys(p_x, p_y_x, Z, gamma, eta, num_epoch, lr):
     # num epoch: number of epochs
@@ -418,6 +417,7 @@ def main(gamma=DEFAULT_GAMMA,
     p_x = x.reshape(num_R, num_theta) / x.sum() # TODO: is this reshape correct?
     p_y_x = get_prob_u_given_m_mini(mu, num_R)
     q = ib_sys2(p_x, p_y_x, gamma=gamma, eta=eta, beta=beta, num_Z_R = num_Z_R, num_Z_theta=num_Z_theta, num_epochs=num_epochs, init_temperature=init_temperature, **kwds)
+    print(q)
     return q
 
 if __name__ == '__main__':
