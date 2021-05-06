@@ -113,6 +113,24 @@ def ib_sys2(p_x,
     # output: q(z_R, z_theta | x_R, x_theta)
     return softmax2(energies)
 
+def lexicon_systematicity(source, lexicon):
+    # source is a distribution on (X_R, X_theta) of shape X_R x X_theta
+    # lexicon is a conditional distribution on (Z_R, Z_theta) given (X_R, X_theta) of shape X_R x X_theta x Z_R x Z_theta
+    q = source[:, :, None, None] * lexicon
+
+    X_R_axis = -4
+    X_theta_axis = -3
+    Z_R_axis = -2
+    Z_theta_axis = -1
+
+    q_xrztheta = q.sum((X_theta_axis, Z_R_axis)) # shape X_R x Z_theta
+    q_xthetazr = q.sum((X_R_axis, Z_theta_axis)) # shape X_theta x Z_R
+
+    mi_xr_ztheta = mi(q_xrztheta)
+    mi_xtheta_zr = mi(q_xthetazr)
+        
+    return mi_xr_ztheta + mi_xtheta_zr
+
 
 def mi(p_xy):
     """ Calculate mutual information of a distribution P(x,y)
