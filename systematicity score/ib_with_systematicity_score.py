@@ -25,6 +25,8 @@ import torch.optim as optim
 import torch.nn as nn
 import argparse
 import itertools
+import tabulate
+import string
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -35,7 +37,7 @@ DEFAULT_PRINT_EVERY = 500
 DEFAULT_INIT_TEMPERATURE = 5
 DEFAULT_BETA = 1
 DEFAULT_GAMMA = 10
-DEFAULT_ETA = 0
+DEFAULT_ETA = 0.2
 DEFAULT_MU = 0.2
 DEFAULT_NUM_Z_R = 2
 DEFAULT_NUM_Z_THETA = 2
@@ -204,6 +206,23 @@ def main(gamma=DEFAULT_GAMMA,
     return q
 
 
+def print_lexicon(q):
+    # convert the 4D matrix q to readable lexicon tables
+    nWords = q.size(-2) * q.size(-1)
+    num_z_R = q.size(0)
+    num_z_theta = q.size(1)
+    letter = [[0]*num_z_theta for i in range(num_z_R)]
+
+    for i in range(num_z_R):
+        for j in range(num_z_theta):
+            loc = torch.max(q[i][j].flatten(),0).indices.item()
+            letter[i][j] = string.ascii_uppercase[loc]
+
+
+    print(tabulate.tabulate(letter))
+
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Run IB optimization for bimorphemic deictic words using Finnish meaning frequencies.')
@@ -224,6 +243,8 @@ if __name__ == '__main__':
     q = main(gamma=args.gamma, eta=args.eta, mu=args.mu, beta=args.beta, num_epochs=args.num_epochs,
          print_every=args.print_every, lr=args.lr, init_temperature=args.init_temperature, num_Z_R=args.num_Z_R,
          num_Z_theta=args.num_Z_theta)
+    # print(q)
+    print_lexicon(q)
 
-    print(q)
+
 
