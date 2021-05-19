@@ -110,7 +110,10 @@ def ib_sys2(p_x,
 def lexicon_systematicity(source, lexicon):
     # source is a distribution on (X_R, X_theta) of shape X_R x X_theta
     # lexicon is a conditional distribution on (Z_R, Z_theta) given (X_R, X_theta) of shape X_R x X_theta x Z_R x Z_theta
-    q = source[:, :, None, None] * lexicon
+    if len(source.shape) < len(lexicon.shape):
+        source = source[:, :, None, None]
+        
+    q = source * lexicon
 
     X_R_axis = -4
     X_theta_axis = -3
@@ -124,6 +127,24 @@ def lexicon_systematicity(source, lexicon):
     mi_xtheta_zr = mi(q_xthetazr)
         
     return mi_xr_ztheta + mi_xtheta_zr
+
+def full_systematicity(source, lexicon): # higher = more systematic
+    if len(source.shape) < len(lexicon.shape):
+        source[:, :, None, None]
+
+    q = source * lexicon
+
+    X_R_axis = -4
+    X_theta_axis = -3
+    Z_R_axis = -2
+    Z_theta_axis = -1
+
+    mi_xtheta_ztheta = mi(q.sum((X_R_axis, Z_R_axis)))
+    mi_xtheta_zr = mi(q.sum((X_R_axis, Z_theta_axis))) # shape X_theta x Z_R
+    mi_xr_ztheta = mi(q.sum((X_theta_axis, Z_R_axis))) # shape X_R x Z_theta
+    mi_xr_zr = mi(q.sum((X_theta_axis, Z_theta_axis)))
+
+    return mi_xr_ztheta + mi_xtheta_zr + mi_xtheta_ztheta + mi_xr_zr
 
 def xlogy(x, y):
     return x * (y+EPSILON).log()
@@ -201,7 +222,7 @@ def main(gamma=DEFAULT_GAMMA,
     return q
 
 
-def print_lexicon(q):
+def decode_lexicon(q):
     # convert the 4D matrix q to readable lexicon tables
     nWords = q.size(-2) * q.size(-1)
     num_z_R = q.size(0)
@@ -213,7 +234,10 @@ def print_lexicon(q):
             loc = torch.max(q[i][j].flatten(),0).indices.item()
             letter[i][j] = string.ascii_uppercase[loc]
 
+    return letter
 
+def print_lexicon(q):
+    letter = decode_lexicon(q)
     print(tabulate.tabulate(letter))
 
 
