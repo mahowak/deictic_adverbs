@@ -89,7 +89,7 @@ def ib_sys2(p_x,
         q_xz_flat = q_xz.reshape(num_X, num_Z)  # shape X x Z
         i_xz = mi(q_xz_flat)
         i_zy = information_plane(q_xz_flat, p_y_x)
-        s = full_systematicity(p_x, q_z_x)
+        s = lexicon_systematicity(p_x, q_z_x)
 
         J = beta * i_xz - gamma * i_zy + eta * s
 
