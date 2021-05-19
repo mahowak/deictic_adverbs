@@ -82,11 +82,6 @@ def ib_sys2(p_x,
         device).requires_grad_(True)
     opt = torch.optim.Adam(params=[energies], **kwds)
 
-    X_R_axis = -4
-    X_theta_axis = -3
-    Z_R_axis = -2
-    Z_theta_axis = -1
-
     for i in range(num_epochs):
         opt.zero_grad()
         q_z_x = softmax2(energies)  # shape X_R x X_theta x Z_R x Z_theta
@@ -94,7 +89,7 @@ def ib_sys2(p_x,
         q_xz_flat = q_xz.reshape(num_X, num_Z)  # shape X x Z
         i_xz = mi(q_xz_flat)
         i_zy = information_plane(q_xz_flat, p_y_x)
-        s = lexicon_systematicity(p_x, q_z_x)
+        s = full_systematicity(p_x, q_z_x)
 
         J = beta * i_xz - gamma * i_zy + eta * s
 
@@ -107,9 +102,7 @@ def ib_sys2(p_x,
     # output: q(z_R, z_theta | x_R, x_theta)
     return softmax2(energies)
 
-def lexicon_systematicity(source, lexicon):
-    # source is a distribution on (X_R, X_theta) of shape X_R x X_theta
-    # lexicon is a conditional distribution on (Z_R, Z_theta) given (X_R, X_theta) of shape X_R x X_theta x Z_R x Z_theta
+def lexicon_stats(source, lexicon):
     if len(source.shape) < len(lexicon.shape):
         source = source[:, :, None, None]
         
@@ -118,33 +111,30 @@ def lexicon_systematicity(source, lexicon):
     X_R_axis = -4
     X_theta_axis = -3
     Z_R_axis = -2
-    Z_theta_axis = -1
-
-    q_xrztheta = q.sum((X_theta_axis, Z_R_axis)) # shape X_R x Z_theta
-    q_xthetazr = q.sum((X_R_axis, Z_theta_axis)) # shape X_theta x Z_R
-
-    mi_xr_ztheta = mi(q_xrztheta)
-    mi_xtheta_zr = mi(q_xthetazr)
-        
-    return mi_xr_ztheta + mi_xtheta_zr
-
-def full_systematicity(source, lexicon): # higher = more systematic
-    if len(source.shape) < len(lexicon.shape):
-        source[:, :, None, None]
-
-    q = source * lexicon
-
-    X_R_axis = -4
-    X_theta_axis = -3
-    Z_R_axis = -2
-    Z_theta_axis = -1
+    Z_theta_axis = -1    
 
     mi_xtheta_ztheta = mi(q.sum((X_R_axis, Z_R_axis)))
     mi_xtheta_zr = mi(q.sum((X_R_axis, Z_theta_axis))) # shape X_theta x Z_R
     mi_xr_ztheta = mi(q.sum((X_theta_axis, Z_R_axis))) # shape X_R x Z_theta
     mi_xr_zr = mi(q.sum((X_theta_axis, Z_theta_axis)))
 
+    return mi_xtheta_ztheta, mi_xtheta_zr, mi_xr_ztheta, mi_xr_zr
+    
+
+def lexicon_systematicity(source, lexicon):
+    # source is a distribution on (X_R, X_theta) of shape X_R x X_theta
+    # lexicon is a conditional distribution on (Z_R, Z_theta) given (X_R, X_theta) of shape X_R x X_theta x Z_R x Z_theta
+    mi_xtheta_ztheta, mi_xtheta_zr, mi_xr_ztheta, mi_xr_zr = lexicon_stats(source, lexicon)
+    return mi_xr_ztheta + mi_xtheta_zr
+
+def full_systematicity(source, lexicon): # higher = more systematic?
+    mi_xtheta_ztheta, mi_xtheta_zr, mi_xr_ztheta, mi_xr_zr = lexicon_stats(source, lexicon)
     return mi_xr_ztheta + mi_xtheta_zr + mi_xtheta_ztheta + mi_xr_zr
+
+def lexicon_systematicity2(source, lexicon):
+    mi_xtheta_ztheta, mi_xtheta_zr, mi_xr_ztheta, mi_xr_zr = lexicon_stats(source, lexicon)
+    return mi_xr_zr + mi_xtheta_ztheta    
+    
 
 def xlogy(x, y):
     return x * (y+EPSILON).log()
