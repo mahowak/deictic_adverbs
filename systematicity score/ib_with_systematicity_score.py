@@ -94,14 +94,7 @@ def ib_sys2(p_x,
         q_xz_flat = q_xz.reshape(num_X, num_Z)  # shape X x Z
         i_xz = mi(q_xz_flat)
         i_zy = information_plane(q_xz_flat, p_y_x)
-
-        q_xrztheta = q_xz.sum((X_theta_axis, Z_R_axis))  # shape X_R x Z_theta
-        q_xthetazr = q_xz.sum((X_R_axis, Z_theta_axis))  # shape X_theta z Z_R
-
-        mi_xr_ztheta = mi(q_xrztheta)
-        mi_xtheta_zr = mi(q_xthetazr)
-
-        s = mi_xr_ztheta + mi_xtheta_zr
+        s = lexicon_systematicity(p_x, q_z_x)
 
         J = beta * i_xz - gamma * i_zy + eta * s
 
@@ -109,8 +102,7 @@ def ib_sys2(p_x,
         opt.step()
 
         if i % print_every == 0:
-            print(i, " loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " I[X_theta : Z_R] = ",
-                  mi_xtheta_zr.item(), " I[X_R : Z_theta] = ", mi_xr_ztheta.item(), " S = ", s.item(), file=sys.stderr)
+            print(i, " loss = ", J.item(), " I[X:Z] = ", i_xz.item(), " I[Z:Y] = ", i_zy.item(), " S = ", s.item(), file=sys.stderr)
 
     # output: q(z_R, z_theta | x_R, x_theta)
     return softmax2(energies)
@@ -133,6 +125,9 @@ def lexicon_systematicity(source, lexicon):
         
     return mi_xr_ztheta + mi_xtheta_zr
 
+def xlogy(x, y):
+    return x * (y+EPSILON).log()
+
 
 def mi(p_xy):
     """ Calculate mutual information of a distribution P(x,y)
@@ -143,7 +138,7 @@ def mi(p_xy):
     """
     p_x = torch.sum(p_xy, -1)
     p_y = torch.sum(p_xy, -2)
-    return torch.sum(torch.xlogy(p_xy, p_xy)) - torch.sum(torch.xlogy(p_x, p_x)) - torch.sum(torch.xlogy(p_y, p_y))
+    return torch.sum(xlogy(p_xy, p_xy)) - torch.sum(xlogy(p_x, p_x)) - torch.sum(xlogy(p_y, p_y))
 
 
 def information_plane(p_xz, p_y_x):
