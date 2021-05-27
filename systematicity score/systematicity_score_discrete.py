@@ -3,6 +3,8 @@
  Systematicity score S[X;Z] :
  S[X;Z] = I(Z_theta ; X_R) + I(Z_R ; X_theta)
 
+ NOTE: The output is now in BITS instead of NATS
+
  """
 
 import numpy as np
@@ -238,3 +240,12 @@ D = torch.tensor([[0, 0, 7/97.2, 0, 0, 0, 0, 0],
                  [0, 0, 0, 11/97.2, 0, 0, 0, 11/97.2],
                  [0, 0, 0, 0, 8.6/97.2, 0, 0, 8.6/97.2]], dtype = torch.float64)
 print("the systematicity score is ", systematicity_score(D, 2).item(), " bits")
+
+# Icelandic paradigm (Finnish prior, swapped 2 rows)
+E = torch.tensor([[0, 0, 7/97.2, 0, 0, 0, 0, 0],
+                 [19.5/97.2, 0, 0, 0, 0, 0, 19.5/97.2, 0],
+                 [0, 0, 0, 0, 0, 2.6/97.2, 0, 0],
+                 [0, 9/97.2, 0, 0, 0, 0, 9/97.2, 0],
+                 [0, 0, 0, 11/97.2, 0, 0, 0, 11/97.2],
+                 [0, 0, 0, 0, 8.6/97.2, 0, 0, 8.6/97.2]], dtype = torch.float64)
+print("the systematicity score is ", systematicity_score(E, 2).item(), " bits")
