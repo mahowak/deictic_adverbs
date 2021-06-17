@@ -28,16 +28,30 @@ The total number of distinct theta paradigms is 2 (aka for each theta, there is 
 
 def count_theta_patterns(area, key):
     # input: a pd dataframe with 3 columns
-    # convert np array to pd array, with each column representing each theta attribute
     paradigm = get_paradigm_table(area, key)
     # print(paradigm)
     # category encoding for each column
     paradigm['Source'] = paradigm['Source'].astype('category').cat.codes
     paradigm['Place'] = paradigm['Place'].astype('category').cat.codes
     paradigm['Goal'] = paradigm['Goal'].astype('category').cat.codes
+    # print(paradigm)
     # # convert back to np array; calculate the number of unique paradigms
     unique_patterns = len(np.unique(np.transpose(paradigm.to_numpy()), axis = 0))
     return(unique_patterns)
+
+def count_r_patterns(area, key):
+    # input: a pd dataframe with 3 columns
+    paradigm = get_paradigm_table(area, key)
+    # print(paradigm)
+    # category encoding for each column
+    patterns = np.ones([paradigm.shape[0], 3])
+    for i in range(paradigm.shape[0]):
+        patterns[i,:] = paradigm.iloc[i,].astype('category').cat.codes.to_numpy()
+    # print(patterns)
+    unique_patterns = len(np.unique(patterns, axis = 0))
+    return(unique_patterns)
+
+    
 
 
 # from Kyle
@@ -95,7 +109,7 @@ def get_paradigm_table(area, key):
 def test_empty_entries(paradigm):
     return(paradigm.isnull().values.any())
 
-def make_unique_paradigm_table(area):
+def make_unique_theta_paradigm_table(area):
     # input: area such as africa, asia, europe, etc.
     d = get_lang_dict(area)
     langs = get_entries(d)
@@ -107,6 +121,19 @@ def make_unique_paradigm_table(area):
     df = pd.DataFrame(list(zip(langs, score, is_weird)), columns=["Language", "theta patterns", "duplicated?"])
     return(df)
 
+def make_unique_r_paradigm_table(area):
+    # input: area such as africa, asia, europe, etc.
+    d = get_lang_dict(area)
+    langs = get_entries(d)
+    score = []
+    is_weird = []
+    for lang in langs:
+        score = score + [count_r_patterns(area, lang)]
+        is_weird = is_weird + [test_empty_entries(get_paradigm_table(area, lang))]
+    df = pd.DataFrame(list(zip(langs, score, is_weird)), columns=["Language", "r patterns", "duplicated?"])
+    return(df)
+
 
 # example
-print(make_unique_paradigm_table('europe'))
+print(make_unique_theta_paradigm_table('americas'))
+print(make_unique_r_paradigm_table('americas'))
