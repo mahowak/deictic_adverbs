@@ -31,12 +31,13 @@ def count_theta_patterns(area, key):
     paradigm = get_paradigm_table(area, key)
     # print(paradigm)
     # category encoding for each column
-    paradigm['Source'] = paradigm['Source'].astype('category').cat.codes
-    paradigm['Place'] = paradigm['Place'].astype('category').cat.codes
-    paradigm['Goal'] = paradigm['Goal'].astype('category').cat.codes
+    paradigm['Source'] = pd.factorize(paradigm['Source'])[0]
+    paradigm['Place'] = pd.factorize(paradigm['Place'])[0]
+    paradigm['Goal'] = pd.factorize(paradigm['Goal'])[0]
     # print(paradigm)
     # # convert back to np array; calculate the number of unique paradigms
     unique_patterns = len(np.unique(np.transpose(paradigm.to_numpy()), axis = 0))
+    # print(np.sort(np.transpose(paradigm.to_numpy())))
     return(unique_patterns)
 
 def count_r_patterns(area, key):
@@ -46,9 +47,10 @@ def count_r_patterns(area, key):
     # category encoding for each column
     patterns = np.ones([paradigm.shape[0], 3])
     for i in range(paradigm.shape[0]):
-        patterns[i,:] = paradigm.iloc[i,].astype('category').cat.codes.to_numpy()
+        patterns[i,:] = pd.factorize(paradigm.iloc[i,])[0]
     # print(patterns)
     unique_patterns = len(np.unique(patterns, axis = 0))
+    # print(np.sort(patterns))
     return(unique_patterns)
 
     
@@ -133,7 +135,21 @@ def make_unique_r_paradigm_table(area):
     df = pd.DataFrame(list(zip(langs, score, is_weird)), columns=["Language", "r patterns", "duplicated?"])
     return(df)
 
+def make_unique_paradigm_table(area):
+    # input: area such as africa, asia, europe, etc.
+    d = get_lang_dict(area)
+    langs = get_entries(d)
+    score_r = []
+    score_theta = []
+    is_weird = []
+    for lang in langs:
+        score_r = score_r + [count_r_patterns(area, lang)]
+        score_theta = score_theta + [count_theta_patterns(area, lang)]
+        is_weird = is_weird + [test_empty_entries(get_paradigm_table(area, lang))]
+    df = pd.DataFrame(list(zip(langs, score_r, score_theta, is_weird)), columns=["Language", "r patterns", "theta_patterns", "duplicated?"])
+    return(df)
+
 
 # example
-print(make_unique_theta_paradigm_table('americas'))
-print(make_unique_r_paradigm_table('americas'))
+# print(count_r_patterns('europe', 'Russian (Indo-European, Slavic)'))
+print(make_unique_paradigm_table('europe'))
