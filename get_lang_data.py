@@ -39,11 +39,16 @@ def get_lang_dict(area):
     df["Type"] = [i.rstrip(" A") for i in df.Type]
     d = {lang: defaultdict(list) for lang in set(df.Language)}
 
+    goodlangs = defaultdict(int)
     for rownum in range(df.shape[0]):
         row = df.loc[rownum]
+        if row["Modality"] not in ["SI", "place"]:
+            goodlangs[row["Language"]] += 1
+
         for j in ["Place", "Source", "Goal"]:
             d[row["Language"]][(row["Type"],
                                 row["Modality"],
                                 j)] += [
                 i.rstrip().lstrip() for i in row[j] if type(i) == str]
-    return d
+
+    return {i: d[i] for i in d if goodlangs[i] == 0}

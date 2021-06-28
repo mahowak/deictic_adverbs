@@ -48,9 +48,11 @@ def enumerate_possible_lexicons(num_meanings, num_words):
     for mapping in onto_mappings(num_meanings, num_words):
         yield mapping, to_stochastic_matrix(mapping)
 
-def get_random_lexicon(num_meanings, num_words):
+def get_random_lexicon(num_meanings, num_words, seed=None):
     words = list(range(num_words))
+    random.seed(seed)
     words += random.choices(words, k=num_meanings - num_words)
+    random.seed(seed)
     words = random.sample(words, len(words))
     a = np.zeros([len(words), len(set(words))])
     for x, y in enumerate(words):
