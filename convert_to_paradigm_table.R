@@ -17,6 +17,7 @@ df <- df_original %>% pivot_longer(
   cols = paradigm_names(df_original), 
   names_to = "Type",
   values_to = "Word") %>%
+  mutate(Word = letters[Word + 1]) %>%
   separate(col = "Type",
            into = c("r", "theta"),
            sep = '_') %>%
@@ -25,7 +26,7 @@ df <- df_original %>% pivot_longer(
   select(c('Language', 'r', 'place', 'goal', 'source'))
 
 colnames(df) <- c('Language', 'Type', 'Place', 'Goal', 'Source')
-
+ 
 write.csv(file = "lexicon_table.csv", df, row.names = FALSE)
 
 paradigm_names <- function(df){
