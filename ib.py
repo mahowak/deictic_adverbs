@@ -61,11 +61,11 @@ def mi(p_xy):
     return scipy.special.xlogy(p_xy, p_xy).sum() - scipy.special.xlogy(p_x, p_x).sum() - scipy.special.xlogy(p_y, p_y).sum()
 
 def information_plane(p_x, p_y_x, p_z_x):
-    """ Given p(x), p(y|x), and p(z|x), calculate I[X:Z] and I[Y:Z] """
+    """ Given p(x), p(y|x), and p(z|x), calculate I[Y:Z] and I[X:Z] """
     p_xz = p_x[:, None] * p_z_x # Joint p(x,y), shape X x Y    
     p_xyz = p_x[:, None, None] * p_y_x[:, :, None] * p_z_x[:, None, :] # Joint p(x,y,z), shape X x Y x Z
     p_yz = p_xyz.sum(axis=0) # Joint p(y,z), shape Y x Z
-    return mi(p_xz), mi(p_yz)
+    return  mi(p_yz), mi(p_xz)
 
 def zipf_mandelbrot(N, s, q=0):
     """ Return a Zipf-Mandelbrot distribution over N items """
