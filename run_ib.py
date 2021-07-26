@@ -87,7 +87,7 @@ class RunIB:
         information_plane_list = [information_plane(self.prior, self.prob_u_given_m, l[1]) for l in lexicons]                        
         df["I[U;W]"] = [l[0] for l in information_plane_list]
         df["I[M;W]"] = [l[1] for l in information_plane_list]
-        df["MI_Objective"] = df["I[M;W]"] - self.gamma * df["I[U;W]"]
+        df["MI_Objective"] = df["I[M;W]"] - self.gamma * df["I[U;W]"] # complexity - beta * informativity
         df["grammar_complexity"] = ["_".join(self.get_complexity_of_paradigm(l[1])) for l in lexicons]
         df["Language"] = [l[0] for l in lexicons]
         df["Area"] = [l[2] for l in lexicons]
@@ -209,15 +209,15 @@ if __name__ == "__main__":
 
     # pre-populate and fix the simulated lexicons
     sim_lex_dict = {lexicon_size: [get_random_lexicon(
-        num_meanings, lexicon_size, seed=42) for i in range(10000)] for 
+        num_meanings, lexicon_size, seed=i) for i in range(10000)] for 
         lexicon_size in lexicon_size_range}
     
     if args.grid_search:
         for i in np.append(np.linspace(-5, 5, 20), np.array(0)):
             for j in np.linspace(-5, 5, 20):
                 RunIB(args.mu, args.gamma, args.distal,
-                    [0, i, j]).get_mi_for_all(get_opt=
-                                              args.get_opt, sim_lex_dict=sim_lex_dict).to_csv(args.outfile)
+                    [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
+                                              sim_lex_dict=sim_lex_dict).to_csv(args.outfile)
     else:
         RunIB(args.mu, args.gamma, args.distal).get_mi_for_all(
             get_opt=args.get_opt, sim_lex_dict=sim_lex_dict).to_csv(args.outfile)
