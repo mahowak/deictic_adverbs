@@ -94,11 +94,12 @@ class RunIB:
         df["Simulated"] = (df["Language"] == "simulated")
         dfs += [df]
         x =  pd.concat(dfs).sort_values(["I[U;W]"], ascending=False)
-        mi_objs = list(df.groupby("Simulated").mean()["MI_Objective"] )
+        mi_obj_simulated = df.groupby("Simulated").mean()["MI_Objective"][True]
+        mi_obj_real = df.groupby("Simulated").mean()["MI_Objective"][False]
         print (self.pgs_dists[0],
         self.pgs_dists[1],
         self.pgs_dists[2],
-        mi_objs[0], mi_objs[1], mi_objs[1] - mi_objs[0])
+        mi_obj_real, mi_obj_simulated, mi_obj_real - mi_obj_simulated)
         return x
 
 
