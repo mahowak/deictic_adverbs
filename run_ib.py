@@ -3,18 +3,34 @@ from get_lang_data import get_lang_dict
 from get_prior import get_exp_prior, exp_fit_place
 from ib import ib, mi, information_plane
 from enumerate_lexicons import get_random_lexicon
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics.pairwise import euclidean_distances
+
+from scipy.spatial import ConvexHull, convex_hull_plot_2d
+from scipy.stats import linregress
 
 import argparse
+import matplotlib.pyplot as plt
 import numpy as np
+import os
 import pandas as pd
-import random
-import re
 
 AREAS = ["europe", "asia", "americas", "africa", "oceania"]
 
+
+def getEquidistantPoints(p1, p2, parts):
+    return zip(np.linspace(p1[0], p2[0], parts+1),
+               np.linspace(p1[1], p2[1], parts+1))
+
+def classify_lang(lang):
+    if lang not in ["simulated", "optimal"]:
+        return "real"
+    return lang
+        
+
 class RunIB:
 
-    def __init__(self, mu, gamma, distal_levels, pgs_dists=[1, 0, 2]):
+    def __init__(self, mu, gamma, distal_levels, pgs_dists=[0, 1.3, -1.7]):
         self.deictic_map = {}
         self.deictic_index = {}
         self.mu = mu
@@ -62,9 +78,10 @@ class RunIB:
         return u_m/u_m.sum(axis=1)[:, None]
 
     def get_optimal_lexicon(self, lexicon_size):
-        return ib(self.prior, self.prob_u_given_m, lexicon_size, self.gamma, num_iter=300, outer_iter=100)
+        return ib(self.prior, self.prob_u_given_m, lexicon_size,
+                  self.gamma, num_iter=100, outer_iter=100)
 
-    def get_mi_for_all(self, get_opt=True, sim_lex_dict={}):
+    def get_mi_for_all(self, get_opt=True, sim_lex_dict={}, outfile="default"):
         num_meanings = self.distal_levels * 3
         lexicon_size_range = range(2, num_meanings + 1)
         assert (len(self.prior) == num_meanings)
@@ -91,15 +108,109 @@ class RunIB:
         df["grammar_complexity"] = ["_".join(self.get_complexity_of_paradigm(l[1])) for l in lexicons]
         df["Language"] = [l[0] for l in lexicons]
         df["Area"] = [l[2] for l in lexicons]
-        df["Simulated"] = (df["Language"] == "simulated")
+        df["LangCategory"] = [classify_lang(lang) for lang in df["Language"]]
         dfs += [df]
         x =  pd.concat(dfs).sort_values(["I[U;W]"], ascending=False)
-        mi_obj_simulated = df.groupby("Simulated").mean()["MI_Objective"][True]
-        mi_obj_real = df.groupby("Simulated").mean()["MI_Objective"][False]
-        print (self.pgs_dists[0],
-        self.pgs_dists[1],
-        self.pgs_dists[2],
-        mi_obj_real, mi_obj_simulated, mi_obj_real - mi_obj_simulated)
+        x.to_csv(outfile + "_" + "_".join([str(pgs) for pgs in self.pgs_dists]) + "_" + ".csv")
+
+
+        
+        # GRID SEARCH PART 
+        standardized = False
+        if standardized:
+            df["I[U;W]"] = (df["I[U;W]"] - df["I[U;W]"].mean())/df["I[U;W]"].std()
+            df["I[M;W]"] = (df["I[M;W]"] - df["I[M;W]"].mean()) / \
+                df["I[M;W]"].std()
+
+        mi_obj_simulated = df.groupby("LangCategory").mean()["MI_Objective"]["simulated"]
+        mi_obj_real = df.groupby("LangCategory").mean()["MI_Objective"]["real"]
+        if get_opt:
+            mi_obj_optimal = df.groupby("LangCategory").mean()[
+            "MI_Objective"]["optimal"]
+        else:
+            mi_obj_optimal = 0
+        mi_obj_simulated_std = df.groupby("LangCategory").std()[
+            "MI_Objective"]["simulated"]
+        mi_obj_real_std = df.groupby("LangCategory").std()["MI_Objective"]["real"]
+        if get_opt:
+            mi_obj_optimal_std = df.groupby("LangCategory").std()[
+            "MI_Objective"]["optimal"]
+        else:
+            mi_obj_optimal_std = 0
+
+        sim_only = df.loc[df["LangCategory"] == "simulated"]
+        real_only = df.loc[df["LangCategory"] == "real"]
+        sim_only_plane = np.array(df.loc[df["LangCategory"] == "simulated", ["I[U;W]", "I[M;W]"]])
+        real_only_plane = np.array(df.loc[df["LangCategory"] == "real", ["I[U;W]", "I[M;W]"]])
+
+        if get_opt:
+            optimal_only = df.loc[df["LangCategory"] == "optimal"]
+            X = np.array(optimal_only["I[U;W]"]).reshape(-1, 1)
+            y = np.array(optimal_only["I[M;W]"])
+            model = LinearRegression()
+            model.fit(X, y)
+            predictions_for_real = model.predict(
+                                np.array(real_only["I[U;W]"]).reshape(-1, 1))
+            residuals_optimal = np.array(real_only["I[M;W]"]) - predictions_for_real
+        else:
+            residuals_optimal = 0
+
+        # for simulated
+        X = np.array(sim_only["I[U;W]"]).reshape(-1, 1)
+        y = np.array(sim_only["I[M;W]"])
+        model = LinearRegression()
+        model.fit(X, y)
+        predictions_for_real = model.predict(
+            np.array(real_only["I[U;W]"]).reshape(-1, 1))
+        residuals_sim = np.array(real_only["I[M;W]"]) - predictions_for_real
+
+
+        fig, ax = plt.subplots(nrows=1, ncols=1)  # create figure & 1 axis
+
+        plt.plot(sim_only_plane[:, 0], sim_only_plane[:, 1], 'go')
+        plt.plot(real_only_plane[:, 0], real_only_plane[:, 1], 'wo')
+
+        vertices = ConvexHull(sim_only_plane).vertices
+        pv = sim_only_plane[vertices] # this is the hull
+        resid = pv[:, 1] - (linregress(sim_only_plane).intercept +
+                            pv[:, 0] * linregress(sim_only_plane).slope)
+        vertices = vertices[resid < 0]  # just the bottom part of hull
+
+        # fill in between the points
+        verts = []
+        for i, j in zip(pv, np.array(list(pv[1:, :]) + list([pv[0, :]]))):
+            if i[0] < j[0]:
+                verts += list(getEquidistantPoints(i, j, 100))
+        verts = np.array(verts)
+
+        dists = euclidean_distances(real_only_plane, verts).min(axis=1)
+        dist_to_hull = np.sum(dists)
+
+
+        plt.plot(verts[:, 0], verts[:, 1], 'r--', lw=2)
+
+        fig.savefig(outfile + "_plot.png")   # save the figure to file
+        plt.close(fig)    # close the figure window
+
+        df_grid = pd.DataFrame({"place": [self.pgs_dists[0]],
+        "goal": [self.pgs_dists[1]],
+        "source": [self.pgs_dists[2]],
+        "real": [mi_obj_real],
+        "simulated": [mi_obj_simulated],
+        "optimal": [mi_obj_optimal],
+        "real_sd": [mi_obj_real_std],
+        "simulated_sd": [mi_obj_simulated_std],
+        "optimal_sd": [mi_obj_optimal_std],
+        "real_minus_opt_resid": [np.sum(residuals_optimal)],
+        "real_minus_opt_resid_sq": [np.sum(residuals_optimal * residuals_optimal)],
+        "real_minus_sim_resid": [np.sum(residuals_sim)],
+        "real_minus_sim_resid_sq": [np.sum(residuals_sim * residuals_sim)],
+        "dist_to_hull": [dist_to_hull],
+        })
+
+        df_grid.to_csv(outfile + "_gridsearch.csv", mode='a',
+                  header=not os.path.exists(outfile + "_gridsearch.csv"))
+
         return x
 
 
@@ -214,14 +325,16 @@ if __name__ == "__main__":
         lexicon_size in lexicon_size_range}
     
     if args.grid_search:
-        for i in np.append(np.linspace(-5, 5, 20), np.array(0)):
-            for j in np.linspace(-5, 5, 20):
+        for i in np.append(np.linspace(-5, 5, 10), np.array(0)):
+            for j in np.append(np.linspace(-5, 5, 10), np.array(0)):
                 RunIB(args.mu, args.gamma, args.distal,
                     [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
-                                              sim_lex_dict=sim_lex_dict).to_csv(args.outfile)
+                                              sim_lex_dict=sim_lex_dict,
+                                              outfile = args.outfile)
     else:
         RunIB(args.mu, args.gamma, args.distal).get_mi_for_all(
-            get_opt=args.get_opt, sim_lex_dict=sim_lex_dict).to_csv(args.outfile)
+            get_opt=args.get_opt, sim_lex_dict=sim_lex_dict,
+            outfile = args.outfile)
 
     if args.get_opt == True:
         print("getting optimal lexicons")
