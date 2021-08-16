@@ -44,8 +44,8 @@ ggplot(fin, aes(x=distal, y=count))+
   facet_grid(. ~ type)
 
 
-fin$Type = as.character(fin$Type)
-names(fin) = c("Type", "variable", "finword", "count")
+fin$Type = as.character(fin$type)
+names(fin) = c("Type", "variable", "finword", "count", "type")
 fin$Type = as.character(fin$Type)
 fin$variable = as.character(fin$variable)
 fin$variable = toupper(fin$variable)
@@ -130,20 +130,87 @@ filter(d2, `SOURCE D2` == `SOURCE D1`)
 
 ###### analyze frontier
 library(tidyverse)
-d = read_csv("mi_test_1.csv")
+#d = read_csv("mi_penalize_source.csv")
+d = read_csv("mi_sym_penalty.csv")
+d = read_csv("mi_test_newparams.csv")
+d = read_csv("mi_orig.csv")
+d = read_csv("mi_0-1.5_2.csv")
+d = read_csv("mi_0_-1_1.csv")
+#d = read_csv("mi_0_-1_1.3.csv")
+d = read_csv("mi_0_-1.3_1.csv")
+d = read_csv("outfiles/run_grid_search_optimal_trybest_0_1.3_-1.7_.csv")
+d = read_csv("outfiles/run_grid_search_optimal_trybest_0_6_-6_.csv")
+d = read_csv("outfiles/test_hull_0_0.9655172413793103_-1.0344827586206897_.csv")
+d = read_csv("outfiles/test_hull_0_0.9655172413793103_-0.9655172413793103_.csv")
+d = read_csv("outfiles/run_reversed_priors_0_1_-1_.csv")
+d = read_csv("outfiles/place_source_goal_-1_1_0_.csv")
+
+
+d$D1GoalSource = d$D1_goal == d$D1_source
+d$D1PlaceSource = d$D1_place == d$D1_source
+d$D1PlaceGoal = d$D1_place == d$D1_goal
+
+d$Complexity = d$`I[U;W]`
+d$Info = d$`I[M;W]`
+l = lm(data=filter(d, Language == "simulated"), Info ~ Complexity)
+d$predict = (d$Info - predict(l, newdata=d) )
+
+arrange(d, predict) %>%
+  filter(Language %in% c("optimal", "simulated") == F) %>%
+  select(Language, Complexity, Info, predict)
+
+arrange(d, -predict) %>%
+  filter(Language %in% c("optimal", "simulated") == F) %>%
+  select(Language, Complexity, Info, predict)
 
 d$Language = substr(d$Language, 1, 9)
 d$IsSim = d$Language == "simulated"
-ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) + geom_point( colour="gray", alpha=.1) +
-  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.02, height=.02)   +
-  theme_bw(14) 
-  #geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`), colour="red")  
-ggsave("~/Downloads/efficient_deictics_1.png")
+ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`, 
+                                               colour = D1PlaceGoal)) +
+  #geom_point()
+  geom_point( colour="gray", alpha=.5) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), 
+              aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.02, height=.02,
+              alpha=.8)   +
+  theme_bw(14) +
+  geom_point(data=filter(d, Language == "optimal"),
+            aes(x=`I[U;W]`, y=`I[M;W]`), colour= "black") +
+  geom_smooth(data=filter(d, Language == "simulated"), method=lm) 
+  #xlim(.425, .5) + 
+  #ylim(.2, .7)
+ggsave("reversed_priors.png")
+
+filter(d, abs(`I[U;W]` - .46) < .005, `I[M;W]` < .5704) %>% 
+  select(Language, D1_place:D6_source, MI_Objective, `I[M;W]`, `I[U;W]`) %>% write_csv("xx.csv")
+
+ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) +
+  geom_point( colour="gray", alpha=.5) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), 
+              aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.01, height=.01,
+              alpha=.8)   +
+  theme_bw(14) +
+  geom_point(data=filter(d, Language == "optimal"),
+             aes(x=`I[U;W]`, y=`I[M;W]`), colour= "black") #+ 
+  #xlim(1.7, 2) + ylim(1, 1.3)
+
+ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) +
+  geom_point( colour="gray", alpha=.5) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), 
+              aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.01, height=.01,
+              alpha=.8)   +
+  theme_bw(14) +
+  geom_point(data=filter(d, Language == "optimal"),
+             aes(x=`I[U;W]`, y=`I[M;W]`), colour= "black") #+ 
+#xlim(1.7, 2) + ylim(1, 1.3)
+
+#geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`), colour="red")  
 
 filter(d, `I[M;W]` > 1.25, `I[U;W]` < .7, Language != "simulated") %>% select(Area, Language)
 filter(d, `I[M;W]` > 1.25, `I[U;W]` < .8, Language != "simulated", Area == "asia") %>%
   select(`I[M;W]` ,`I[U;W]`, Area, Language)
 
+filter(d, Area == "oceania", `I[M;W]` < 1, `I[U;W]` > 1) %>%
+  select(D6_source:IsSim)
 d$Language = substr(d$Language, 1, 5)
 d$IsSim = d$Language == "simulated"
 ggplot(filter(d, Language == "simulated"), aes(x=`I[M;W]`, y=`I[U;W]`)) + geom_point( colour="gray", alpha=.1) +
@@ -185,3 +252,60 @@ s = data.frame(x=1:5, count=c(161206, 42761, 26419, 8163, 12446) ,
 ggplot(s, aes(x=x, y=count)) + geom_bar(stat="identity") + theme_bw(18) + 
   theme(axis.text.x = element_text(angle=90)) + 
   scale_x_continuous(breaks=seq(1, 5), labels=s$type)
+
+
+########
+d = read_delim("~/deictic_adverbs/run_grid_search_pgs.csv", delim=" ",
+               col_names = c("place", "goal", "source", "mi1", "mi2", "diff" ))
+arrange(d, diff)
+arrange(d, -diff)
+
+d2 = read_delim("~/deictic_adverbs/run_grid_search_pgs_refined.csv", delim=" ",
+               col_names = c("place", "goal", "source", "mi1", "mi2", "diff" ))
+arrange(d2, diff)
+arrange(d2, -diff)
+
+#############
+# compare grid
+d = read_csv("mi_test_asym.csv") %>%
+  mutate(Sym = "ASYM")
+e = read_csv("mi_test_sym.csv") %>%
+  mutate(Sym = "SYM")
+
+e2 = read_csv("mi_test_newparams.csv") %>%
+  mutate(Sym = "NewParamsSym")
+e3 = read_csv("mi_test_newparams_asym.csv") %>%
+  mutate(Sym = "NewParamsAsym")
+
+
+bind_rows(d, e, e2, e3) %>%
+  group_by(Sym, Simulated) %>%
+  summarise(m=mean(MI_Objective)) %>%
+  spread(Simulated, m)
+
+mean(e$MI_Objective < 0)
+
+d = e3
+d$Language = substr(d$Language, 1, 9)
+d$IsSim = d$Language == "simulated"
+ggplot(filter(d, Language == "simulated"), aes(x=`I[U;W]`, y=`I[M;W]`)) +
+  geom_point( colour="gray", alpha=.5) +
+  geom_jitter(data=filter(d, Language != "simulated", Language != "optimal"), 
+              aes(x=`I[U;W]`, y=`I[M;W]`, colour=Area), width=.02, height=.02,
+              alpha=.8)   +
+  theme_bw(14) +
+  geom_point(data=filter(d, Language == "optimal"),
+             aes(x=`I[U;W]`, y=`I[M;W]`), colour= "black")
+#geom_point(data=filter(d, Language == "optimal"), aes(x=`I[M;W]`, y=`I[U;W]`), colour="red")  
+ggsave("~/Downloads/efficient_deictics_asym_newparams.png")
+
+
+###########
+d1 = read_csv("mi_sym_penalty.csv")
+d2 = read_csv("mi_penalize_source.csv")
+
+plot(d1$MI_Objective, d2$MI_Objective)
+
+hist(d1$MI_Objective)
+
+hist(d2$MI_Objective)
