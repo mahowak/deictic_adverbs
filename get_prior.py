@@ -10,14 +10,6 @@ FINN_COUNTS = {"place":  [39, 16, 6],
 "goal": [18, 7, 1.6],
 "source": [7, 2, .6]}
 
-
-def get_prior_finnish():
-    """
-    Return the prior prob distribution over universe, using Finnish
-    """
-    x = np.array([39, 16, 6, 18, 7, 1.6, 7, 2, .6])
-    return x/np.sum(x)
-
 def get_exp_fit(prior, distal_levels):
     def func(x, a, b):
         return a*np.exp(-b*x)
@@ -27,7 +19,7 @@ def get_exp_fit(prior, distal_levels):
 
 def get_exp_prior(distal_levels):
     x = np.concatenate([get_exp_fit(FINN_COUNTS[i], distal_levels) for i in
-                        FINN_COUNTS])
+                        ["place", "goal", "source"]])
     return x/np.sum(x)
 
 def exp_fit_place(distal_levels, loc):
