@@ -10,6 +10,7 @@ from scipy.spatial import ConvexHull, convex_hull_plot_2d
 from scipy.stats import linregress
 
 import argparse
+import itertools
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -30,13 +31,19 @@ def classify_lang(lang):
 
 class RunIB:
 
-    def __init__(self, mu, gamma, distal_levels, pgs_dists=[0, 1.3, -1.7]):
+    def __init__(self,
+    mu,
+    gamma,
+    distal_levels,
+    pgs_dists=[0, -1, 1],
+    prior_spec=["place", "goal", "source"]):
         self.deictic_map = {}
         self.deictic_index = {}
         self.mu = mu
         self.gamma=gamma
         self.distal_levels = distal_levels
-        self.prior = get_exp_prior(self.distal_levels)  # p(x)
+        self.prior_spec = prior_spec
+        self.prior = get_exp_prior(self.distal_levels, prior_spec)  # p(x)
         self.pgs_dists = pgs_dists
         c = 0
         for i in [("place", self.pgs_dists[0]),
@@ -185,6 +192,7 @@ class RunIB:
 
         dists = euclidean_distances(real_only_plane, verts).min(axis=1)
         dist_to_hull = np.sum(dists)
+        dist_to_hull_2 = np.sum(dists * dists)
 
 
         plt.plot(verts[:, 0], verts[:, 1], 'r--', lw=2)
@@ -206,6 +214,8 @@ class RunIB:
         "real_minus_sim_resid": [np.sum(residuals_sim)],
         "real_minus_sim_resid_sq": [np.sum(residuals_sim * residuals_sim)],
         "dist_to_hull": [dist_to_hull],
+        "dist_to_hull_sq": [dist_to_hull_2],
+        "prior_spec": ["_".join(self.prior_spec)]
         })
 
         df_grid.to_csv(outfile + "_gridsearch.csv", mode='a',
@@ -313,6 +323,7 @@ if __name__ == "__main__":
     parser.add_argument('--distal', type=float, default=6)
     parser.add_argument('--get_opt', action='store_true')
     parser.add_argument('--grid_search', action='store_true')
+    parser.add_argument('--prior_search', action='store_true')
 
     args = parser.parse_args()
     
@@ -325,12 +336,25 @@ if __name__ == "__main__":
         lexicon_size in lexicon_size_range}
     
     if args.grid_search:
-        for i in np.append(np.linspace(-5, 5, 10), np.array(0)):
-            for j in np.append(np.linspace(-5, 5, 10), np.array(0)):
-                RunIB(args.mu, args.gamma, args.distal,
-                    [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
-                                              sim_lex_dict=sim_lex_dict,
-                                              outfile = args.outfile)
+        for i in np.append(np.linspace(-10, 10, 8), np.array(0)):
+            for j in np.append(np.linspace(-10, 10, 8), np.array(0)):
+                if np.abs(i) > .5 and np.abs(j) > .5:
+                    RunIB(args.mu, args.gamma, args.distal,
+                        [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
+                                                sim_lex_dict=sim_lex_dict,
+                                                outfile = args.outfile)
+
+    elif args.prior_search:
+        for perm in (list(itertools.permutations(["place", "goal", "source"])) + 
+        [["unif", "unif", "unif"], ["place", "place", "place"]]):
+            s = "_".join(list(perm))
+            RunIB(args.mu, args.gamma, args.distal,
+                  prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
+                                            sim_lex_dict=sim_lex_dict,
+                                            outfile=args.outfile)
+
+
+
     else:
         RunIB(args.mu, args.gamma, args.distal).get_mi_for_all(
             get_opt=args.get_opt, sim_lex_dict=sim_lex_dict,

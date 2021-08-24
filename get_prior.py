@@ -8,7 +8,8 @@ FINN_WORDS = ["täällä", "siellä", "tuolla",
 
 FINN_COUNTS = {"place":  [39, 16, 6],
 "goal": [18, 7, 1.6],
-"source": [7, 2, .6]}
+"source": [7, 2, .6],
+"unif": [1, 1, 1]}
 
 def get_exp_fit(prior, distal_levels):
     def func(x, a, b):
@@ -17,9 +18,9 @@ def get_exp_fit(prior, distal_levels):
     dist = func(range(distal_levels), a, b)
     return dist
 
-def get_exp_prior(distal_levels):
+def get_exp_prior(distal_levels, prior_spec):
     x = np.concatenate([get_exp_fit(FINN_COUNTS[i], distal_levels) for i in
-                        ["place", "goal", "source"]])
+                        prior_spec])
     return x/np.sum(x)
 
 def exp_fit_place(distal_levels, loc):
