@@ -90,7 +90,7 @@ class RunIB:
 
     def get_mi_for_all(self, get_opt=True, sim_lex_dict={}, outfile="default"):
         num_meanings = self.distal_levels * 3
-        lexicon_size_range = range(2, num_meanings + 1)
+        lexicon_size_range = range(2, int(num_meanings) + 1)
         assert (len(self.prior) == num_meanings)
         dfs = []
         lexicons = []
@@ -215,7 +215,9 @@ class RunIB:
         "real_minus_sim_resid_sq": [np.sum(residuals_sim * residuals_sim)],
         "dist_to_hull": [dist_to_hull],
         "dist_to_hull_sq": [dist_to_hull_2],
-        "prior_spec": ["_".join(self.prior_spec)]
+        "prior_spec": ["_".join(self.prior_spec)],
+        "mu": [str(self.mu)],
+        "gamma": [str(self.gamma)]
         })
 
         df_grid.to_csv(outfile + "_gridsearch.csv", mode='a',
@@ -320,10 +322,11 @@ if __name__ == "__main__":
     parser.add_argument('--mu',  type=float, help='set mu', default=.1)
     parser.add_argument('--gamma', type=float, default=2)
     parser.add_argument('--outfile', type=str, default="mi_test_1.csv")
-    parser.add_argument('--distal', type=float, default=6)
+    parser.add_argument('--distal', type=int, default=6)
     parser.add_argument('--get_opt', action='store_true')
     parser.add_argument('--grid_search', action='store_true')
     parser.add_argument('--prior_search', action='store_true')
+    parser.add_argument('--total_search', action='store_true')
 
     args = parser.parse_args()
     
@@ -347,12 +350,22 @@ if __name__ == "__main__":
     elif args.prior_search:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) + 
         [["unif", "unif", "unif"], ["place", "place", "place"]]):
-            s = "_".join(list(perm))
             RunIB(args.mu, args.gamma, args.distal,
                   prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
                                             sim_lex_dict=sim_lex_dict,
                                             outfile=args.outfile)
 
+    elif args.total_search:
+        for perm in (list(itertools.permutations(["place", "goal", "source"])) +
+                     [["unif", "unif", "unif"], ["place", "place", "place"]]):
+            for mu in [.1, .2, .3]:
+                for i in np.append(np.linspace(-5, 5, 20), np.array(0)):
+                    for j in np.append(np.linspace(-5, 5, 20), np.array(0)):
+                        RunIB(mu, args.gamma, args.distal,
+                            [0, i, j],
+                            prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
+                                                            sim_lex_dict=sim_lex_dict,
+                                                            outfile=args.outfile)
 
 
     else:
