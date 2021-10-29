@@ -281,6 +281,7 @@ class RunIB:
     def plot_lexicons(self, lexicon_as_list):
         distal_levels = int(np.array(lexicon_as_list).shape[0]/3)
         lexicon_as_list = np.reshape(lexicon_as_list, (distal_levels,3), order = 'F')
+        lexicon_as_list[:,[0,1]] = lexicon_as_list[:,[1,0]]
         lexicon_as_list = np.flip(lexicon_as_list,0)
         fig = plt.imshow(lexicon_as_list)
 
