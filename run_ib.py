@@ -274,9 +274,9 @@ class RunIB:
         a = np.zeros([len(lexicon_as_list), len(set(lexicon_as_list))])
         for x, y in enumerate(lexicon_as_list):
             a[x, y] = 1
-        return information_plane(self.prior,
-                                 self.get_prob_u_given_m(), a)
-
+        iplane = information_plane(self.prior,
+                                 self.get_prob_u_given_m(), a)        
+        return (iplane, iplane[1] - self.gamma * iplane[0])
 
 
 def print_optimal_lexicons_for_ggplot(df):
