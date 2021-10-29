@@ -277,8 +277,8 @@ class RunIB:
         iplane = information_plane(self.prior,
                                  self.get_prob_u_given_m(), a)        
         return (iplane, iplane[1] - self.gamma * iplane[0])
-        
-    def plot_lexicons(lexicon_as_list):
+
+    def plot_lexicons(self, lexicon_as_list):
         distal_levels = int(np.array(lexicon_as_list).shape[0]/3)
         lexicon_as_list = np.reshape(lexicon_as_list, (distal_levels,3), order = 'F')
         lexicon_as_list = np.flip(lexicon_as_list,0)
