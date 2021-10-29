@@ -268,6 +268,16 @@ class RunIB:
             lang_arrays += [(lang, lang_array, area)]
 
         return lang_arrays
+    
+    def encode_lexicon(self, lexicon_as_list):
+        """Take in a lexicon as a list, return info plane"""
+        a = np.zeros([len(lexicon_as_list), len(set(lexicon_as_list))])
+        for x, y in enumerate(lexicon_as_list):
+            a[x, y] = 1
+        return information_plane(self.prior,
+                                 self.get_prob_u_given_m(), a)
+
+
 
 def print_optimal_lexicons_for_ggplot(df):
     newds = []
@@ -315,7 +325,7 @@ def get_optimal_lexicons():
     df.to_pickle("optimal_lexicons.pkl")
     print_optimal_lexicons_for_ggplot(df)
     return df
-
+    
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='get ib distribution.')
