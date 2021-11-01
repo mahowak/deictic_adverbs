@@ -3,41 +3,11 @@ import random
 import numpy as np
 import re
 import string
-
-# df = pd.read_csv('mu_0.1_gamma_3_ndistal_3_stirling_0_-1_1_outfile1.csv')
-df = pd.read_csv('mu_0.1_gamma_3_ndistal_3_stirling_0_-1_1_.csv')
-#outfile = "mu_0.1_gamma_3_ndistal_3_stirling_0_-1_1_outfile2.csv"
-outfile = 'ok.csv'
-
-def paradigm_names(df):
-    names = df.columns
-    return(names[[bool(re.search('^D', i)) for i in df.columns]])
-
-# distinguish all the simulated languages by giving them numbers
-k = 1
-for i in range(df.shape[0]):
-    if df['Language'][i] == 'simulated':
-        df['Language'][i] = df['Language'][i] + str(k)
-        k += 1
-
-# convert the table to paradigm tables
-id_vars = ["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory', ]
-df = pd.melt(df, id_vars = id_vars,
-value_vars=paradigm_names(df), value_name='Word', var_name = 'Type')
-
-# convert numbers to alphabets
-df = df.assign(Word = lambda df: df['Word'].map(lambda Word: string.ascii_lowercase[Word]))
-
-# split distal levels and orientations
-df[['Type','theta']] = df['Type'].str.split('_',expand=True)
-
-# pivot wider
-df = df.pivot_table(index=df[["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory','Type' ]], columns = 'theta', values='Word',aggfunc='first').reset_index()
-
+import argparse
 
 
 def count_theta_patterns(key):
-    paradigm = df.loc[df["Language"] == key]
+    paradigm = df_wide.loc[df_wide["Language"] == key]
     # input: a pd dataframe with 3 columns
     type_list = paradigm['Type'].drop_duplicates().values
     # print(paradigm)
@@ -67,7 +37,7 @@ def count_theta_patterns(key):
 
 def count_r_patterns(key):
     # input: a pd dataframe with 3 columns
-    paradigm = df.loc[df["Language"] == key]
+    paradigm = df_wide.loc[df_wide["Language"] == key]
     type_list = paradigm['Type'].drop_duplicates().values
     unique_patterns = 0
     max_pattern = 0
@@ -115,7 +85,45 @@ def make_unique_paradigm_table(df):
     # table.to_csv(outfile)
     return(table)
 
-make_unique_paradigm_table(df)
-df = pd.merge(df, make_unique_paradigm_table(df), on = 'Language')
-df.to_csv(outfile)
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description='calculate the systematicity score')
+    parser.add_argument('--filename', type=str, default="mi_test_1.csv")
+    
+    args = parser.parse_args()
+
+
+    #df = pd.read_csv('mu_0.1_gamma_3_ndistal_3_stirling_0_-1_1_.csv')
+    #outfile = 'ok.csv'
+
+    df = pd.read_csv(args.filename)
+    outfile = args.filename.replace('.csv', '_outfile.csv', -1)
+
+    def paradigm_names(df):
+        names = df.columns
+        return(names[[bool(re.search('^D', i)) for i in df.columns]])
+
+    # distinguish all the simulated languages by giving them numbers
+    k = 1
+    for i in range(df.shape[0]):
+        if df['Language'][i] == 'simulated':
+            df['Language'][i] = df['Language'][i] + str(k)
+            k += 1
+
+    # convert the table to paradigm tables
+    id_vars = ["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory', ]
+    df_long = pd.melt(df, id_vars = id_vars,
+    value_vars=paradigm_names(df), value_name='Word', var_name = 'Type')
+
+    # convert numbers to alphabets
+    df_long = df_long.assign(Word = lambda df_long: df_long['Word'].map(lambda Word: string.ascii_lowercase[Word]))
+
+    # split distal levels and orientations
+    df_long[['Type','theta']] = df_long['Type'].str.split('_',expand=True)
+
+    # pivot wider
+    df_wide = df_long.pivot_table(index=df_long[["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory','Type' ]], columns = 'theta', values='Word',aggfunc='first').reset_index()
+    #make_unique_paradigm_table(df)
+    df = pd.merge(df, make_unique_paradigm_table(df_wide), on = 'Language')
+    df.to_csv(outfile)
 
