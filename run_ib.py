@@ -36,7 +36,7 @@ class RunIB:
     mu,
     gamma,
     distal_levels,
-    pgs_dists=[0, -1, 1],
+    pgs_dists,
     prior_spec=["place", "goal", "source"]):
         self.deictic_map = {}
         self.deictic_index = {}
@@ -340,11 +340,14 @@ if __name__ == "__main__":
     parser.add_argument('--mu',  type=float, help='set mu', default=.1)
     parser.add_argument('--gamma', type=float, default=2)
     parser.add_argument('--outfile', type=str, default="mi_test_1.csv")
-    parser.add_argument('--distal', type=int, default=6)
+    parser.add_argument('--distal', type=int, default=3)
     parser.add_argument('--get_opt', action='store_true')
     parser.add_argument('--grid_search', action='store_true')
     parser.add_argument('--prior_search', action='store_true')
     parser.add_argument('--total_search', action='store_true')
+    parser.add_argument('--pgs', help='the relative location for PLACE / GOAL / SOURCE (e.g. 0, -1, 1)', 
+        type=lambda s: [int(item) for item in s.split(',')], default = '0, -1, 1')
+
 
     args = parser.parse_args()
     
@@ -397,7 +400,7 @@ if __name__ == "__main__":
 
 
     else:
-        RunIB(args.mu, args.gamma, args.distal).get_mi_for_all(
+        RunIB(args.mu, args.gamma, args.distal, args.pgs).get_mi_for_all(
             get_opt=args.get_opt, sim_lex_dict=sim_lex_dict,
             outfile = args.outfile)
 
