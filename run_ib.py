@@ -38,6 +38,7 @@ class RunIB:
     distal_levels,
     pgs_dists,
     prior_spec=["place", "goal", "source"]):
+    #prior_spec = ["goal", "place", "source"]):
         self.deictic_map = {}
         self.deictic_index = {}
         self.mu = mu
@@ -89,6 +90,7 @@ class RunIB:
         return ib(self.prior, self.prob_u_given_m, lexicon_size,
                   self.gamma, num_iter=100, outer_iter=100)
 
+
     def get_mi_for_all(self, get_opt=True, sim_lex_dict={}, outfile="default"):
         num_meanings = self.distal_levels * 3
         lexicon_size_range = range(2, int(num_meanings) + 1)
@@ -119,7 +121,7 @@ class RunIB:
         df["LangCategory"] = [classify_lang(lang) for lang in df["Language"]]
         dfs += [df]
         x =  pd.concat(dfs).sort_values(["I[U;W]"], ascending=False)
-        x.to_csv(outfile + "_" + "_".join([str(pgs) for pgs in self.pgs_dists]) + "_" + ".csv")
+        x.to_csv(outfile + '_mu_' + str(args.mu) + '_gamma_' + str(args.gamma) + "_" + "_".join([str(pgs) for pgs in self.pgs_dists]) + "_" + ".csv")
 
 
         
@@ -149,6 +151,24 @@ class RunIB:
         sim_only = df.loc[df["LangCategory"] == "simulated"]
         real_only = df.loc[df["LangCategory"] == "real"]
         sim_only_plane = np.array(df.loc[df["LangCategory"] == "simulated", ["I[U;W]", "I[M;W]"]])
+        merge_D1D2_only_plane = np.array(df.loc[(df["D1_place"] == 0) &
+                                                 (df["D2_place"] == 0) &
+                                                 (df["D3_place"] == 1) &
+                                                 (df["D1_goal"] == 2) &
+                                                 (df["D2_goal"] == 2) &
+                                                 (df["D3_goal"] == 3) &
+                                                 (df["D1_source"] == 4) &
+                                                 (df["D2_source"] == 4) &
+                                                 (df["D3_source"] == 5), ["I[U;W]", "I[M;W]"]])
+        merge_D2D3_only_plane = np.array(df.loc[(df["D1_place"] == 0) &
+                                                 (df["D2_place"] == 1) &
+                                                 (df["D3_place"] == 1) &
+                                                 (df["D1_goal"] == 2) &
+                                                 (df["D2_goal"] == 3) &
+                                                 (df["D3_goal"] == 3) &
+                                                 (df["D1_source"] == 4) &
+                                                 (df["D2_source"] == 5) &
+                                                 (df["D3_source"] == 5), ["I[U;W]", "I[M;W]"]])
         real_only_plane = np.array(df.loc[df["LangCategory"] == "real", ["I[U;W]", "I[M;W]"]])
 
         if get_opt:
@@ -192,6 +212,8 @@ class RunIB:
         verts = np.array(verts)
 
         dists = euclidean_distances(real_only_plane, verts).min(axis=1)
+        dists_merge_D1D2 = euclidean_distances(merge_D1D2_only_plane, verts).min(axis = 1).sum()
+        dists_merge_D2D3 = euclidean_distances(merge_D2D3_only_plane, verts).min(axis = 1).sum()
         dist_to_hull = np.sum(dists)
         dist_to_hull_2 = np.sum(dists * dists)
 
@@ -201,6 +223,10 @@ class RunIB:
         fig.savefig(outfile + "_plot.png")   # save the figure to file
         plt.close(fig)    # close the figure window
 
+
+        #print(self.pgs_dists, 'D1D2 : ', real_only_plane)
+        #print(self.pgs_dists, 'D1D2 : ', merge_D1D2_only_plane)
+        #print(self.pgs_dists, 'D2D3 : ', merge_D2D3_only_plane)
         df_grid = pd.DataFrame({"place": [self.pgs_dists[0]],
         "goal": [self.pgs_dists[1]],
         "source": [self.pgs_dists[2]],
@@ -217,6 +243,8 @@ class RunIB:
         "dist_to_hull": [dist_to_hull],
         "dist_to_hull_sq": [dist_to_hull_2],
         "prior_spec": ["_".join(self.prior_spec)],
+        "dist_to_hull_merge_D1D2": [dists_merge_D1D2],
+        "dist_to_hull_merge_D2D3": [dists_merge_D2D3],
         "mu": [str(self.mu)],
         "gamma": [str(self.gamma)]
         })
@@ -344,9 +372,10 @@ if __name__ == "__main__":
     parser.add_argument('--get_opt', action='store_true')
     parser.add_argument('--grid_search', action='store_true')
     parser.add_argument('--prior_search', action='store_true')
+    parser.add_argument('--mu_search', action='store_true')
     parser.add_argument('--total_search', action='store_true')
     parser.add_argument('--pgs', help='the relative location for PLACE / GOAL / SOURCE (e.g. 0, -1, 1)', 
-        type=lambda s: [int(item) for item in s.split(',')], default = '0, -1, 1')
+        type=lambda s: [float(item) for item in s.split(',')], default = '0, -1, 1')
 
 
     args = parser.parse_args()
@@ -360,7 +389,7 @@ if __name__ == "__main__":
     #     num_meanings, lexicon_size, seed=i) for i in range(10000)] for 
     #     lexicon_size in lexicon_size_range}
 
-    # new function: sampling lexicons at each number of words proportional to the Sterling number 
+    # new function: sampling lexicons at each number of words proportional to the S terling number 
     # sim_lex_dict = {lexicon_size: [get_random_lexicon(
     #     num_meanings, lexicon_size, seed=i) for i in range(stirling.stirling(num_meanings, lexicon_size))] for 
     #     lexicon_size in lexicon_size_range}
@@ -376,15 +405,21 @@ if __name__ == "__main__":
                     RunIB(args.mu, args.gamma, args.distal,
                         [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
                                                 sim_lex_dict=sim_lex_dict,
-                                                outfile = args.outfile)
+                                                outfile = args.outfile + str(args.mu) + str(args.gamma))
 
     elif args.prior_search:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) + 
         [["unif", "unif", "unif"], ["place", "place", "place"]]):
-            RunIB(args.mu, args.gamma, args.distal,
+            RunIB(args.mu, args.gamma, args.distal, args.pgs,
                   prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
                                             sim_lex_dict=sim_lex_dict,
                                             outfile=args.outfile)
+    elif args.mu_search:
+        for mu in np.append(np.linspace(0.05, 0.99, 19), np.array(0.99)):
+            RunIB(mu, args.gamma, args.distal, args.pgs, prior_spec =["place", "goal", "source"] ).get_mi_for_all(get_opt=args.get_opt,
+                                            sim_lex_dict=sim_lex_dict,
+                                            outfile=args.outfile)
+
 
     elif args.total_search:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) +
@@ -392,8 +427,9 @@ if __name__ == "__main__":
             for mu in [.1, .2, .3]:
                 for i in np.append(np.linspace(-5, 5, 20), np.array(0)):
                     for j in np.append(np.linspace(-5, 5, 20), np.array(0)):
+                        pgs = [0, i, j]
                         RunIB(mu, args.gamma, args.distal,
-                            [0, i, j],
+                            pgs,
                             prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
                                                             sim_lex_dict=sim_lex_dict,
                                                             outfile=args.outfile)
