@@ -93,10 +93,12 @@ python systematicity_combined.py --filename sheets/sim_lexicons_fit_mu_0.3_pgs_0
 ```
 python run_ib.py --total_search --outfile sheets/total_grid_search
 ```
+    
     - Prior search: Run the code below. This will generate a file called ``prior_search_gridsearch.csv`` in the ``sheets`` folder.
 ```
 python run_ib.py --prior_search --outfile sheets/prior_search
 ```
+
     - Mu search: Run the code below. This will generate a file called ``mu_search_gridsearch.csv`` in the ``sheets`` folder.
 ```
 python run_ib.py --mu_search --outfile sheets/mu_search
