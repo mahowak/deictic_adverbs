@@ -1,0 +1,221 @@
+,D1_place,D2_place,D3_place,D1_goal,D2_goal,D3_goal,D1_source,D2_source,D3_source,I[U;W],I[M;W],Language,Area
+0,2,0,0,2,0,0,3,1,1,0.21571846746835865,0.9627697664926146,"Polish (Indo-European, Slavic)",europe
+1,3,8,1,4,5,0,2,7,6,0.44171746592799055,1.7190305530385759,Catalan,europe
+2,3,0,0,4,2,2,5,1,1,0.39927919394681055,1.5173487714785217,"Swedish (Indo-European, Germanic)",europe
+3,3,2,2,1,4,4,0,5,5,0.39927919394681033,1.5173487714785214,Estonian (Uralic),europe
+4,5,4,2,0,3,1,5,4,2,0.4064767173810089,1.4333355569365334,"Saami, Skolt (Uralic)",europe
+5,0,5,5,2,3,3,4,1,1,0.39927919394681033,1.5173487714785214,"Lezgian (Nakh-Daghestanian, Daghestanian)",europe
+6,1,0,0,5,3,3,4,2,2,0.3992791939468101,1.5173487714785212,"Sorbian,Upper (Indo-European, Slavic)",europe
+7,1,4,3,1,4,3,5,2,0,0.25820505350774225,1.1645392933887269,"Scots-Gaelic (Indo-European, Celtic)",europe
+8,4,1,1,2,0,0,5,3,3,0.39927919394681055,1.5173487714785212,"Slovak (Indo-European, Slavic)",europe
+9,6,1,7,0,5,3,4,8,2,0.44171746592799077,1.7190305530385763,Turkish (Turkic),europe
+10,7,6,5,1,8,4,0,2,3,0.441717465927991,1.7190305530385757,Basque,europe
+11,2,6,5,3,4,8,1,7,0,0.44171746592799055,1.719030553038576,"Macedonian (Indo-European, Slavic)",europe
+12,2,0,0,2,0,0,1,3,3,0.21571846746835854,0.9627697664926145,"Maltese (Afro-Asiatic, Semitic)",europe
+13,0,3,5,0,3,5,4,1,2,0.2582050535077427,1.1645392933887269,"Irish (Indo-European, Celtic)",europe
+14,3,4,4,1,2,2,5,0,0,0.3992791939468101,1.5173487714785212,"Romani, Moldovan (Indo-European, Indo-Iranian)",europe
+15,2,4,4,3,4,4,0,1,1,0.337030161640256,1.3282767593744575,"Greek, Modern (Indo-European, Graeco-Phrygian)",europe
+16,3,0,0,4,1,1,5,2,2,0.399279193946811,1.5173487714785217,"Norwegian (Indo-European, Germanic)",europe
+17,5,3,3,2,0,0,4,1,1,0.39927919394681055,1.5173487714785212,"Low German (Indo-European, Germanic)",europe
+18,5,4,2,5,4,2,1,3,0,0.25820505350774225,1.1645392933887269,"French (Indo-European, Romance)",europe
+19,2,0,0,2,0,0,1,3,3,0.21571846746835854,0.9627697664926145,"Albanian (Indo-European, Albanian)",europe
+20,1,3,3,1,3,3,2,0,0,0.21571846746835854,0.9627697664926145,"English (Indo-European, Germanic)",europe
+21,0,3,3,2,1,1,4,5,5,0.39927919394681033,1.5173487714785214,"Rumantsch (Indo-European, Romance)",europe
+22,5,3,3,0,4,4,2,1,1,0.399279193946811,1.5173487714785212,"Latvian (Indo-European, Baltic)",europe
+23,3,0,0,1,5,5,4,2,2,0.3992791939468101,1.5173487714785212,"Slovenian (Indo-European, Slavic)",europe
+24,0,2,2,5,1,1,4,3,3,0.399279193946811,1.5173487714785217,"Danish (Indo-European, Germanic)",europe
+25,0,2,6,7,1,4,5,3,8,0.4417174659279903,1.719030553038576,Finnish (Uralic),europe
+26,2,5,5,1,0,0,4,3,3,0.39927919394681033,1.5173487714785214,"Faroese (Indo-European, Germanic)",europe
+27,4,0,0,5,1,1,2,3,3,0.3992791939468101,1.5173487714785212,"Ukrainian (Indo-European, Slavic)",europe
+28,2,1,1,3,0,0,4,5,5,0.39927919394681033,1.5173487714785214,"Lithuanian (Indo-European, Baltic)",europe
+29,3,2,2,3,2,2,1,0,0,0.215718467468359,0.9627697664926145,"Italian (Indo-European, Romance)   ",europe
+30,5,0,0,1,2,2,4,3,3,0.3992791939468101,1.5173487714785214,"Slavomolisano (Indo-European, Slavic)",europe
+31,2,0,0,5,4,4,3,1,1,0.39927919394681055,1.5173487714785212,"Croatian (Indo-European, Slavic)",europe
+32,3,2,2,3,2,2,0,1,1,0.215718467468359,0.9627697664926145,"Welsh (Indo-European, Celtic)",europe
+33,1,0,0,5,4,4,3,2,2,0.3992791939468101,1.5173487714785212,"Icelandic (Indo-European, Germanic)",europe
+34,5,3,3,2,0,0,1,4,4,0.3992791939468101,1.5173487714785212,"Dutch (Indo-European, Germanic)",europe
+35,3,5,5,2,1,1,4,0,0,0.39927919394681033,1.5173487714785214,"Romanian (Indo-European, Romance) ",europe
+36,4,1,1,0,3,3,2,5,5,0.39927919394681033,1.5173487714785214,"Russian (Indo-European, Slavic)",europe
+37,8,0,1,7,4,5,6,3,2,0.44171746592799055,1.719030553038576,"Old Church Slavonic (Indo-European, Slavic)",europe
+38,2,0,0,1,4,4,5,3,3,0.39927919394681055,1.5173487714785212,"Sorbian, Lower (Indo-European, Slavic)",europe
+39,2,0,0,3,0,0,4,1,1,0.3370301616402567,1.328276759374458,"Czech (Indo-European, Slavic)",europe
+40,3,2,2,1,5,5,0,4,4,0.39927919394681033,1.5173487714785214,Hungarian (Uralic),europe
+41,0,1,2,0,1,2,0,1,2,0.20449018352098847,0.8448628726782395,Adyghe (Abkhaz-Adyge),europe
+42,0,3,8,7,2,5,1,4,6,0.44171746592799077,1.719030553038576,"German (Indo-European, Germanic)",europe
+43,4,0,0,5,1,1,2,3,3,0.3992791939468101,1.5173487714785212,Belarusian,europe
+44,0,2,2,4,5,5,3,1,1,0.399279193946811,1.5173487714785212,"Serbian (Indo-European, Slavic)",europe
+45,4,0,0,5,2,2,3,1,1,0.39927919394681055,1.5173487714785214,Bulgarian,europe
+46,3,0,5,3,0,5,2,4,1,0.2582050535077427,1.1645392933887269,"Thai (Tai-Kadai, Daic)",asia
+47,3,0,0,3,0,0,2,1,1,0.21571846746835854,0.9627697664926145,"Nicobarese, Car (Austroasiatic, Nicobaric)",asia
+48,1,5,5,0,4,4,2,3,3,0.39927919394681055,1.5173487714785212,Manchu (Tungusic),asia
+49,0,1,1,0,1,1,3,2,2,0.2157184674683591,0.9627697664926146,"Apatani (Sino-Tibetan, Macro-Tani)",asia
+50,4,1,1,0,3,3,5,2,2,0.3992791939468101,1.5173487714785214,"Ostyak (Uralic, Khantyic)",asia
+51,1,0,5,1,0,5,2,3,4,0.2582050535077427,1.1645392933887269,"Baba Malay (Austronesian, Malayo-Sumbawan)",asia
+52,0,3,3,2,1,1,4,5,5,0.39927919394681033,1.5173487714785214,"Temiar (Austroasiatic, Aslian)",asia
+53,6,7,8,1,0,3,4,5,2,0.441717465927991,1.719030553038576,"Yukaghir, Kolyma (Yukaghir)",asia
+54,5,4,1,7,3,0,8,6,2,0.44171746592799055,1.7190305530385759,"Burushaski, Yasin (Burushaski)",asia
+55,4,8,2,7,5,0,6,1,3,0.44171746592799055,1.7190305530385759,"Arabic, Modern Standard (Afro-Asiatic, Semitic)",asia
+56,6,7,2,5,1,2,3,4,0,0.42483335397099875,1.6674491605576176,"Limbu (Sino-Tibetan, Kiranti)",asia
+57,6,1,0,5,3,4,7,2,8,0.4417174659279903,1.719030553038576,"Bantawa (Sino-Tibetan, Kiranti)",asia
+58,1,0,0,1,0,0,3,2,2,0.2157184674683591,0.9627697664926146,"Khmer (Austroasiatic, Khmeric)",asia
+59,8,4,3,7,2,0,1,5,6,0.44171746592799055,1.7190305530385759,Tuvinian (Turkic),asia
+60,2,3,3,4,5,5,1,0,0,0.3992791939468101,1.5173487714785214,Koḍava (Dravidian),asia
+61,0,3,3,5,4,4,1,2,2,0.3992791939468101,1.5173487714785212,Evenki (Tungusic),asia
+62,1,7,8,0,3,5,6,4,2,0.44171746592799055,1.7190305530385759,"Mundari (Austroasiatic, Mundaic)",asia
+63,5,2,2,0,4,4,3,1,1,0.39927919394681055,1.5173487714785212,Udihe (Tungusic),asia
+64,0,4,4,2,1,1,3,5,5,0.3992791939468108,1.5173487714785214,Lamut (Tungusic),asia
+65,0,3,3,5,4,4,2,1,1,0.39927919394681055,1.5173487714785212,"Chinese (Sino-Tibetan, Sinitic)",asia
+66,8,0,5,2,1,6,3,7,4,0.44171746592799055,1.719030553038576,Yugh (Yeniseian),asia
+67,5,1,0,5,1,0,3,4,2,0.2582050535077425,1.1645392933887269,"Santali (Austroasiatic, Mundaic)",asia
+68,6,0,4,1,8,3,2,7,5,0.44171746592799055,1.7190305530385759,"Mualang (Austronesian, Malayo-Sumbawan)",asia
+69,1,5,0,1,5,0,2,4,3,0.2582050535077429,1.164539293388727,"Wa (Austroasiatic, Palaungic)",asia
+70,2,3,3,4,0,0,5,1,1,0.39927919394681055,1.5173487714785212,"Hebrew (Afro-Asiatic, Semitic)",asia
+71,5,0,0,3,2,2,1,4,4,0.3992791939468101,1.5173487714785214,"Vogul (Uralic, Mansi)",asia
+72,5,7,8,2,1,6,3,0,4,0.44171746592799055,1.7190305530385759,Korean (Koreanic),asia
+73,4,1,3,7,5,8,2,6,0,0.44171746592799055,1.719030553038576,Ainu (Ainu),asia
+74,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"Hmong Njua (Hmong-Mien, Chuanqiandian)",asia
+75,2,5,5,3,4,4,0,1,1,0.39927919394681033,1.5173487714785217,"Burmese (Tibeto-Burmese, Burmish)",asia
+76,3,2,2,3,2,2,0,1,1,0.215718467468359,0.9627697664926145,Malayalam (Dravidian),asia
+77,0,2,2,5,1,1,3,4,4,0.3992791939468101,1.5173487714785212,"Vietnamese (Austroasiatic, Vietic)",asia
+78,2,4,4,1,5,5,0,3,3,0.39927919394681055,1.5173487714785212,"Hindi (Indo-European, Indo-Iranian)",asia
+79,3,4,8,0,5,7,6,1,2,0.44171746592799055,1.7190305530385759,"Khasi (Austroasiatic, Khasi-Palaung)",asia
+80,2,4,5,2,4,5,3,0,1,0.2582050535077427,1.1645392933887269,"Dhimal (Sino-Tibetan, Dhimalish)",asia
+81,0,8,6,1,3,7,5,4,2,0.44171746592799055,1.7190305530385759,"Atong (Sino-Tibetan, Brahmaputran)",asia
+82,1,0,0,1,0,0,2,3,3,0.215718467468359,0.9627697664926145,Tamil (Dravidian),asia
+83,5,3,7,2,4,7,0,1,6,0.42483335397099875,1.6674491605576174,"Bengali (Indo-European, Indo-Iranian)",asia
+84,3,2,2,4,5,5,0,1,1,0.39927919394681055,1.5173487714785212,Telugu (Dravidian),asia
+85,1,3,3,5,0,0,4,2,2,0.39927919394681144,1.5173487714785217,"Cantonese (Sino-Tibetan, Sinitic)",asia
+86,2,5,5,4,0,0,3,1,1,0.3992791939468108,1.5173487714785217,"Panjabi (Indo-European, Indo-Iranian)",asia
+87,0,1,1,3,4,4,5,2,2,0.3992791939468101,1.5173487714785212,"Persian (Indo-European, Indo-Iranian)",asia
+88,2,0,1,2,0,1,2,0,1,0.20449018352098813,0.8448628726782395,"[AM-49]  Yucatec Maya (Mayan, Yucatecan) ",americas
+89,5,3,6,4,7,2,1,8,0,0.44171746592799077,1.719030553038576,"Arapaho (Algic, Algonquian) ",americas
+90,6,3,7,6,1,2,5,4,0,0.3204057717560931,1.3535235601567333,"[AM-43]  Totonac, Upper Necaxa (Totonacan, Totonac) ",americas
+91,2,3,3,1,4,4,5,0,0,0.3992791939468101,1.5173487714785212,"[AM-19]  Kamaiura (Tupian, Tupi-Guarani)  ",americas
+92,1,5,5,0,4,4,3,2,2,0.39927919394681033,1.5173487714785214,"[AM-11]  Cree (Algic, Algonquian) ",americas
+93,1,2,2,4,5,5,0,3,3,0.3992791939468101,1.5173487714785212,"[AM-14] Dakota (Siouan, Core Siouan)",americas
+94,2,7,8,0,6,1,5,3,4,0.4417174659279912,1.719030553038576,[AM-50]  Yuracaré (Yuracaré) ,americas
+95,1,4,0,3,6,2,7,8,5,0.4417174659279903,1.7190305530385763,"[AM-15]  Garifuna (Arawakan, Caribbean Arawakan) ",americas
+96,4,7,8,0,1,2,3,5,6,0.44171746592799055,1.719030553038576,"[AM-38]  Quechua, Yauyos (Quechuan, Central Quechua I)",americas
+97,0,4,3,0,4,3,1,2,5,0.2582050535077429,1.1645392933887269,"[AM-40]  Shipibo-Konibo (Pano-Tacanan, Panoan) ",americas
+98,0,2,2,0,2,2,3,1,1,0.21571846746835865,0.9627697664926146,"[AM-35]  Parecís (Arawakan, Central Maipuran) ",americas
+99,1,0,2,4,0,3,4,0,3,0.30590661507939965,1.3435843355906152,"[AM-45]  Tzotzil, Zinacantán (Mayan, Cholan-Tzeltalan)",americas
+100,1,6,4,8,3,5,7,0,2,0.44171746592799055,1.7190305530385763,"[AM-44]  Trio (Cariban, Guianan)",americas
+101,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"Ch’ol, Tila (Mayan, Cholan-Tzeltalan) ",americas
+102,3,2,2,1,5,5,0,4,4,0.39927919394681033,1.5173487714785214,[AM-39]  Sahaptin (Yakima Ichishkíin) (Penutian) ,americas
+103,0,2,2,1,2,2,1,2,2,0.25003660203171574,1.0827147542022213,"[AM-13] Cubeo (Tucanoan, Western Tucanoan) ",americas
+104,3,4,0,2,8,5,7,1,6,0.44171746592799055,1.7190305530385757,[AM-26]  Mapudungun (Araucanian) ,americas
+105,5,4,2,5,4,2,0,3,1,0.25820505350774225,1.1645392933887269,"[AM-25]  Lenca, Honduran (reconstructed) (Lencan)",americas
+106,5,4,4,0,3,3,2,1,1,0.3992791939468101,1.5173487714785212,"[AM-32]  Nez Perce (Penutian, Sahaptian)",americas
+107,2,6,3,7,1,3,5,4,0,0.42483335397099875,1.6674491605576176,"[AM-10] Comanche (Uto-Aztecan, Numic) ",americas
+108,6,5,3,2,0,7,1,0,4,0.41946668360720896,1.6713847319926403,Bora (Boran),americas
+109,1,6,2,0,5,4,8,3,7,0.4417174659279901,1.719030553038576,"[AM-17]  Hualapai (Cochimi-Yuman, Yuman) ",americas
+110,4,3,3,1,2,2,5,0,0,0.3992791939468101,1.5173487714785212,"[AM-22]  Kumeyaay (Cochimi-Yuman, Yuman) ",americas
+111,3,1,1,0,2,2,5,4,4,0.39927919394681055,1.5173487714785214,"[AM-46]  Wapishana (Arawakan, Northern Maipurean)",americas
+112,2,4,1,7,5,6,3,8,0,0.4417174659279903,1.719030553038576,"[AM-24]  Lakota (Siouan, Core Siouan)",americas
+113,4,0,2,4,0,2,5,1,3,0.2582050535077425,1.164539293388727,"[AM-23]  Kuna, Border (Chibchan, Core Chibchan)",americas
+114,2,0,3,2,0,1,2,0,1,0.2178249872940743,0.9037547217674198,[AM-27]  Movima (Movima),americas
+115,2,0,5,2,0,5,4,3,1,0.2582050535077427,1.1645392933887269,"[AM-29]  Mutsun (Penutian, Costanoan)",americas
+116,0,3,3,5,2,2,4,1,1,0.39927919394681055,1.5173487714785212,"Blackfoot (Algic, Algonquian) ",americas
+117,4,2,1,4,2,1,5,3,0,0.2582050535077429,1.164539293388727,"[AM-37]  Popoluca, Highland (Mixe-Zoque) ",americas
+118,0,2,2,0,2,2,1,3,3,0.21571846746835877,0.9627697664926147,"[AM-16]  Guaraní (Paraguay) (Tupian, Tupi-Guarani)",americas
+119,8,6,7,1,2,5,3,0,4,0.44171746592799055,1.719030553038576,"[AM-21]  Kodiak Alutiiq (Eskimo-Aleut, Aleut) ",americas
+120,2,0,4,1,3,4,5,0,4,0.41393993931407636,1.5810127665508302,"[AM-42] Totonac, Filomeno Mata (Totonacan, Totonac) [José Santiago Francisco, p.c.; 1McFarland 2009]",americas
+121,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"[AM-30] Nahuatl, Guerrero (Uto-Aztecan, Aztec) ",americas
+122,1,4,4,1,3,3,0,2,2,0.27796749977491286,1.1518417785966784,"[AM-33]  Osage (Siouan, Core Siouan) ",americas
+123,8,3,2,4,0,6,7,5,1,0.44171746592799055,1.719030553038576,"Apache, San Carlos (Athabaskan-Eyak-Tlingit, Athabaskan) ",americas
+124,1,2,0,6,2,5,4,3,7,0.3964008596366315,1.5816276787515284,"[AM-41]  Tohono O'Odham  (Uto-Aztecan, Tepiman) ",americas
+125,1,2,0,1,2,0,1,2,0,0.20449018352098758,0.8448628726782395,"[AM-34]  Otomí, Sierra (Oto-Manguean, Otomian)",americas
+126,7,5,0,4,3,1,6,8,2,0.4417174659279903,1.719030553038576,"[AM-18]  Inuktitut, Western Canadian (Eskimo-Aleut, Eskimo) ",americas
+127,0,2,3,0,2,1,0,2,1,0.2178249872940743,0.9037547217674198,"[AM-48]  Yine (Arawakan, Purus)",americas
+128,0,1,3,2,1,3,0,1,3,0.33967693003881627,1.2358134755567531,"[AM-36]  Pipil (Uto-Aztecan, Aztecan)",americas
+129,1,4,0,6,2,3,5,5,5,0.4254251289493074,1.647613125628911,"[AM-28]  Musqueam (Salishan, Central Salish)",americas
+130,0,2,5,6,4,1,3,4,7,0.41946668360720896,1.6713847319926403,"[AM-47]  Yaqui (Uto-Aztecan, Cahitan)",americas
+131,3,5,7,4,0,1,2,8,6,0.4417174659279903,1.7190305530385763,"[AM-20]  Klamath (Penutian, Klamath-Modoc) ",americas
+132,5,3,3,0,1,1,4,2,2,0.39927919394681055,1.5173487714785217,Wolaytta (Ta-Ne-Omotic),africa
+133,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",africa
+134,0,1,1,3,2,2,0,1,1,0.3639605283766738,1.2314041731541183,"Mambay (Atlantic-Congo, Mbumic)",africa
+135,2,5,5,1,4,4,3,0,0,0.3992791939468108,1.5173487714785214,"Amharic (Afro-Asiatic, Semitic)",africa
+136,3,7,4,0,8,6,2,5,1,0.44171746592799055,1.7190305530385759,"Yoruba (Atlantic-Congo, Defoid)",africa
+137,0,1,4,0,5,3,0,5,2,0.2589801106755696,1.079393084128356,"Malagasy (Austronesian, Greater Barito)",africa
+138,1,8,7,4,0,3,5,6,2,0.441717465927991,1.7190305530385763,"Tamasheq, Tadraq (Afro-Asiatic, Berber)",africa
+139,4,3,6,8,7,5,2,1,0,0.44171746592799055,1.7190305530385759,"Khoekhoe, Nama (Khoe-Kwadi)",africa
+140,0,3,2,0,3,2,5,4,1,0.2582050535077429,1.1645392933887269,"Swahili (Atlantic-Congo, Bantu)",africa
+141,1,0,0,2,0,0,2,0,0,0.25003660203171574,1.0827147542022213,"Angolar (Indo-European, Lower Guinea Portuguese)",africa
+142,0,1,8,2,6,3,4,5,7,0.44171746592799077,1.7190305530385765,"Hausa (Afro-Asiatic, Chadic)",africa
+143,0,2,1,0,2,1,0,2,1,0.20449018352098802,0.8448628726782395,"Kaba (Central Sudanic, Saraic)",africa
+144,3,1,1,3,1,1,2,0,0,0.21571846746835854,0.9627697664926145,Dime (South Omotic),africa
+145,2,1,0,2,1,0,2,1,0,0.2044901835209877,0.8448628726782395,Zialo (Mande),africa
+146,1,2,2,1,2,2,3,0,0,0.21571846746835865,0.9627697664926146,"Miya (Afro-Asiatic, Chadic)",africa
+147,1,0,0,1,0,0,1,0,0,0.16195497424638927,0.6428851403790256,Penange (Dogon),africa
+148,1,2,0,1,2,0,1,2,0,0.20449018352098758,0.8448628726782395,"Tswana (Atlantic-Congo, Bantu)",africa
+149,1,3,3,0,2,2,0,2,2,0.2977795943228738,1.3026001977277946,Bunoge Dogon (Dogon),africa
+150,5,2,3,5,2,3,0,1,4,0.2582050535077427,1.164539293388727,"Kikuyu (Atlantic-Congo, Bantu)",africa
+151,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,Bambara (Mande),africa
+152,3,2,2,1,2,2,0,4,4,0.337030161640256,1.3282767593744575,Maale (Ta-Ne-Omotic),africa
+153,0,2,2,5,1,1,3,4,4,0.3992791939468101,1.5173487714785212,"Tigrinya (Afro-Asiatic, Semitic)",africa
+154,0,5,2,3,4,1,3,4,1,0.3402730994956642,1.5043722175153416,Balese (Central Sudanic),africa
+155,0,1,2,0,1,2,0,1,2,0.20449018352098847,0.8448628726782395,"Dii (Atlantic-Congo, Central Adamawa)",africa
+156,2,4,0,2,4,0,1,3,5,0.2582050535077427,1.1645392933887269,Lango (Nilotic),africa
+157,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"Fon (Atlantic-Congo, Gbe)",africa
+158,2,0,0,2,1,1,2,1,1,0.20969796653754746,0.8627705839045989,"Ewe (Atlantic-Congo, Gbe)",africa
+159,6,1,7,5,2,4,8,0,3,0.44171746592799055,1.7190305530385759,"Ngizim (Afro-Asiatic, Chadic)",africa
+160,1,0,2,1,0,2,1,0,2,0.20449018352098847,0.8448628726782397,Koyraboro Senni (Songhay),africa
+161,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,Susu (Mande),africa
+162,1,0,0,1,0,0,1,0,0,0.16195497424638927,0.6428851403790256,"Sango (Atlantic-Congo, Ubangi)",africa
+163,1,0,0,1,0,0,2,3,3,0.215718467468359,0.9627697664926145,"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",africa
+164,1,0,0,1,0,0,1,0,0,0.16195497424638927,0.6428851403790256,Loma (Mande),africa
+165,2,3,3,2,3,3,1,0,0,0.215718467468359,0.9627697664926145,"Afar (Afro-Asiatic, Cushitic) ",africa
+166,1,2,0,1,2,0,1,2,0,0.20449018352098758,0.8448628726782395,Koyra Chiini (Songhay),africa
+167,2,1,1,2,1,1,3,0,0,0.21571846746835865,0.9627697664926146,"Somali (Afro-Asiatic, Cushitic)",africa
+168,1,0,0,1,0,0,1,0,0,0.16195497424638927,0.6428851403790256,"Supyire Senoufo (Atlantic-Congo, Gur)",africa
+169,2,1,1,2,1,1,0,3,3,0.21571846746835854,0.9627697664926145,"Gidar (Afro-Asiatic, Chadic)",africa
+170,0,1,1,0,1,1,0,1,1,0.16195497424638927,0.6428851403790256,"Gonja (Atlantic-Congo, Guang)",africa
+171,2,0,0,2,0,0,1,3,3,0.21571846746835854,0.9627697664926145,Nobiin (Nubian),africa
+172,0,3,3,5,4,4,2,1,1,0.39927919394681055,1.5173487714785212,Hamar (South Omotic),africa
+173,0,1,2,0,1,2,0,1,2,0.20449018352098847,0.8448628726782395,Bangime (Bangime),africa
+174,1,0,0,1,0,0,1,0,0,0.16195497424638927,0.6428851403790256,"	Kabiyé (Atlantic-Congo, Gur)",africa
+175,2,3,3,2,3,3,1,0,0,0.215718467468359,0.9627697664926145,"Munukutuba (Atlantic-Congo, Bantu)",africa
+176,0,3,3,0,3,3,1,2,2,0.21571846746835877,0.9627697664926147,"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",africa
+177,0,2,2,4,1,1,3,5,5,0.3992791939468112,1.5173487714785214,"Zay (Afro-Asiatic, Semitic)",africa
+178,5,4,4,1,2,2,3,0,0,0.3992791939468101,1.5173487714785212,"[OC-46]  Warrongo (Pama-Nyungan, Maric)",oceania
+179,4,4,5,1,1,2,0,0,3,0.3340243894120576,1.1882188111549217,"[OC-39]  South Efate (Austronesian, Oceanic)",oceania
+180,1,8,0,5,2,4,7,3,6,0.44171746592799055,1.7190305530385757,[OC-45]  Wardaman (Yangmanic),oceania
+181,4,2,7,3,6,8,5,1,0,0.44171746592799055,1.719030553038576,"Arrernte, Eastern (Pama-Nyungan, Aranda) ",oceania
+182,1,0,2,1,0,2,1,0,2,0.20449018352098847,0.8448628726782397,"[OC-6]  Bunaq (Timor-Alor-Pantar, East Timor-Bunaq) ",oceania
+183,5,1,0,2,6,8,3,4,7,0.44171746592799055,1.719030553038576,"[OC-48]  Yidiɲ (Pama-Nyungan, Yimidhirr-Yalanji-Yidinic)",oceania
+184,0,3,7,1,5,2,4,8,6,0.44171746592799055,1.7190305530385763,[OC-28]  Ngan'gityemerri (Southern Daly),oceania
+185,2,0,0,3,1,1,5,4,4,0.3992791939468101,1.5173487714785212,[OC-10]  Dyirbal (Pama-Nyungan),oceania
+186,8,3,5,1,7,6,4,0,2,0.44171746592799055,1.7190305530385759,"[OC-21]  Maori (Southern Cook Islands) (Austronesian, Oceanic)",oceania
+187,2,0,3,1,0,3,1,4,3,0.30387247175200116,1.35572331518505,"[OC-42]  Tok Pisin (Indo-European, Pacific Creole English)",oceania
+188,1,2,0,5,4,3,1,2,0,0.4064767173810089,1.4333355569365334,"[OC-40]  Tidore (West Papuan, North Halmahera)",oceania
+189,1,2,2,0,0,0,0,3,3,0.27247924889096686,1.1662682223094747,"Awtuw (Sepik, Ram) ",oceania
+190,1,4,4,2,0,0,3,5,5,0.3992791939468108,1.5173487714785214,"[OC-29]  Nii (Trans-New Guinea, Wahgic)",oceania
+191,0,2,1,0,3,1,0,1,1,0.24414095150217907,0.9991645034555927,"[OC-7]  Chamorro (Austronesian, Malayo-Polynesian) ",oceania
+192,3,5,5,4,1,1,0,2,2,0.3992791939468108,1.5173487714785214,"[OC-13]  Garrwa, Western (Garrwan) ",oceania
+193,3,0,1,8,7,4,6,2,5,0.441717465927991,1.719030553038576,"[OC-19]  Komnzo (Morehead-Wasur, Eastern Tonda)",oceania
+194,7,3,2,4,5,6,1,8,0,0.4417174659279903,1.719030553038576,"[OC-47]  Yawuru (Nyulnyulan, Eastern)",oceania
+195,3,4,0,3,4,1,2,5,1,0.2683005264995031,1.2012702054334756,"[OC-14]  Guugu Yimidhirr (Pama-Nyungan, Yimidhirr-Yalanji-Yidinic)",oceania
+196,0,5,5,3,4,4,2,1,1,0.3992791939468108,1.5173487714785217,"[OC-35]  Rawa (Karo) (Trans-New Guinea, Finisterre-Huon)",oceania
+197,0,5,5,4,1,1,2,3,3,0.3992791939468108,1.5173487714785214,[OC-38]  Savosavo (Solomon Islands),oceania
+198,0,2,2,4,1,1,5,3,3,0.39927919394681144,1.5173487714785217,"[OC-43]  Tongan (Austronesian, Oceanic) ",oceania
+199,3,8,6,5,4,0,2,1,7,0.44171746592799055,1.7190305530385759,"[OC-11]  Fijian (Austronesian, Oceanic)",oceania
+200,4,5,5,2,0,0,3,1,1,0.3992791939468108,1.5173487714785214,[OC-36]  Rotokas (North Bougainville),oceania
+201,2,6,0,8,5,7,3,4,1,0.44171746592799055,1.719030553038576,"[OC-49]  Yindjibarndi  (Pama-Nyungan, Pilbara)",oceania
+202,5,4,1,3,0,2,7,6,6,0.43883064327812127,1.7049330921411625,[OC-25]  Maybrat (Maybrat-Karon) ,oceania
+203,2,1,1,5,4,4,0,3,3,0.3992791939468101,1.5173487714785212,"[OC-32]  Pitjantjatjara (Pama-Nyungan, Wati)",oceania
+204,3,5,4,2,1,0,2,2,0,0.33888347479985015,1.4785760738849207,"[OC-9]  Doromu-Koki (Trans-New Guinea, Manubaran) ",oceania
+205,5,4,3,8,7,2,1,6,0,0.44171746592799055,1.7190305530385765,"[OC-8]  Djapu (Pama-Nyungan, Yuulngu) ",oceania
+206,2,7,6,1,5,0,3,4,8,0.4417174659279903,1.719030553038576,[OC-17]  Jingulu (Mirndi),oceania
+207,2,3,7,6,0,1,5,4,1,0.43492882696275914,1.7041800726023661,[OC-27]  Motuna (South Bougainville),oceania
+208,0,3,3,5,1,1,4,2,2,0.399279193946811,1.5173487714785217,"[OC-23]  Martuthunira (Pama-Nyungan, Pilbara)",oceania
+209,0,2,2,4,3,3,5,1,1,0.39927919394681055,1.5173487714785212,"[OC-16]  Imonda (Border, Waris)",oceania
+210,1,1,5,2,3,0,4,4,0,0.3565268258793759,1.3186359535497416,"[OC-18]  Kilivila[211] (Austronesian, Oceanic)",oceania
+211,2,4,4,3,5,5,0,1,1,0.3992791939468101,1.5173487714785212,"[OC-15]  Hawaiian (Austronesian, Oceanic)",oceania
+212,8,6,7,3,1,2,5,4,0,0.44171746592799055,1.719030553038576,"[OC-5]  Bardi (Nyulnyulan, Western) ",oceania
+213,3,0,0,1,5,5,2,4,4,0.3992791939468101,1.5173487714785212,"[OC-37]  Sa'a (Austronesian, Oceanic)",oceania
+214,5,6,2,7,1,3,0,4,0,0.4337259879612676,1.6980864558993618,"Abui (Timor-Alor-Pantar, Alor) ",oceania
+215,3,2,2,0,1,1,0,1,1,0.2977795943228738,1.3026001977277946,"Abau (Sepik, Upper) ",oceania
+216,4,3,6,2,7,0,5,1,0,0.43492882696275914,1.7041800726023661,"[OC-30]  Orokaiva (Trans-New Guinea, Binanderean)",oceania
+217,5,2,2,4,0,0,1,3,3,0.399279193946811,1.5173487714785217,"[OC-44]  Wambaya (Mirndi, Ngurlun)",oceania
+218,3,5,2,0,8,7,6,4,1,0.44171746592799055,1.7190305530385759,"[OC-50]  Yuwaalaraay (Pama-Nyungan, Wiradhuric)",oceania
+219,1,4,4,3,5,5,2,0,0,0.3992791939468101,1.5173487714785214,"[OC-26]  Menya (Trans-New Guinea, Angan)",oceania

@@ -111,7 +111,8 @@ if __name__ == "__main__":
             k += 1
 
     # convert the table to paradigm tables
-    id_vars = ["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory', ]
+    # id_vars = ["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory', ]
+    id_vars = ["I[U;W]", "I[M;W]", 'Language', 'Area', ]
     df_long = pd.melt(df, id_vars = id_vars,
     value_vars=paradigm_names(df), value_name='Word', var_name = 'Type')
 
@@ -122,7 +123,8 @@ if __name__ == "__main__":
     df_long[['Type','theta']] = df_long['Type'].str.split('_',expand=True)
 
     # pivot wider
-    df_wide = df_long.pivot_table(index=df_long[["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory','Type' ]], columns = 'theta', values='Word',aggfunc='first').reset_index()
+    # df_wide = df_long.pivot_table(index=df_long[["I[U;W]", "I[M;W]", 'MI_Objective', 'grammar_complexity', 'Language', 'Area', 'LangCategory','Type' ]], columns = 'theta', values='Word',aggfunc='first').reset_index()
+    df_wide = df_long.pivot_table(index=df_long[["I[U;W]", "I[M;W]", 'Area','Type', 'Language']], columns = 'theta', values='Word',aggfunc='first').reset_index()
     #make_unique_paradigm_table(df)
     df = pd.merge(df, make_unique_paradigm_table(df_wide), on = 'Language')
     df.to_csv(outfile)

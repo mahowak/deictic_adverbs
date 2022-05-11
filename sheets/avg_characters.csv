@@ -1,0 +1,221 @@
+,D1_place,D1_source,D1_goal,D2_place,D2_source,D2_goal,D3_place,D3_source,D3_goal
+"Mundari (Austroasiatic, Mundaic)",3,5,0,4,1,7,6,8,2
+"Santali (Austroasiatic, Mundaic)",5,4,5,0,2,0,1,3,1
+"Dhimal (Sino-Tibetan, Dhimalish)",5,0,5,3,1,3,2,4,2
+Malayalam (Dravidian),2,1,2,0,3,0,0,3,0
+"Nicobarese, Car (Austroasiatic, Nicobaric)",3,1,3,2,0,2,2,0,2
+Tuvinian (Turkic),7,8,2,3,0,4,5,6,1
+Telugu (Dravidian),4,2,0,3,5,1,3,5,1
+"Arabic, Modern Standard (Afro-Asiatic, Semitic)",5,3,7,0,2,1,6,4,8
+"Wa (Austroasiatic, Palaungic)",3,1,3,4,2,4,0,5,0
+Koḍava (Dravidian),3,0,5,2,1,4,2,1,4
+Udihe (Tungusic),5,3,2,1,4,0,1,4,0
+"Ostyak (Uralic, Khantyic)",2,5,0,3,1,4,3,1,4
+"Khmer (Austroasiatic, Khmeric)",1,0,1,3,2,3,3,2,3
+"Cantonese (Sino-Tibetan, Sinitic)",0,4,5,2,3,1,2,3,1
+"Panjabi (Indo-European, Indo-Iranian)",3,2,0,1,5,4,1,5,4
+"Bengali (Indo-European, Indo-Iranian)",1,6,3,7,2,5,0,4,0
+Lamut (Tungusic),5,1,3,2,0,4,2,0,4
+"Temiar (Austroasiatic, Aslian)",0,5,4,2,1,3,2,1,3
+"Burushaski, Yasin (Burushaski)",7,2,0,3,4,5,8,6,1
+Yugh (Yeniseian),7,4,3,8,1,6,0,2,5
+"Vogul (Uralic, Mansi)",0,1,5,4,2,3,4,2,3
+"Burmese (Tibeto-Burmese, Burmish)",0,4,1,2,3,5,2,3,5
+"Baba Malay (Austronesian, Malayo-Sumbawan)",0,1,0,4,3,4,2,5,2
+"Limbu (Sino-Tibetan, Kiranti)",0,3,1,6,7,5,4,2,4
+"Khasi (Austroasiatic, Khasi-Palaung)",3,2,4,1,0,7,5,6,8
+"Hmong Njua (Hmong-Mien, Chuanqiandian)",1,1,1,0,0,0,0,0,0
+"Chinese (Sino-Tibetan, Sinitic)",2,1,0,4,3,5,4,3,5
+Tamil (Dravidian),1,2,1,0,3,0,0,3,0
+"Thai (Tai-Kadai, Daic)",0,2,0,3,5,3,4,1,4
+"Hindi (Indo-European, Indo-Iranian)",0,1,2,3,5,4,3,5,4
+Evenki (Tungusic),3,4,2,5,0,1,5,0,1
+Korean (Koreanic),6,1,8,0,4,3,5,7,2
+"Apatani (Sino-Tibetan, Macro-Tani)",2,3,2,0,1,0,0,1,0
+"Atong (Sino-Tibetan, Brahmaputran)",3,5,0,1,7,8,4,2,6
+"Yukaghir, Kolyma (Yukaghir)",5,6,7,1,4,8,2,0,3
+"Vietnamese (Austroasiatic, Vietic)",2,1,3,4,5,0,4,5,0
+Manchu (Tungusic),0,4,5,3,1,2,3,1,2
+"Bantawa (Sino-Tibetan, Kiranti)",7,6,0,1,8,5,3,4,2
+"Mualang (Austronesian, Malayo-Sumbawan)",8,2,6,5,3,1,7,0,4
+"Hebrew (Afro-Asiatic, Semitic)",1,4,5,3,0,2,3,0,2
+"Persian (Indo-European, Indo-Iranian)",5,0,1,3,2,4,3,2,4
+Ainu (Ainu),8,0,4,7,6,2,3,1,5
+"Sango (Atlantic-Congo, Ubangi)",0,0,0,1,1,1,1,1,1
+"Ngizim (Afro-Asiatic, Chadic)",0,3,7,5,2,6,4,8,1
+"Amharic (Afro-Asiatic, Semitic)",2,1,5,0,3,4,0,3,4
+"Tamasheq, Tadraq (Afro-Asiatic, Berber)",6,5,0,7,2,8,3,4,1
+"Somali (Afro-Asiatic, Cushitic)",2,0,2,1,3,1,1,3,1
+"Khoekhoe, Nama (Khoe-Kwadi)",4,5,2,6,7,0,1,8,3
+"Hausa (Afro-Asiatic, Chadic)",5,4,8,0,1,6,3,7,2
+"Kikuyu (Atlantic-Congo, Bantu)",4,2,4,0,1,0,3,5,3
+"Supyire Senoufo (Atlantic-Congo, Gur)",1,1,1,0,0,0,0,0,0
+"Òṇìc̣hà Igbo (Atlantic-Congo, Igboid)",0,0,0,1,1,1,1,1,1
+Zialo (Mande),1,1,1,0,0,0,2,2,2
+Wolaytta (Ta-Ne-Omotic),3,5,4,1,2,0,1,2,0
+"Fon (Atlantic-Congo, Gbe)",0,0,0,1,1,1,1,1,1
+Loma (Mande),1,1,1,0,0,0,0,0,0
+Bunoge Dogon (Dogon),2,0,0,1,3,3,1,3,3
+Maale (Ta-Ne-Omotic),2,1,3,0,4,0,0,4,0
+"	Kabiyé (Atlantic-Congo, Gur)",1,1,1,0,0,0,0,0,0
+"Gonja (Atlantic-Congo, Guang)",0,0,0,1,1,1,1,1,1
+"Dii (Atlantic-Congo, Central Adamawa)",1,1,1,2,2,2,0,0,0
+Balese (Central Sudanic),4,1,1,0,2,2,5,3,3
+Dime (South Omotic),0,3,0,2,1,2,2,1,2
+"Ewe (Atlantic-Congo, Gbe)",1,1,1,2,0,0,2,0,0
+Koyra Chiini (Songhay),2,2,2,1,1,1,0,0,0
+"Fulfulde, Adamawa (Atlantic-Congo, North Atlantic)",0,2,0,3,1,3,3,1,3
+"Gidar (Afro-Asiatic, Chadic)",2,1,2,0,3,0,0,3,0
+"Ò̩ko̩ (Atlantic-Congo, Oko-Eni-Osayen)",2,1,2,3,0,3,3,0,3
+"Afar (Afro-Asiatic, Cushitic) ",3,2,3,0,1,0,0,1,0
+Bambara (Mande),0,0,0,1,1,1,1,1,1
+"Angolar (Indo-European, Lower Guinea Portuguese)",1,2,2,0,0,0,0,0,0
+"Swahili (Atlantic-Congo, Bantu)",3,4,3,2,0,2,5,1,5
+"Tigrinya (Afro-Asiatic, Semitic)",4,3,5,2,1,0,2,1,0
+Susu (Mande),1,1,1,0,0,0,0,0,0
+Penange (Dogon),0,0,0,1,1,1,1,1,1
+"Tswana (Atlantic-Congo, Bantu)",2,2,2,0,0,0,1,1,1
+"Mambay (Atlantic-Congo, Mbumic)",0,0,3,2,2,1,2,2,1
+Lango (Nilotic),0,2,0,5,3,5,4,1,4
+Hamar (South Omotic),0,1,5,2,4,3,2,4,3
+"Kaba (Central Sudanic, Saraic)",1,1,1,2,2,2,0,0,0
+"Malagasy (Austronesian, Greater Barito)",3,3,3,0,5,5,4,2,1
+"Munukutuba (Atlantic-Congo, Bantu)",3,2,3,1,0,1,1,0,1
+"Yoruba (Atlantic-Congo, Defoid)",7,1,8,2,3,4,6,0,5
+Nobiin (Nubian),2,1,2,0,3,0,0,3,0
+Bangime (Bangime),2,2,2,0,0,0,1,1,1
+"Miya (Afro-Asiatic, Chadic)",2,3,2,0,1,0,0,1,0
+Koyraboro Senni (Songhay),1,1,1,0,0,0,2,2,2
+"Zay (Afro-Asiatic, Semitic)",1,3,2,0,5,4,0,5,4
+"[AM-13] Cubeo (Tucanoan, Western Tucanoan) ",1,2,2,0,0,0,0,0,0
+"[AM-20]  Klamath (Penutian, Klamath-Modoc) ",4,2,6,5,1,0,8,3,7
+"[AM-23]  Kuna, Border (Chibchan, Core Chibchan)",5,2,5,4,3,4,1,0,1
+"[AM-43]  Totonac, Upper Necaxa (Totonacan, Totonac) ",1,2,1,3,4,6,7,0,5
+"[AM-14] Dakota (Siouan, Core Siouan)",5,2,1,0,3,4,0,3,4
+"[AM-18]  Inuktitut, Western Canadian (Eskimo-Aleut, Eskimo) ",0,4,3,5,8,6,1,7,2
+"[AM-33]  Osage (Siouan, Core Siouan) ",3,4,3,0,1,2,0,1,2
+"[AM-38]  Quechua, Yauyos (Quechuan, Central Quechua I)",1,0,4,6,2,7,5,3,8
+[AM-50]  Yuracaré (Yuracaré) ,6,3,7,5,1,0,4,2,8
+"[AM-10] Comanche (Uto-Aztecan, Numic) ",2,3,0,7,4,6,5,1,5
+"[AM-11]  Cree (Algic, Algonquian) ",5,2,3,0,4,1,0,4,1
+"[AM-16]  Guaraní (Paraguay) (Tupian, Tupi-Guarani)",3,2,3,1,0,1,1,0,1
+"[AM-17]  Hualapai (Cochimi-Yuman, Yuman) ",4,3,2,1,6,0,7,8,5
+"[AM-47]  Yaqui (Uto-Aztecan, Cahitan)",4,3,2,0,1,1,6,7,5
+"[AM-48]  Yine (Arawakan, Purus)",3,3,3,1,1,1,2,0,0
+"[AM-21]  Kodiak Alutiiq (Eskimo-Aleut, Aleut) ",3,1,4,7,0,8,6,5,2
+"[AM-25]  Lenca, Honduran (reconstructed) (Lencan)",3,2,3,4,1,4,5,0,5
+"[AM-15]  Garifuna (Arawakan, Caribbean Arawakan) ",6,7,8,1,2,3,0,4,5
+"[AM-35]  Parecís (Arawakan, Central Maipuran) ",2,3,2,0,1,0,0,1,0
+"Apache, San Carlos (Athabaskan-Eyak-Tlingit, Athabaskan) ",4,5,2,3,8,6,1,0,7
+"[AM-40]  Shipibo-Konibo (Pano-Tacanan, Panoan) ",1,2,1,5,0,5,4,3,4
+"[AM-49]  Yucatec Maya (Mayan, Yucatecan) ",0,0,0,2,2,2,1,1,1
+"[AM-28]  Musqueam (Salishan, Central Salish)",0,3,2,1,3,5,6,3,4
+"[AM-37]  Popoluca, Highland (Mixe-Zoque) ",5,2,5,0,3,0,4,1,4
+"[AM-45]  Tzotzil, Zinacantán (Mayan, Cholan-Tzeltalan)",2,4,4,0,0,0,3,1,1
+"Ch’ol, Tila (Mayan, Cholan-Tzeltalan) ",0,0,0,1,1,1,1,1,1
+"[AM-32]  Nez Perce (Penutian, Sahaptian)",2,0,5,4,1,3,4,1,3
+"[AM-44]  Trio (Cariban, Guianan)",5,3,7,2,8,1,0,4,6
+[AM-39]  Sahaptin (Yakima Ichishkíin) (Penutian) ,2,3,0,1,4,5,1,4,5
+"[AM-29]  Mutsun (Penutian, Costanoan)",1,2,1,5,0,5,4,3,4
+"[AM-41]  Tohono O'Odham  (Uto-Aztecan, Tepiman) ",2,1,0,6,7,6,3,4,5
+"[AM-30] Nahuatl, Guerrero (Uto-Aztecan, Aztec) ",0,0,0,1,1,1,1,1,1
+"[AM-24]  Lakota (Siouan, Core Siouan)",5,3,4,1,6,2,8,0,7
+"[AM-19]  Kamaiura (Tupian, Tupi-Guarani)  ",5,3,1,0,4,2,0,4,2
+"[AM-36]  Pipil (Uto-Aztecan, Aztecan)",3,3,1,2,2,2,0,0,0
+"[AM-34]  Otomí, Sierra (Oto-Manguean, Otomian)",2,2,2,1,1,1,0,0,0
+"[AM-42] Totonac, Filomeno Mata (Totonacan, Totonac) [José Santiago Francisco, p.c.; 1McFarland 2009]",3,5,0,4,4,1,2,2,2
+"Arapaho (Algic, Algonquian) ",3,5,6,2,7,8,1,0,4
+"[AM-22]  Kumeyaay (Cochimi-Yuman, Yuman) ",5,1,4,3,2,0,3,2,0
+"[AM-46]  Wapishana (Arawakan, Northern Maipurean)",5,2,4,3,0,1,3,0,1
+[AM-26]  Mapudungun (Araucanian) ,7,8,4,2,3,5,6,1,0
+[AM-27]  Movima (Movima),3,3,3,1,1,1,2,0,0
+Bora (Boran),6,5,3,7,0,0,1,4,2
+"Blackfoot (Algic, Algonquian) ",5,0,3,4,1,2,4,1,2
+"Dutch (Indo-European, Germanic)",4,5,1,3,0,2,3,0,2
+Catalan,8,6,0,3,2,5,4,1,7
+"Lezgian (Nakh-Daghestanian, Daghestanian)",4,5,0,3,2,1,3,2,1
+"Serbian (Indo-European, Slavic)",1,0,4,5,2,3,5,2,3
+"Swedish (Indo-European, Germanic)",5,1,4,2,0,3,2,0,3
+"Croatian (Indo-European, Slavic)",1,0,4,2,3,5,2,3,5
+"Welsh (Indo-European, Celtic)",3,1,3,0,2,0,0,2,0
+"Maltese (Afro-Asiatic, Semitic)",0,1,0,2,3,2,2,3,2
+Hungarian (Uralic),3,5,0,1,4,2,1,4,2
+Turkish (Turkic),8,7,2,6,3,0,4,1,5
+Adyghe (Abkhaz-Adyge),1,1,1,0,0,0,2,2,2
+"Italian (Indo-European, Romance)   ",1,0,1,2,3,2,2,3,2
+Estonian (Uralic),1,4,0,5,2,3,5,2,3
+"Low German (Indo-European, Germanic)",3,5,0,4,2,1,4,2,1
+"Icelandic (Indo-European, Germanic)",2,5,0,1,4,3,1,4,3
+"Greek, Modern (Indo-European, Graeco-Phrygian)",4,0,2,1,3,1,1,3,1
+"Sorbian,Upper (Indo-European, Slavic)",2,3,5,0,4,1,0,4,1
+"Polish (Indo-European, Slavic)",0,3,0,1,2,1,1,2,1
+"French (Indo-European, Romance)",1,0,1,5,3,5,4,2,4
+"Sorbian, Lower (Indo-European, Slavic)",2,3,5,0,4,1,0,4,1
+"Slovak (Indo-European, Slavic)",3,0,5,1,4,2,1,4,2
+"Russian (Indo-European, Slavic)",3,0,4,1,2,5,1,2,5
+"Norwegian (Indo-European, Germanic)",0,3,4,5,1,2,5,1,2
+"German (Indo-European, Germanic)",7,4,3,5,8,0,6,1,2
+"Old Church Slavonic (Indo-European, Slavic)",5,0,3,7,8,4,6,1,2
+"Rumantsch (Indo-European, Romance)",2,5,4,3,1,0,3,1,0
+Belarusian,4,3,1,0,5,2,0,5,2
+"Slovenian (Indo-European, Slavic)",5,4,3,0,1,2,0,1,2
+Bulgarian,5,2,0,1,4,3,1,4,3
+"Lithuanian (Indo-European, Baltic)",1,3,4,0,5,2,0,5,2
+"Macedonian (Indo-European, Slavic)",0,6,7,2,4,1,5,8,3
+"Albanian (Indo-European, Albanian)",0,3,0,1,2,1,1,2,1
+"Latvian (Indo-European, Baltic)",3,4,2,5,0,1,5,0,1
+Basque,6,7,0,3,1,8,2,5,4
+"Faroese (Indo-European, Germanic)",0,2,3,4,1,5,4,1,5
+Finnish (Uralic),6,8,0,1,7,4,3,5,2
+"Irish (Indo-European, Celtic)",0,3,0,2,5,2,1,4,1
+"Romanian (Indo-European, Romance) ",3,0,5,1,4,2,1,4,2
+"Slavomolisano (Indo-European, Slavic)",2,1,4,5,0,3,5,0,3
+"Danish (Indo-European, Germanic)",0,3,2,5,1,4,5,1,4
+"Scots-Gaelic (Indo-European, Celtic)",3,2,3,0,5,0,4,1,4
+"Saami, Skolt (Uralic)",3,3,2,4,4,1,5,5,0
+"Ukrainian (Indo-European, Slavic)",3,5,1,0,4,2,0,4,2
+"Romani, Moldovan (Indo-European, Indo-Iranian)",5,3,2,0,4,1,0,4,1
+"English (Indo-European, Germanic)",1,2,1,3,0,3,3,0,3
+"Czech (Indo-European, Slavic)",1,4,2,0,3,0,0,3,0
+"[OC-21]  Maori (Southern Cook Islands) (Austronesian, Oceanic)",5,4,3,2,0,8,7,1,6
+"Abau (Sepik, Upper) ",3,1,1,2,0,0,2,0,0
+[OC-10]  Dyirbal (Pama-Nyungan),5,4,0,3,1,2,3,1,2
+"[OC-9]  Doromu-Koki (Trans-New Guinea, Manubaran) ",1,2,2,5,2,4,3,0,0
+[OC-17]  Jingulu (Mirndi),5,7,2,8,0,4,6,1,3
+"[OC-40]  Tidore (West Papuan, North Halmahera)",4,4,3,5,5,0,2,2,1
+"[OC-39]  South Efate (Austronesian, Oceanic)",4,1,2,4,1,2,5,3,0
+"[OC-6]  Bunaq (Timor-Alor-Pantar, East Timor-Bunaq) ",2,2,2,1,1,1,0,0,0
+"[OC-8]  Djapu (Pama-Nyungan, Yuulngu) ",4,8,0,7,5,3,1,6,2
+"[OC-44]  Wambaya (Mirndi, Ngurlun)",2,5,4,1,3,0,1,3,0
+"[OC-23]  Martuthunira (Pama-Nyungan, Pilbara)",2,0,3,5,4,1,5,4,1
+"[OC-26]  Menya (Trans-New Guinea, Angan)",5,2,4,3,0,1,3,0,1
+"[OC-5]  Bardi (Nyulnyulan, Western) ",8,5,4,1,7,6,2,0,3
+"[OC-49]  Yindjibarndi  (Pama-Nyungan, Pilbara)",6,4,3,0,2,5,8,1,7
+"[OC-50]  Yuwaalaraay (Pama-Nyungan, Wiradhuric)",3,0,1,4,8,6,7,2,5
+"[OC-11]  Fijian (Austronesian, Oceanic)",2,6,7,4,5,0,3,1,8
+"Abui (Timor-Alor-Pantar, Alor) ",6,0,7,3,2,1,4,0,5
+"[OC-14]  Guugu Yimidhirr (Pama-Nyungan, Yimidhirr-Yalanji-Yidinic)",5,3,5,4,1,4,2,0,0
+"[OC-15]  Hawaiian (Austronesian, Oceanic)",1,5,2,3,0,4,3,0,4
+"[OC-48]  Yidiɲ (Pama-Nyungan, Yimidhirr-Yalanji-Yidinic)",3,7,8,2,0,4,1,5,6
+[OC-38]  Savosavo (Solomon Islands),2,5,4,1,0,3,1,0,3
+[OC-27]  Motuna (South Bougainville),1,0,7,4,3,6,5,2,2
+[OC-45]  Wardaman (Yangmanic),2,7,4,3,6,0,5,8,1
+"[OC-29]  Nii (Trans-New Guinea, Wahgic)",0,5,2,1,4,3,1,4,3
+"[OC-43]  Tongan (Austronesian, Oceanic) ",1,5,2,0,4,3,0,4,3
+[OC-28]  Ngan'gityemerri (Southern Daly),8,7,2,3,5,4,1,6,0
+"[OC-19]  Komnzo (Morehead-Wasur, Eastern Tonda)",3,5,8,1,7,0,4,6,2
+"[OC-30]  Orokaiva (Trans-New Guinea, Binanderean)",6,5,7,4,3,2,1,0,0
+"[OC-7]  Chamorro (Austronesian, Malayo-Polynesian) ",0,0,0,2,3,1,3,3,3
+"[OC-35]  Rawa (Karo) (Trans-New Guinea, Finisterre-Huon)",2,1,5,3,4,0,3,4,0
+"[OC-18]  Kilivila[211] (Austronesian, Oceanic)",3,5,1,3,5,4,2,0,0
+[OC-36]  Rotokas (North Bougainville),0,5,4,1,3,2,1,3,2
+"[OC-16]  Imonda (Border, Waris)",1,2,3,4,5,0,4,5,0
+"[OC-37]  Sa'a (Austronesian, Oceanic)",4,5,3,2,1,0,2,1,0
+"[OC-42]  Tok Pisin (Indo-European, Pacific Creole English)",2,1,1,0,4,0,3,3,3
+[OC-25]  Maybrat (Maybrat-Karon) ,7,3,5,2,1,0,6,1,4
+"[OC-13]  Garrwa, Western (Garrwan) ",5,0,3,4,1,2,4,1,2
+"[OC-47]  Yawuru (Nyulnyulan, Eastern)",1,2,8,7,6,5,4,0,3
+"Arrernte, Eastern (Pama-Nyungan, Aranda) ",4,6,8,0,1,3,7,5,2
+"[OC-46]  Warrongo (Pama-Nyungan, Maric)",2,3,1,5,0,4,5,0,4
+"Awtuw (Sepik, Ram) ",3,0,0,2,1,0,2,1,0
+"[OC-32]  Pitjantjatjara (Pama-Nyungan, Wati)",4,1,0,3,5,2,3,5,2
