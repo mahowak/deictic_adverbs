@@ -7,7 +7,7 @@ library(latex2exp)
 library(tidytext)
 library(ggrepel)
 library(gridExtra)
-setwd("~/Documents/BCS/TedLab/here_there_way_over_there/repo_new/deictic_adverbs")
+
 mu0 <- 0.3
 prior_spec0 <- 'place_goal_source'
 d <- read.csv('sheets/total_search_gridsearch.csv') %>% filter(mu == mu0, prior_spec == prior_spec0) %>%
@@ -38,10 +38,6 @@ p3 <- ggplot(d, aes(x = code, y = real_minus_sim_resid, fill = code)) +
   theme_classic(25) +
   xlab('Place-Goal-Source coordinates') +
   ylab('Residual Complexity') +
-  # scale_fill_brewer(palette = 'Set1',
-  #                   labels = unname(TeX(c('C_G < C_S < C_P', 'C_S < C_P < C_G, C_{PS} > C_{PG}', 'C_S < C_G < C_P', 'C_S < C_P < C_G, C_{PS} < C_{PG}', 'C_S < C_P < C_G, C_{PS} = C_{PG}',
-  #                                        'C_S = C_G < C_P')))
-  #                  ) 
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         axis.title.x=element_blank(),
@@ -50,7 +46,6 @@ p3 <- ggplot(d, aes(x = code, y = real_minus_sim_resid, fill = code)) +
         ) +
   geom_hline(yintercept = 0) +
   scale_fill_manual(values = c('gray50', 'gray90', 'gray90', 'gray90','gray90','gray90'))
-  # guides(fill = guide_legend(title = 'Place-Goal-Source coordinates'))
 # ggsave(paste0('figures/pgs_grid_search_mu_', toString(mu0), '_', prior_spec0, '_3.png'), width = 20.3, height = 9, units = 'in')
 
 

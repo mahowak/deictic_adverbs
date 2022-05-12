@@ -1,12 +1,10 @@
 import random
 import itertools
-
 import numpy as np
 
 flat = itertools.chain.from_iterable
 
 def unique(list1):
-
     # initialize a null list
     unique_list = []
 

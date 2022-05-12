@@ -223,10 +223,6 @@ class RunIB:
         fig.savefig(outfile + "_plot.png")   # save the figure to file
         plt.close(fig)    # close the figure window
 
-
-        #print(self.pgs_dists, 'D1D2 : ', real_only_plane)
-        #print(self.pgs_dists, 'D1D2 : ', merge_D1D2_only_plane)
-        #print(self.pgs_dists, 'D2D3 : ', merge_D2D3_only_plane)
         df_grid = pd.DataFrame({"place": [self.pgs_dists[0]],
         "goal": [self.pgs_dists[1]],
         "source": [self.pgs_dists[2]],
@@ -383,18 +379,6 @@ if __name__ == "__main__":
     num_meanings = args.distal * 3
     lexicon_size_range = range(2, num_meanings + 1)
 
-    # old function: 
-    # pre-populate and fix the simulated lexicons
-    # sim_lex_dict = {lexicon_size: [get_random_lexicon(
-    #     num_meanings, lexicon_size, seed=i) for i in range(10000)] for 
-    #     lexicon_size in lexicon_size_range}
-
-    # new function: sampling lexicons at each number of words proportional to the S terling number 
-    # sim_lex_dict = {lexicon_size: [get_random_lexicon(
-    #     num_meanings, lexicon_size, seed=i) for i in range(stirling.stirling(num_meanings, lexicon_size))] for 
-    #     lexicon_size in lexicon_size_range}
-
-    # instead of random sampling, we enumerate all possible lexicons 
     sim_lex_dict = {lexicon_size: [lexicon for lexicon in enumerate_possible_lexicons(num_meanings, lexicon_size)] for 
         lexicon_size in lexicon_size_range}
     
