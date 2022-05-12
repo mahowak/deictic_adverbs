@@ -15,11 +15,11 @@ pgs <- '0_0.789_-1.315'
 # number of distal levels
 num_dists <- 'num_dists_3'
 #directory
-setwd("~/Documents/BCS/TedLab/here_there_way_over_there/repo_final/deictic_adverbs")
+
 
 # output file from jupyter-notebook - real lexicons
 d = read.csv(paste0('sheets/real_lexicons_fit_mu_',toString(mu),'_pgs_', pgs, num_dists, '_outfile.csv')) %>% select(-Unnamed..0) %>%
-  mutate(Language = gsub('\\[(.*?)\\]', '', Language)) %>% pivot_longer(co_sim, names_to = 'mode', values_to = 'word') %>%
+  mutate(Language = gsub('\\[(.*?)\\]', '', Language)) %>% pivot_longer(2:10, names_to = 'mode', values_to = 'word') %>%
   separate(mode, into = c('distal_level', 'orientation'), sep = '_') %>% group_by(Language) %>% 
   mutate(word = as.character(word) %>% factor(levels = unique(.)) %>% as.numeric()) %>% ungroup() %>%
   unite('mode', c('distal_level', 'orientation'), sep = '_') %>%
@@ -38,7 +38,7 @@ co_sim <- which(!is.na(str_extract(colnames(d_sim), 'D\\d_')))
 
 d[, "nwords"] <- apply(d[,co], 1, max) 
 d_sim[, "nwords"] <- apply(d_sim[,co_sim], 1, max) + 1
-#curve_deter_by_gamma <- curve_deter %>% group_by(I.U.W., I.M.W.) %>% slice_min(order_by = gamma)
+curve_deter_by_gamma <- curve_deter %>% group_by(informativity, complexity) %>% slice_min(order_by = gamma)
 
 real_paradigm_summary <- d %>% group_by_at(vars(starts_with('D', ignore.case = FALSE))) %>% slice_sample(n=1) %>% 
   left_join(d %>% group_by_at(vars(starts_with('D', ignore.case = FALSE))) %>% summarise(n = n())) %>% ungroup() %>% mutate(Language = gsub('^\\s+', '', Language))
@@ -50,7 +50,7 @@ ggplot(d, aes(x=`I.U.W.`, y=`I.M.W.`)) +
   #geom_line(data = frontier, aes(x = complexity, y = informativity), color = 'black') +
   geom_jitter(aes(x=`I.M.W.`, y=`I.U.W.`, color = Area), size = 3, position = pos) +
   geom_line(data = curve_non_deter, aes(x = complexity, y = informativity ), color = 'black', shape = 4, size = 1) +
-  geom_line(data = curve_deter, aes(x = I.M.W., y = I.U.W. ), color = 'blue', shape = 4, size = 1) +
+  geom_line(data = curve_deter, aes(x = complexity, y = informativity ), color = 'blue', shape = 4, size = 1) +
   #geom_smooth(data = d_sim, aes(x=`I.M.W.`, y=`I.U.W.`), method = 'lm')+
   theme_bw(25) +
   xlab('Complexity') +
@@ -90,7 +90,7 @@ ggplot(d, aes(x=`I.U.W.`, y=`I.M.W.`)) +
   )+
   
   geom_text_repel(data = curve_deter_by_gamma %>% mutate(label = paste0('\u03b2',' = ', sprintf('%.3f',gamma))),
-                  aes(x = I.M.W., y = I.U.W., label = label), color = 'blue',
+                  aes(x = complexity, y = informativity, label = label), color = 'blue',
                   point.padding = 0.1,
                   nudge_x = -0.02,
                   nudge_y = 0.06,
@@ -281,69 +281,3 @@ ggplot(opt_sys_real_summary %>%
   theme_bw(17) +
   guides(fill = guide_legend(title = 'Word'))
 
-# For HSP 2022
-# ggplot(d, aes(x=`I.U.W.`, y=`I.M.W.`)) +
-#   geom_point(data = d_sim, aes(x=`I.M.W.`, y=`I.U.W.`, color = 'simulated'), alpha = 0.1, size = 3) +
-#   #geom_line(data = frontier, aes(x = complexity, y = informativity), color = 'black') +
-#   geom_jitter(aes(x=`I.M.W.`, y=`I.U.W.`, color = 'Real'), size = 3, position = pos) +
-#   #geom_line(data = curve_non_deter, aes(x = complexity, y = informativity ), color = 'black', shape = 4, size = 1) +
-#   #geom_smooth(data = d_sim, aes(x=`I.M.W.`, y=`I.U.W.`), method = 'lm')+
-#   theme_bw(25) +
-#   xlab('Complexity') +
-#   ylab('Informativity') +
-#   scale_color_manual(values = c("darkblue", 'gray')) +
-#   guides(guide_legend(title = 'Language category')) + 
-#   xlim(0,max(d$I.M.W.) + 0.1) +
-#   ylim(0,max(d$I.U.W.) + 0.05) +
-#   
-#   #ylim(1.0, 2)+
-#   #xlim(0.25, 0.55) +
-#   #geom_label(data = d %>% filter(Language == 'Italian (Indo-European, Romance)   '), aes(label = Language), nudge_x = -0.05) +
-#   #geom_label(data = d %>% filter(Language == 'Bunoge Dogon (Dogon)'), aes(label = Language), nudge_x = -0.05) +
-#   #ggtitle('The informativity-complexity tradeoff among real lexicons and randomly generated lexicons') +
-#   # scale_color_manual(values = 'gray') +  
-#   geom_text_repel(data = d %>% filter(Language %in% c('Bunoge Dogon (Dogon)')),
-#                   aes(x = I.M.W., y = I.U.W., label = Language),
-#                   point.padding = 0.1,
-#                   nudge_x = -0.05,
-#                   nudge_y = -0.05,
-#                   segment.curvature = -1e-20,
-#                   size = 5,
-#                   arrow = arrow(length = unit(0.015, "npc")),
-#                   #position = pos
-#   ) +
-#   geom_text_repel(data = d %>% filter(Language %in% c('English (Indo-European, Germanic)'
-#   )),
-#   aes(x = I.M.W., y = I.U.W., label = Language),
-#   point.padding = 0.1,
-#   nudge_x = -0.05,
-#   nudge_y = 0.10,
-#   segment.curvature = -1e-20,
-#   size = 5,
-#   arrow = arrow(length = unit(0.015, "npc"))
-#   )+
-#   
-#   # geom_text_repel(data = curve_deter_by_gamma %>% mutate(label = paste0('\u03b2',' = ', sprintf('%.3f',gamma))),
-#   #                 aes(x = I.M.W., y = I.U.W., label = label), color = 'blue',
-#   #                 point.padding = 0.1,
-#   #                 nudge_x = -0.02,
-#   #                 nudge_y = 0.02,
-#   #                 segment.curvature = -1e-20,
-#   #                 arrow = arrow(length = unit(0.015, "npc"))
-#   # )+
-#   # geom_text_repel(data = d %>% filter(Language %in% c('[OC-10]  Dyirbal (Pama-Nyungan)',
-#   #                                                     'Bunoge Dogon (Dogon)',
-# #                                                     '[AM-21]  Kodiak Alutiiq (Eskimo-Aleut, Aleut) ',
-# #                                                     'Hmong Njua (Hmong-Mien, Chuanqiandian)',
-# #                                                     'English (Indo-European, Germanic)')),
-# #                 aes(x = fit_informativity_dFl_det, y = fit_complexity_dFl_det, label = Language),
-# #                 point.padding = 0.1,
-# #                 nudge_x = 0.05,
-# #                 nudge_y = -0.1,
-# #                 segment.curvature = -1e-20,
-# #                 arrow = arrow(length = unit(0.015, "npc"))
-# # )  +
-# ggtitle('')
-#ggsave(paste0('../../HSP_2022/Efficient_frontier_mu_',toString(mu),'_pgs_', pgs, num_dists, '.png'), width = 15.3, height = 9, units = 'in')
-
- 
