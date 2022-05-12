@@ -1,12 +1,11 @@
-from collections import defaultdict
 from get_lang_data import get_lang_dict
-from get_prior import get_exp_prior, exp_fit_place
-from ib import ib, mi, information_plane
-from enumerate_lexicons import enumerate_possible_lexicons, get_random_lexicon
+from get_prior import get_exp_prior
+from ib import ib, information_plane
+from enumerate_lexicons import enumerate_possible_lexicons
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics.pairwise import euclidean_distances
 
-from scipy.spatial import ConvexHull, convex_hull_plot_2d
+from scipy.spatial import ConvexHull
 from scipy.stats import linregress
 
 import argparse
@@ -15,10 +14,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
-import stirling
 
 AREAS = ["europe", "asia", "americas", "africa", "oceania"]
-
 
 def getEquidistantPoints(p1, p2, parts):
     return zip(np.linspace(p1[0], p2[0], parts+1),
