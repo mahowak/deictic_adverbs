@@ -13,6 +13,11 @@ FINN_COUNTS = {"place":  [232946, 94887, 38402],
             "source": [43016, 17587, 3850],
             "unif": [1, 1, 1]}
 
+#FINN_COUNTS = {"place":  [39, 16, 6],
+#            "goal": [18, 7, 1.6],
+#            "source": [7, 2, .6],
+#            "unif": [1, 1, 1]}
+
 def get_exp_fit(prior, distal_levels):
     """Take exponential fit from Finnish to get distribution over other levels"""
     def func(x, a, b):
