@@ -367,6 +367,7 @@ if __name__ == "__main__":
     parser.add_argument('--prior_search', action='store_true')
     parser.add_argument('--mu_search', action='store_true')
     parser.add_argument('--total_search', action='store_true')
+    parser.add_argument('--total_search_mini', action='store_true') # search within a smaller range of parameters
     parser.add_argument('--pgs', help='the relative location for PLACE / GOAL / SOURCE (e.g. 0, -1, 1)', 
         type=lambda s: [float(item) for item in s.split(',')], default = '0, -1, 1')
 
@@ -411,6 +412,17 @@ if __name__ == "__main__":
                         pgs = [0, i, j]
                         RunIB(mu, args.gamma, args.distal,
                             pgs,
+                            prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
+                                                            sim_lex_dict=sim_lex_dict,
+                                                            outfile=args.outfile)
+    elif args.total_search_mini:
+        for perm in (list(itertools.permutations(["place", "goal", "source"])) +
+                     [["unif", "unif", "unif"]]):
+            for mu in [.2, .3]:
+                for i in [0.8, 0.9, 1, 1.1, 1.2, 1.3]:
+                    for j in [-0.8, -0.9, -1, -1.1, -1.2, -1.3]:
+                        RunIB(mu, args.gamma, args.distal,
+                            [0, i, j],
                             prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
                                                             sim_lex_dict=sim_lex_dict,
                                                             outfile=args.outfile)
