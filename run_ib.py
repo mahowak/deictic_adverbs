@@ -369,7 +369,7 @@ if __name__ == "__main__":
     parser.add_argument('--total_search', action='store_true')
     parser.add_argument('--total_search_mini', action='store_true') # search within a smaller range of parameters
     parser.add_argument('--pgs', help='the relative location for PLACE / GOAL / SOURCE (e.g. 0, -1, 1)', 
-        type=lambda s: [float(item) for item in s.split(',')], default = '0, -1, 1')
+        type=lambda s: [float(item) for item in s.split(',')], default = '0, -0.789, 1.316')
 
 
     args = parser.parse_args()
