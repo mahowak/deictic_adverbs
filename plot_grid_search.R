@@ -46,7 +46,7 @@ p3 <- ggplot(d, aes(x = code, y = real_minus_sim_resid, fill = code)) +
         ) +
   geom_hline(yintercept = 0) +
   scale_fill_manual(values = c('gray50', 'gray90', 'gray90', 'gray90','gray90','gray90'))
-# ggsave(paste0('figures/pgs_grid_search_mu_', toString(mu0), '_', prior_spec0, '_3.png'), width = 20.3, height = 9, units = 'in')
+ggsave(paste0('figures/pgs_grid_search_mu_', toString(mu0), '_', prior_spec0, '_3.png'), width = 20.3, height = 9, units = 'in', dpi = 600)
 
 
 

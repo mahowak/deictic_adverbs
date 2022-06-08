@@ -112,7 +112,7 @@ ggplot(d, aes(x=`I.U.W.`, y=`I.M.W.`)) +
   ggtitle('')
   #ggtitle('minimal optimality score distance, deterministic optimal q(w|m)')
 
-#ggsave(paste0('figures/Efficient_frontier_mu_',toString(mu),'_pgs_', pgs, num_dists, '.png'), width = 15.3, height = 9, units = 'in')
+ggsave(paste0('figures/Efficient_frontier_mu_',toString(mu),'_pgs_', pgs, num_dists, '.png'), width = 15.3, height = 9, units = 'in')
 
 
 
@@ -144,7 +144,7 @@ p2 <- ggplot(sim_lexicon_opts_viz %>% mutate(label = paste0(X, " (", 1, "), d = 
   theme_bw(17) +
   guides(fill = guide_legend(title = 'Word')) +
   ggtitle('simulated paradigms')
-# ggsave(paste0('figures/mu_0.3_optimal_simulated_lexicon', num_dists, '.png'), plot = p2, height = 4, width = 12, unit = 'in')
+ggsave(paste0('figures/mu_0.3_optimal_simulated_lexicon', num_dists, '.png'), plot = p2, height = 4, width = 12, unit = 'in')
 
 
 p1 <- ggplot(real_paradigm_summary %>% mutate(Language = gsub('\\((.*?)\\)', '', Language),
@@ -162,10 +162,10 @@ p1 <- ggplot(real_paradigm_summary %>% mutate(Language = gsub('\\((.*?)\\)', '',
   theme_bw(17) +
   guides(fill = guide_legend(title = 'Word')) +
   ggtitle('real paradigms')
-# ggsave(paste0('figures/mu_', toString(mu), '_optimal_simulated_lexicon_', num_dists, '.png'), plot = p1, width = 12, height = 4, unit = 'in')
+ggsave(paste0('figures/mu_', toString(mu), '_optimal_simulated_lexicon_', num_dists, '.png'), plot = p1, width = 12, height = 4, unit = 'in')
 
 p <- grid.arrange(p1,p2, nrow=2)
-# ggsave(paste0('figures/mu_', toString(mu), '_optimal_lexicon_', num_dists, '.png'), plot = p, width = 12, height = 12, unit = 'in')
+ggsave(paste0('figures/mu_', toString(mu), '_optimal_lexicon_', num_dists, '.png'), plot = p, width = 15, height = 12, unit = 'in')
 
 # opt_lex = c('Bengali (Indo-European, Indo-Iranian)',
 #             'Dhimal (Sino-Tibetan, Dhimalish)',
@@ -201,7 +201,7 @@ p4 <- ggplot(real_paradigm_summary, aes(x = dist_to_hull, y =  systematicity_sco
   # ) +
   guides(color = guide_legend(title = 'Number of words'),
          size = guide_legend(title = 'Number of languages')) 
-# ggsave(paste0('figures/mu_', toString(mu), '_systematicity_vs_optimality_', num_dists, '.png'), width = 10, height = 5, unit = 'in', plot = p4)
+ggsave(paste0('figures/mu_', toString(mu), '_systematicity_vs_optimality_', num_dists, '.png'), width = 10, height = 5, unit = 'in', plot = p4)
 
 
 
@@ -231,7 +231,7 @@ p6 <- ggplot(d_sim %>% filter(X == 6685) %>%
   guides(fill = guide_legend(title = 'Word')) 
 
 w <- grid.arrange(p5,p6, ncol=2)
-#ggsave(paste0('figures/mu_', toString(mu), '_suystematicity_illu_', num_dists, '.png'), plot = w, width = 12, height = 4, unit = 'in')
+ggsave(paste0('figures/mu_', toString(mu), '_suystematicity_illu_', num_dists, '.png'), plot = w, width = 12, height = 4, unit = 'in')
 
 
 # pick the optimal lexicon for each tradeoff parameter
@@ -250,6 +250,9 @@ for (i in 1:length(gammas)){
 }
 opt_sys = opt_sys[2:nrow(opt_sys),] %>% mutate(J = I.U.W. - gammas * I.M.W. + etas * systematicity_score)
 
+opt_sys_real_summary <- opt_sys_real %>% group_by_at(vars(starts_with('D', ignore.case = FALSE))) %>% summarise(systematicity_score = mean(systematicity_score),
+                                                                                                                gammas = min(gammas),
+                                                                                                                etas = min(etas))
 
 opt_sys_real <- d[1,colnames(d_sim)]
 opt_sys_real$gammas = 0
@@ -264,11 +267,11 @@ for (i in 1:length(gammas)){
 }
 opt_sys_real = opt_sys_real[2:nrow(opt_sys_real),] %>% mutate(J = I.U.W. - gammas * I.M.W. + etas * systematicity_score)
 
-opt_sys_real_summary <- opt_sys_real %>% group_by_at(vars(starts_with('D', ignore.case = FALSE))) %>% summarise(systematicity_score = mean(systematicity_score),
+opt_sys_summary <- opt_sys %>% group_by_at(vars(starts_with('D', ignore.case = FALSE))) %>% summarise(systematicity_score = mean(systematicity_score),
                                                                                                       gammas = min(gammas),
                                                                                                       etas = min(etas))
 
-ggplot(opt_sys_real_summary %>% 
+ggplot(opt_sys_summary %>% 
          pivot_longer(1:9, names_to = 'mode', values_to = 'word') %>%
          separate(mode, into = c('distal_level', 'orientation'), sep = '_') %>% 
          mutate(label = paste0('beta = ', sprintf('%.3f', as.numeric(gammas)), '; gamma = ', sprintf('%.3f', as.numeric(etas)))), 
@@ -281,3 +284,4 @@ ggplot(opt_sys_real_summary %>%
   theme_bw(17) +
   guides(fill = guide_legend(title = 'Word'))
 
+ggsave(paste0('figures/mu_', toString(mu), '_systematicity_and_optimal_lexicons_pgs_', pgs, num_dists, '.png'), width = 10, height = 6, unit = 'in')
