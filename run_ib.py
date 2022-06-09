@@ -1,6 +1,6 @@
 from get_lang_data import get_lang_dict
 from get_prior import get_exp_prior
-from ib import ib, information_plane
+from ib import information_plane
 from enumerate_lexicons import enumerate_possible_lexicons
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics.pairwise import euclidean_distances
@@ -10,7 +10,6 @@ from scipy.stats import linregress
 
 import argparse
 import itertools
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
@@ -83,12 +82,7 @@ class RunIB:
                 u_m[i][num] = 1 * (self.mu ** (np.abs(costs[0] - distal) + np.abs(costs[1] - place)))
         return u_m/u_m.sum(axis=1)[:, None]
 
-    def get_optimal_lexicon(self, lexicon_size):
-        return ib(self.prior, self.prob_u_given_m, lexicon_size,
-                  self.gamma, num_iter=100, outer_iter=100)
-
-
-    def get_mi_for_all(self, get_opt=True, sim_lex_dict={}, outfile="default"):
+    def get_mi_for_all(self, sim_lex_dict={}, outfile="default"):
         num_meanings = self.distal_levels * 3
         lexicon_size_range = range(2, int(num_meanings) + 1)
         assert (len(self.prior) == num_meanings)
@@ -97,9 +91,6 @@ class RunIB:
         for lexicon_size in lexicon_size_range:
             all_lex = sim_lex_dict[lexicon_size]
             lexicons += [("simulated", l[1], "simulated") for l in all_lex]
-            if get_opt:
-                lexicons += [("optimal", self.get_optimal_lexicon(lexicon_size),
-                         "optimal")]
 
         # add real lexicons
         lexicons += self.get_real_langs(num_meanings) # p(z|x)
@@ -119,66 +110,18 @@ class RunIB:
         dfs += [df]
         x =  pd.concat(dfs).sort_values(["I[U;W]"], ascending=False)
         x.to_csv(outfile + '_mu_' + str(args.mu) + '_gamma_' + str(args.gamma) + "_" + "_".join([str(pgs) for pgs in self.pgs_dists]) + "_" + ".csv")
-
-
         
-        # GRID SEARCH PART 
-        standardized = False
-        if standardized:
-            df["I[U;W]"] = (df["I[U;W]"] - df["I[U;W]"].mean())/df["I[U;W]"].std()
-            df["I[M;W]"] = (df["I[M;W]"] - df["I[M;W]"].mean()) / \
-                df["I[M;W]"].std()
-
         mi_obj_simulated = df.groupby("LangCategory").mean()["MI_Objective"]["simulated"]
         mi_obj_real = df.groupby("LangCategory").mean()["MI_Objective"]["real"]
-        if get_opt:
-            mi_obj_optimal = df.groupby("LangCategory").mean()[
-            "MI_Objective"]["optimal"]
-        else:
-            mi_obj_optimal = 0
+        
         mi_obj_simulated_std = df.groupby("LangCategory").std()[
             "MI_Objective"]["simulated"]
         mi_obj_real_std = df.groupby("LangCategory").std()["MI_Objective"]["real"]
-        if get_opt:
-            mi_obj_optimal_std = df.groupby("LangCategory").std()[
-            "MI_Objective"]["optimal"]
-        else:
-            mi_obj_optimal_std = 0
 
         sim_only = df.loc[df["LangCategory"] == "simulated"]
         real_only = df.loc[df["LangCategory"] == "real"]
         sim_only_plane = np.array(df.loc[df["LangCategory"] == "simulated", ["I[U;W]", "I[M;W]"]])
-        merge_D1D2_only_plane = np.array(df.loc[(df["D1_place"] == 0) &
-                                                 (df["D2_place"] == 0) &
-                                                 (df["D3_place"] == 1) &
-                                                 (df["D1_goal"] == 2) &
-                                                 (df["D2_goal"] == 2) &
-                                                 (df["D3_goal"] == 3) &
-                                                 (df["D1_source"] == 4) &
-                                                 (df["D2_source"] == 4) &
-                                                 (df["D3_source"] == 5), ["I[U;W]", "I[M;W]"]])
-        merge_D2D3_only_plane = np.array(df.loc[(df["D1_place"] == 0) &
-                                                 (df["D2_place"] == 1) &
-                                                 (df["D3_place"] == 1) &
-                                                 (df["D1_goal"] == 2) &
-                                                 (df["D2_goal"] == 3) &
-                                                 (df["D3_goal"] == 3) &
-                                                 (df["D1_source"] == 4) &
-                                                 (df["D2_source"] == 5) &
-                                                 (df["D3_source"] == 5), ["I[U;W]", "I[M;W]"]])
         real_only_plane = np.array(df.loc[df["LangCategory"] == "real", ["I[U;W]", "I[M;W]"]])
-
-        if get_opt:
-            optimal_only = df.loc[df["LangCategory"] == "optimal"]
-            X = np.array(optimal_only["I[U;W]"]).reshape(-1, 1)
-            y = np.array(optimal_only["I[M;W]"])
-            model = LinearRegression()
-            model.fit(X, y)
-            predictions_for_real = model.predict(
-                                np.array(real_only["I[U;W]"]).reshape(-1, 1))
-            residuals_optimal = np.array(real_only["I[M;W]"]) - predictions_for_real
-        else:
-            residuals_optimal = 0
 
         # for simulated
         X = np.array(sim_only["I[U;W]"]).reshape(-1, 1)
@@ -188,12 +131,6 @@ class RunIB:
         predictions_for_real = model.predict(
             np.array(real_only["I[U;W]"]).reshape(-1, 1))
         residuals_sim = np.array(real_only["I[M;W]"]) - predictions_for_real
-
-
-        fig, ax = plt.subplots(nrows=1, ncols=1)  # create figure & 1 axis
-
-        plt.plot(sim_only_plane[:, 0], sim_only_plane[:, 1], 'go')
-        plt.plot(real_only_plane[:, 0], real_only_plane[:, 1], 'wo')
 
         vertices = ConvexHull(sim_only_plane).vertices
         pv = sim_only_plane[vertices] # this is the hull
@@ -209,35 +146,20 @@ class RunIB:
         verts = np.array(verts)
 
         dists = euclidean_distances(real_only_plane, verts).min(axis=1)
-        dists_merge_D1D2 = euclidean_distances(merge_D1D2_only_plane, verts).min(axis = 1).sum()
-        dists_merge_D2D3 = euclidean_distances(merge_D2D3_only_plane, verts).min(axis = 1).sum()
         dist_to_hull = np.sum(dists)
         dist_to_hull_2 = np.sum(dists * dists)
-
-
-        plt.plot(verts[:, 0], verts[:, 1], 'r--', lw=2)
-
-        fig.savefig(outfile + "_plot.png")   # save the figure to file
-        plt.close(fig)    # close the figure window
 
         df_grid = pd.DataFrame({"place": [self.pgs_dists[0]],
         "goal": [self.pgs_dists[1]],
         "source": [self.pgs_dists[2]],
         "real": [mi_obj_real],
         "simulated": [mi_obj_simulated],
-        "optimal": [mi_obj_optimal],
         "real_sd": [mi_obj_real_std],
         "simulated_sd": [mi_obj_simulated_std],
-        "optimal_sd": [mi_obj_optimal_std],
-        "real_minus_opt_resid": [np.sum(residuals_optimal)],
-        "real_minus_opt_resid_sq": [np.sum(residuals_optimal * residuals_optimal)],
         "real_minus_sim_resid": [np.sum(residuals_sim)],
-        "real_minus_sim_resid_sq": [np.sum(residuals_sim * residuals_sim)],
         "dist_to_hull": [dist_to_hull],
         "dist_to_hull_sq": [dist_to_hull_2],
         "prior_spec": ["_".join(self.prior_spec)],
-        "dist_to_hull_merge_D1D2": [dists_merge_D1D2],
-        "dist_to_hull_merge_D2D3": [dists_merge_D2D3],
         "mu": [str(self.mu)],
         "gamma": [str(self.gamma)]
         })
@@ -256,9 +178,6 @@ class RunIB:
 
     def get_real_arrays(self, area):
         """
-        TODO: handle different ways of counting multiple occurences of words
-            # in a single cell
-
         Take in an area, return a list of
         (lang, dict, area)
         where the lang_array is a typical lexicon of size M x W
@@ -291,69 +210,6 @@ class RunIB:
 
         return lang_arrays
     
-    def encode_lexicon(self, lexicon_as_list):
-        """Take in a lexicon as a list, return info plane"""
-        a = np.zeros([len(lexicon_as_list), len(set(lexicon_as_list))])
-        for x, y in enumerate(lexicon_as_list):
-            a[x, y] = 1
-        iplane = information_plane(self.prior,
-                                 self.get_prob_u_given_m(), a)        
-        return (iplane, iplane[1] - self.gamma * iplane[0])
-
-    def plot_lexicons(self, lexicon_as_list):
-        distal_levels = int(np.array(lexicon_as_list).shape[0]/3)
-        lexicon_as_list = np.reshape(lexicon_as_list, (distal_levels,3), order = 'F') # place - goal - source
-        lexicon_as_list[:,[0,1]] = lexicon_as_list[:,[1,0]] # goal - place - source
-        lexicon_as_list = np.flip(lexicon_as_list,0)
-        fig = plt.imshow(lexicon_as_list)
-
-
-def print_optimal_lexicons_for_ggplot(df):
-    newds = []
-    for i in range(df.shape[0]):
-        row = df.iloc[i]
-        for item_num, item in enumerate(row["lexicon"]):
-            for word_num, word in enumerate(item):
-                distal, loc = row["index"][item_num].split("_")
-                newd = {"mu": row["mu"],
-                        "gamma": row["gamma"],
-                        "loc": loc,
-                        "total_num_words": row["num_words"],
-                        "total_distal": row["distal"],
-                        "distal": distal,
-                        "word": word_num + 1,
-                        "value": word}
-                newds += [newd]
-
-    pd.DataFrame(newds).to_csv("optimal_lexicons_for_plot.csv")
-
-def get_optimal_lexicons():
-    d = []
-    for mu in [.1, .2]:
-        for gamma in [2, 10]:
-            for distal_levels in [3, 4, 5]:
-                runib = RunIB(mu, gamma, distal_levels)
-                for num_words in [3, 4, 5, 6, 7, 8, 9]:
-                    if num_words <= distal_levels * 3:
-                        z_given_x = runib.get_optimal_lexicon(num_words)
-                        mi_xz, mi_yz = information_plane(
-                            runib.prior, runib.prob_u_given_m, z_given_x)
-                        z_given_x = np.round(z_given_x, 2)
-                        d += [{"mu": mu,
-                                "gamma": gamma,
-                                "distal": distal_levels,
-                                "num_words": num_words,
-                                "mi_xz": mi_xz,
-                                "mi_yz": mi_yz,
-                                "u_given_m": runib.prob_u_given_m,
-                                "prior": runib.prior,
-                                "map": runib.deictic_map,
-                                "index": {runib.deictic_index[i]: i for i in runib.deictic_index},
-                                "lexicon": z_given_x[:, z_given_x.argmax(axis=0).argsort()]}]
-    df = pd.DataFrame(d)
-    df.to_pickle("optimal_lexicons.pkl")
-    print_optimal_lexicons_for_ggplot(df)
-    return df
     
 if __name__ == "__main__":
 
@@ -362,7 +218,6 @@ if __name__ == "__main__":
     parser.add_argument('--gamma', type=float, default=2)
     parser.add_argument('--outfile', type=str, default="mi_test_1.csv")
     parser.add_argument('--distal', type=int, default=3)
-    parser.add_argument('--get_opt', action='store_true')
     parser.add_argument('--grid_search', action='store_true')
     parser.add_argument('--prior_search', action='store_true')
     parser.add_argument('--mu_search', action='store_true')
@@ -370,7 +225,6 @@ if __name__ == "__main__":
     parser.add_argument('--total_search_mini', action='store_true') # search within a smaller range of parameters
     parser.add_argument('--pgs', help='the relative location for PLACE / GOAL / SOURCE (e.g. 0, -1, 1)', 
         type=lambda s: [float(item) for item in s.split(',')], default = '0, -0.789, 1.316')
-
 
     args = parser.parse_args()
     
@@ -385,16 +239,14 @@ if __name__ == "__main__":
             for j in np.append(np.linspace(-10, 10, 8), np.array(0)):
                 if np.abs(i) > .5 and np.abs(j) > .5:
                     RunIB(args.mu, args.gamma, args.distal,
-                        [0, i, j]).get_mi_for_all(get_opt=args.get_opt,
-                                                sim_lex_dict=sim_lex_dict,
+                        [0, i, j]).get_mi_for_all(sim_lex_dict=sim_lex_dict,
                                                 outfile = args.outfile + str(args.mu) + str(args.gamma))
 
     elif args.prior_search:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) + 
         [["unif", "unif", "unif"], ["place", "place", "place"]]):
             RunIB(args.mu, args.gamma, args.distal, args.pgs,
-                  prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
-                                            sim_lex_dict=sim_lex_dict,
+                  prior_spec=perm).get_mi_for_all(sim_lex_dict=sim_lex_dict,
                                             outfile=args.outfile)
     elif args.mu_search:
         for mu in np.append(np.linspace(0.05, 0.99, 19), np.array(0.99)):
@@ -412,8 +264,7 @@ if __name__ == "__main__":
                         pgs = [0, i, j]
                         RunIB(mu, args.gamma, args.distal,
                             pgs,
-                            prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
-                                                            sim_lex_dict=sim_lex_dict,
+                            prior_spec=perm).get_mi_for_all(sim_lex_dict=sim_lex_dict,
                                                             outfile=args.outfile)
     elif args.total_search_mini:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) +
@@ -423,16 +274,9 @@ if __name__ == "__main__":
                     for j in [-0.8, -0.9, -1, -1.1, -1.2, -1.3]:
                         RunIB(mu, args.gamma, args.distal,
                             [0, i, j],
-                            prior_spec=perm).get_mi_for_all(get_opt=args.get_opt,
-                                                            sim_lex_dict=sim_lex_dict,
+                            prior_spec=perm).get_mi_for_all(sim_lex_dict=sim_lex_dict,
                                                             outfile=args.outfile)
 
-
     else:
-        RunIB(args.mu, args.gamma, args.distal, args.pgs).get_mi_for_all(
-            get_opt=args.get_opt, sim_lex_dict=sim_lex_dict,
+        RunIB(args.mu, args.gamma, args.distal, args.pgs).get_mi_for_all(sim_lex_dict=sim_lex_dict,
             outfile = args.outfile)
-
-    if args.get_opt == True:
-        print("getting optimal lexicons")
-        get_optimal_lexicons()
