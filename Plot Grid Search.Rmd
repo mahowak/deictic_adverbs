@@ -1,0 +1,41 @@
+---
+title: "Plot Grid Search results"
+author: "Sihan Chen, Richard Futrell, Kyle Mahowald"
+date: '2022-09-28'
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(tidyverse)
+library(ggrepel)
+library(RColorBrewer)
+library(ggnewscale)
+library(latex2exp)
+library(gridExtra)
+library(ggrepel)
+```
+
+This script generates figures from Experiment 2, where we try different free parameter setting and see how the efficiency of real lexicon changes with respect to that of simulated lexicons.
+
+
+Read dataset: 
+```{r}
+d = read.csv('sheets/mini_grid_search_gridsearch.csv')
+
+```
+
+This is a scary plot: we might put it in the appendix
+
+```{r}
+ggplot(d, aes(x = goal, y = source, size = mean_gNID)) +
+  facet_grid(rows=vars(mu), cols=vars(prior_spec)) +
+  geom_point() +
+  geom_point(data = d %>% slice_min(order_by = mean_gNID, n = 1), color = 'red') +
+  geom_abline(slope = -1, intercept = 0, color = 'green') +
+  theme_bw(20)
+
+```
