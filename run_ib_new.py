@@ -8,6 +8,7 @@ from helper_functions import *
 
 
 import joblib
+import multiprocessing
 import einops
 import scipy
 import argparse
@@ -188,6 +189,7 @@ class RunIB:
 
     # @numba.jit(nopython=True)
     def find_everything(self, q_w_m):
+        # objs = joblib.Parallel(n_jobs=-1)(joblib.delayed(self.get_objective)(q_w_m, gamma) for gamma in self.logsp)
         objs = np.array([self.get_objective(q_w_m, gamma) for gamma in self.logsp])
         diff = objs - np.array(self.optimal_lexicon_score)
         return diff.argmin(), self.logsp[diff.argmin()], diff.min()/self.logsp[diff.argmin()]
@@ -240,7 +242,7 @@ class RunIB:
         # this takes the most time (20min)
         # temp = [self.find_everything(l[1]) for l in tqdm(lexicons)]
 
-        temp = joblib.Parallel(n_jobs=-1)(joblib.delayed(self.find_everything)(l[1]) for l in tqdm(lexicons))
+        temp = joblib.Parallel(n_jobs=multiprocessing.cpu_count())(joblib.delayed(self.find_everything)(l[1]) for l in tqdm(lexicons))
         # temp = map(self.find_everything, tqdm([l[1] for l in lexicons]))
         #
 
