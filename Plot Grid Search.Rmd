@@ -24,7 +24,7 @@ This script generates figures from Experiment 2, where we try different free par
 
 Read dataset: 
 ```{r}
-d = read.csv('sheets/mini_grid_search_gridsearch.csv')
+d = read.csv('sheets/mini_grid_search_2_gridsearch.csv')
 
 ```
 

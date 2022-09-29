@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.special
+import numba
 
 DEFAULT_NUM_ITER = 10
 
@@ -65,7 +66,15 @@ def information_plane(p_x, p_y_x, p_z_x):
     p_xz = p_x[:, None] * p_z_x # Joint p(x,y), shape X x Y    
     p_xyz = p_x[:, None, None] * p_y_x[:, :, None] * p_z_x[:, None, :] # Joint p(x,y,z), shape X x Y x Z
     p_yz = p_xyz.sum(axis=0) # Joint p(y,z), shape Y x Z
-    return mi(p_yz), mi(p_xz)
+    # TODO: pass p(y) from outside to save time since it's fixed
+    
+    informativity = mi(p_yz)
+    p_z = p_xz.sum(axis=-2, keepdims=True)
+    complexity = scipy.special.xlogy(p_xz, p_xz).sum() - scipy.special.xlogy(p_x, p_x).sum() - scipy.special.xlogy(p_z, p_z).sum()
+    
+    return informativity, complexity
+    
+    #return mi(p_yz), mi(p_xz)
 
 def zipf_mandelbrot(N, s, q=0):
     """ Return a Zipf-Mandelbrot distribution over N items """

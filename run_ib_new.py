@@ -1,12 +1,9 @@
-from this import d
 from get_lang_data import get_lang_dict
 from get_prior import get_exp_prior
-from ib import information_plane, mi
 from enumerate_lexicons import enumerate_possible_lexicons
-from sklearn.linear_model import LinearRegression
 from helper_functions import *
 
-
+import numba
 import joblib
 import multiprocessing
 import einops
@@ -53,6 +50,20 @@ def gNID(pW_X, pV_X, pX):
     pVV = (pV_X * pX).T.dot(pV_X)
     score = 1 - MI(pWV) / (np.max([MI(pWW), MI(pVV)]))
     return score
+
+def information_plane(p_x, p_y, p_y_x, p_z_x):
+    """ Given p(x), p(y|x), and p(z|x), calculate I[Y:Z] and I[X:Z] """
+    p_xz = p_x[:, None] * p_z_x # Joint p(x,y), shape X x Y
+    #p_xz = np.expand_dims(p_x, axis=1) * p_z_x    
+    p_xyz = p_x[:, None, None] * p_y_x[:, :, None] * p_z_x[:, None, :] # Joint p(x,y,z), shape X x Y x Z
+    #p_xyz = np.expand_dims(p_x, axis=(1,2)) * np.expand_dims(p_y_x, axis=2) * np.expand_dims(p_z_x, axis=1)
+    p_yz = p_xyz.sum(axis=0) # Joint p(y,z), shape Y x Z
+    
+    p_z = p_xz.sum(axis=-2, keepdims=True)
+    informativity = scipy.special.xlogy(p_yz, p_yz).sum() - scipy.special.xlogy(p_y, p_y).sum() - scipy.special.xlogy(p_z, p_z).sum()
+    complexity = scipy.special.xlogy(p_xz, p_xz).sum() - scipy.special.xlogy(p_x, p_x).sum() - scipy.special.xlogy(p_z, p_z).sum()
+    
+    return informativity, complexity
 
 # modified _ib function to implement the reverse deterministic annealing algorithm (Zaslavsky & Tishby, 2019)
 def _ib(p_x, p_y_x, Z, gamma, init, num_iter=DEFAULT_NUM_ITER, temperature = 1):
@@ -117,7 +128,9 @@ class RunIB:
                 self.deictic_map[c] = (j, i[1])
                 self.deictic_index["D{}_{}".format(str(j + 1), i[0])] = c
                 c += 1
-        self.prob_u_given_m = self.get_prob_u_given_m()
+        self.prob_u_given_m = self.get_prob_u_given_m() # size M x U
+        p_um = self.prob_u_given_m * self.prior[:, None]
+        self.prob_u = p_um.sum(axis=-2) # p(u)
         self.optimal_lexicons, self.optimal_lexicon_informativity, self.optimal_lexicon_complexity, self.optimal_lexicon_score = self.get_ib_curve()
 
     def distal2equalsdistal3(self, a):
@@ -150,7 +163,7 @@ class RunIB:
 
         for gamma in self.logsp:
             q_w_m = _ib(self.prior, self.prob_u_given_m, num_words, gamma, init, num_iter=20)
-            informativity_temp, complexity_temp = information_plane(self.prior, self.prob_u_given_m, q_w_m)
+            informativity_temp, complexity_temp = information_plane(self.prior, self.prob_u, self.prob_u_given_m, q_w_m)
 
             qW_M.append(q_w_m)
             informativity.append(informativity_temp)
@@ -170,7 +183,7 @@ class RunIB:
 
     # function to find the objective function
     def get_objective(self, q_w_m, gamma):
-        informativity, complexity = information_plane(self.prior, self.prob_u_given_m, q_w_m)
+        informativity, complexity = information_plane(self.prior, self.prob_u, self.prob_u_given_m, q_w_m)
         return complexity - gamma * informativity
 
     # function to find gamma minimizing the objective function
@@ -192,7 +205,8 @@ class RunIB:
         # objs = joblib.Parallel(n_jobs=-1)(joblib.delayed(self.get_objective)(q_w_m, gamma) for gamma in self.logsp)
         objs = np.array([self.get_objective(q_w_m, gamma) for gamma in self.logsp])
         diff = objs - np.array(self.optimal_lexicon_score)
-        return diff.argmin(), self.logsp[diff.argmin()], diff.min()/self.logsp[diff.argmin()]
+        idx = diff.argmin()
+        return idx, self.logsp[idx], diff.min()/self.logsp[idx]
 
     # compute systematicity
     def count_patterns(self,arr):
@@ -229,9 +243,9 @@ class RunIB:
 
         # turn lexicon into df
         df = pd.DataFrame([{dm: l[1].argmax(axis=1)[dm_num]
-                        for dm_num, dm in enumerate(self.deictic_index)}for l in lexicons])
+                        for dm_num, dm in enumerate(self.deictic_index)}for l in lexicons]) 
 
-        information_plane_list = [information_plane(self.prior, self.prob_u_given_m, l[1]) for l in lexicons]  
+        information_plane_list = [information_plane(self.prior, self.prob_u, self.prob_u_given_m, l[1]) for l in lexicons]  
 
         print("Calculating informativity and complexity...")                      
         df["I[U;W]"] = [l[0] for l in information_plane_list]
@@ -242,7 +256,8 @@ class RunIB:
         # this takes the most time (20min)
         # temp = [self.find_everything(l[1]) for l in tqdm(lexicons)]
 
-        temp = joblib.Parallel(n_jobs=multiprocessing.cpu_count())(joblib.delayed(self.find_everything)(l[1]) for l in tqdm(lexicons))
+        ncores = multiprocessing.cpu_count()
+        temp = joblib.Parallel(n_jobs=ncores)(joblib.delayed(self.find_everything)(l[1]) for l in tqdm(lexicons))
         # temp = map(self.find_everything, tqdm([l[1] for l in lexicons]))
         #
 
@@ -390,7 +405,7 @@ if __name__ == "__main__":
     elif args.total_search:
         for perm in (list(itertools.permutations(["place", "goal", "source"])) +
                      [["unif", "unif", "unif"], ["place", "place", "place"]]):
-            for mu in [.1, .2, .3]:
+            for mu in [0.2]: #[.1, .2, .3]:
                 for i in np.append(np.linspace(-5, 5, 20), np.array(0)):
                     for j in np.append(np.linspace(-5, 5, 20), np.array(0)):
                         pgs = [0, i, j]
